@@ -1,0 +1,54 @@
+<p>demonew works!</p>
+<h4>{{ today | date }}</h4>
+<h4 class="h4">{{ price | currency: "EUR" }}</h4>
+<div class="container">
+  <div class="row" appHighLighter></div>
+  <div class="row">
+    <div class="col">
+      <input type="number" class="form-control" [(ngModel)]="tab_n" />
+    </div>
+    <div class="col">
+      <button class="btn btn-large btn-dark" (click)="showTable()">
+        Show Table
+      </button>
+      <button class="btn btn-large btn-danger" (click)="onclear()">
+        Clear
+      </button>
+    </div>
+  </div>
+
+  <!--   <input type="number" [(ngModel)]="str1" />
+  <h2>{{ str1 }}</h2>
+  <input type="number" #tab_n1 onkeyup="0" />
+  <div>Num ==> {{ tab_n1.value }} ==></div>
+ -->
+  <div class="row" *ngIf="tflag; else tableblock">
+    <table class="table mx-2">
+      <tbody *ngFor="
+          let item of [
+            'dummy',
+            'dummy',
+            'dummy',
+            'dummy',
+            'dummy',
+            'dummy',
+            'dummy',
+            'dummy',
+            '1',
+            '2'
+          ];
+          let i = index
+        ">
+        <tr class="tr">
+          <td class="td">{{ tab_n }}</td>
+          <td class="td">*</td>
+          <td class="td">{{ i + 1 }}</td>
+          <td class="td">=</td>
+          <td class="td">{{ (i + 1) * tab_n }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <ng-template #tableblock>
+    Hello World! </ng-template>
+</div>

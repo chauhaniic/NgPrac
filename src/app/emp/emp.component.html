@@ -1,0 +1,85 @@
+<div class="container">
+  <form (ngSubmit)="onEmpAdd(f)" #f="ngForm">
+    <div class="form-group">
+      <label>Email address</label>
+      <input type="email" ngModel required email #emp_email="ngModel" name="emp_email" class="form-control" id=""
+        aria-describedby="emailHelp">
+      <small id="" class="form-text text-muted alert alert-danger danger"
+        *ngIf="emp_email.hasError('required') && !emp_email.pristine ">Email Required</small>
+      <small id="" class="form-text text-muted alert alert-danger"
+        *ngIf="emp_email.hasError('email') && !emp_email.pristine ">Invalid Email Address</small>
+    </div>
+    <div class="form-group">
+      <label for="fullName">Full Name</label>
+      <input type="text" pattern=[a-zA-Z] ngModel required #emp_name="ngModel" class="form-control" name="emp_name">
+      <small id="" class="form-text text-muted alert alert-danger"
+        *ngIf="emp_name.hasError('required') && !emp_name.pristine ">Name Required</small>
+      <small id="" class="form-text text-muted alert alert-danger"
+        *ngIf="emp_name.hasError('pattern') && !emp_name.pristine ">Invalid Name</small>
+    </div>
+    <div class="form-group">
+      <label for="Salary">Sallary</label>
+      <input type="number" ngModel required #emp_salary="ngModel" class="form-control" name="emp_salary">
+      <small id="" class="form-text text-muted alert alert-danger"
+        *ngIf="emp_salary.hasError('required') && !emp_salary.pristine ">Salary Required</small>
+    </div>
+    <div class="form-group">
+      <label for="City">City</label>
+      <input type="text" pattern=[a-zA-Z] ngModel required #emp_city="ngModel" class="form-control" name="emp_city">
+      <small id="" class="form-text text-muted alert alert-danger"
+        *ngIf="emp_city.hasError('required') && !emp_city.pristine ">City Required</small>
+      <small id="" class="form-text text-muted alert alert-danger"
+        *ngIf="emp_city.hasError('pattern') && !emp_city.pristine ">Invalid City</small>
+    </div>
+    <div class="form-group form-check">
+      <input type="checkbox" class="form-check-input" required ngModel #check_box="ngModel" name="check_box">
+      <label class="form-check-label" for="exampleCheck1">Check me out</label>
+      <small id="" class="form-text text-muted alert alert-danger"
+        *ngIf="check_box.hasError('required') && !check_box.pristine ">Confirmation Required</small>
+    </div>
+    <button type="submit" class="btn btn-primary">Add Empolyee</button>
+  </form>
+
+</div>
+
+
+<div class="container">
+  <!--
+  <form (ngSubmit)="onEmpAdd(f)" #f="ngForm">
+    <div class="form-group">
+      <label>Email address</label>
+      <input name="emp_email" ngModel required email #emp_email="ngModel" type="text" placeholder="Enter Email"
+        class="form-control">
+      <small *ngIf="emp_email.hasError('required') && !emp_email.pristine "
+        class="form-text text-muted danger alert alert-danger">emp email is
+        required.</small>
+      <small *ngIf="emp_email.hasError('email') && !emp_email.pristine "
+        class="form-text text-muted danger alert alert-danger">invalid email
+        address</small>
+    </div>
+    <div class="form-group">
+      <label for="fullName">Employee Full Name</label>
+      <input name="emp_name" pattern="[a-zA-Z]*" ngModel #emp_name="ngModel" type="text" placeholder="Enter Name"
+        class="form-control">
+      <small *ngIf="emp_name.hasError('pattern') && !emp_name.pristine " class="alert alert-danger">invalid
+        value</small>
+    </div>
+    <div class="form-group">
+      <label>Emp Salary</label>
+      <input name="emp_salary" ngModel type="text" placeholder="Enter Salary" class="form-control">
+    </div>
+    <div class="form-group">
+      <label>Emp City</label>
+      <input name="emp_city" ngModel type="text" placeholder="Enter City" class="form-control">
+    </div>
+    <button type="submit" class="form-control btn btn-primary">Add Emp</button>
+  </form>
+ -->
+  <!--   <form (onsubmit)="onEmpAdd(f)" #f="ngForm">
+    <div class="form-group">
+      <label for="Email">Email Address</label>
+      <input type="email" name="Eemail" ngModel required #Eemail="ngModel" id="" class="form-control">
+      <small class="form-text"></small>
+    </div>
+  </form> -->
+</div>

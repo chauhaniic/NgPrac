@@ -1,0 +1,46 @@
+<div class="container" *ngIf="loginstatus==0;else loggedin">
+  <form class="col col-md-6" (ngSubmit)="onLogin(f)" #f="ngForm">
+    <div class="login w-70">
+      <h3 class="h3">Login Here</h3>
+      <div class="form-group">
+        <label for="exampleInputEmail1">Email address</label>
+        <input type="email" class="form-control" name="usr_email" ngModel #usr_email="ngModel"
+          aria-describedby="emailHelp" required>
+        <small id="" class="form-text text-muted alert alert-danger danger"
+          *ngIf="usr_email.hasError('required') && !usr_email.pristine ">Email Required</small>
+        <small id="" class="form-text text-muted alert alert-danger"
+          *ngIf="usr_email.hasError('email') && !usr_email.pristine ">Invalid Email Address</small>
+      </div>
+      <div class="form-group">
+        <label for="exampleInputPassword1">Password</label>
+        <input type="password" class="form-control" name="password" required ngModel #password="ngModel">
+        <small id="" class="form-text text-muted alert alert-danger"
+          *ngIf="password.hasError('required') && !password.pristine ">Password Required</small>
+      </div>
+      <div class="form-group form-check">
+        <input type="checkbox" class="form-check-input">
+        <label class="form-check-label" for="exampleCheck1">Check me out</label>
+      </div>
+      <button type="submit" class="btn btn-primary" [routerLink]="[ '/product' ]">Login</button>
+      <p>New User Create An Account <a [routerLink]="[ '/register' ]">Register Here</a> </p>
+    </div>
+  </form>
+</div>
+
+<ng-template #loggedin>
+
+  <div class="container">
+    <div class="row">
+      <div class="col">
+        <button class="btn btn-primary float-right" (click)="onLogout()">Logout</button>
+      </div>
+    </div>
+    <h2 class="h2">DashBoard</h2>
+    <div class="row">
+      <p>Welcome to DashBoard</p>
+      <hr>
+      <p class="p">You are Logged in</p>
+    </div>
+  </div>
+
+</ng-template>

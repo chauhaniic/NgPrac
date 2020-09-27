@@ -1,0 +1,25 @@
+<p>Cart works!</p>
+<!-- <h1>Hello from Parent Component</h1>
+<app-child></app-child> -->
+<div class="container">
+  <div class="col-md-12 my-2">
+    {{tempcart|json}}
+    <div class="row">
+      <div *ngFor="let item of tempcart" class="col-sm col-md-6">
+        <div class="thumbnail">
+          <img class="imgp" src=" ./assets/img/{{item.images}} " alt="...">
+          <div class="caption">
+            <h3>{{item.pname|titlecase}}</h3>
+            <p>{{item.price|currency :['INR']}}</p>
+
+            <div class="">
+              <button class="btn btn-success ">Buy</button>
+              <button class="btn btn-primary">Add to Cart</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>

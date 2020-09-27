@@ -1,0 +1,172 @@
+<!--
+<ul>
+  <li *ngFor="let item of arrName"> {{item}} </li>
+</ul>
+<ul>
+  <ol *ngFor="let item of arrNum"> {{item}} </ol>
+</ul>
+-->
+<!--
+<div class="container pt-3">
+  <h2 class="h2">Choice Based</h2>
+  <div class="row">
+    <div class="col"><input type="text" name="" id="" placeholder="ID" /></div>
+    <div class="col"><input type="text" name="" id="" placeholder="Task" /></div>
+    <div class="col"><input type="text" name="" id="" placeholder="Status" /></div>
+    <div class="col">
+      <button class="btn btn-danger">Cancel</button>
+      <button class="btn btn-success">Save Task</button>
+    </div>
+  </div>
+  <div class="row">
+    <div>
+
+
+
+
+    </div>
+  </div>
+</div> -->
+<!-- Before 15 Sept -->
+
+<div class="container mt-4" max-width="90%">
+  <div class="row">
+    <div class="col">
+      <button class="btn btn-primary" (click)="onAddNewTask()">Add Todo Task</button>
+    </div>
+    <div class="col">
+      <button class="btn btn-primary" (click)="onAddNewEmployee()">Add New Employee</button>
+    </div>
+  </div>
+
+  <div *ngIf="flag;else elseblock">
+    <h1>Todo Component</h1>
+    <table class="table table-light">
+      <thead>
+        <tr>
+          <th scope="col">id</th>
+          <th scope="col">Title</th>
+          <th scope="col">Status</th>
+          <th scope="col">Edit</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of arrTodos" class="tr">
+          <td scope="col">{{ item.id }}</td>
+          <td scope="col">{{ item.title }}</td>
+          <td scope="col">
+            <span [ngClass]="{
+              done: item.status == 'done',
+              pending: item.status == 'pending'
+            }">{{ item.status }}
+            </span>
+          </td>
+          <td scope="col">
+            <button class="btn btn-danger px-2" (click)="onDeleteTask(item)">
+              Delete
+            </button>
+            <button class="btn btn-primary" (click)="onUpdateTask(item)">
+              Update
+            </button>
+          </td>
+        </tr>
+      </tbody>
+      <tfoot>
+        <tr class="tr">
+          <td scope="col">
+            <input class="form-control" type="number" [(ngModel)]="id" placeholder="Enter Id" required />
+          </td>
+          <td scope="col">
+            <input class="form-control" type="text" [(ngModel)]="title" placeholder="Title" required />
+          </td>
+          <td scope=" col">
+            <input class="form-control" type="text" [(ngModel)]="status" placeholder="Status" required />
+          </td>
+          <td scope="col">
+            <button class="btn btn-primary" (click)="onCancelTask()">
+              Cancel
+            </button>
+            <button class="btn btn-success" (click)="onAddTask()">
+              Add Task
+            </button>
+          </td>
+        </tr>
+      </tfoot>
+    </table>
+
+  </div>
+  <ng-template #elseblock>
+
+
+
+  </ng-template>
+
+
+
+
+  <div class="container" *ngIf="eflag;">
+    <h3 class="h1">Employee Table</h3>
+    <table class="table table-dark">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Name</th>
+          <th scope="col">Age</th>
+          <th scope="col">Update</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of arrEmployees">
+          <th scope="row">{{ item.id }}</th>
+          <td>{{ item.name }}</td>
+          <td>{{ item.age }}</td>
+          <td>
+            <button class="btn btn-danger" (click)="onDeleteEmpoyee(item)">Delete</button>
+          </td>
+        </tr>
+      </tbody>
+      <tfoot>
+        <tr class="tr">
+          <td scope="col">
+            <input class="form-control" type="number" [(ngModel)]="id" placeholder="Enter Id" required />
+          </td>
+          <td scope="col">
+            <input class="form-control" type="text" [(ngModel)]="name" placeholder="Title" required />
+          </td>
+          <td scope=" col">
+            <input class="form-control" type="text" [(ngModel)]="age" placeholder="Status" required />
+          </td>
+          <td scope="col">
+            <button class="btn btn-primary" (click)="onCancelEmployee()">
+              Cancel
+            </button>
+            <button class="btn btn-success" (click)="onAddEmployee()">
+              Add Employee
+            </button>
+          </td>
+        </tr>
+      </tfoot>
+    </table>
+  </div>
+
+  <!-- <h3 class="h1">Product Table</h3>
+
+  <table class="table table-dark">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Product Name</th>
+        <th scope="col">Status</th>
+        <th scope="col">Price</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of arrProduct">
+        <th scope="row">{{ item.id }}</th>
+        <td>{{ item.pname }}</td>
+        <td>{{ item.status }}</td>
+        <td>{{ item.price }}</td>
+      </tr>
+    </tbody>
+  </table> -->
+</div>

@@ -1,0 +1,12 @@
+.error {
+  left: 40%;
+  right: 0;
+  top: 40%;
+  bottom: 0;
+  position: fixed;
+  width: 70%;
+  margin: auto;
+  font-size: medium;
+  font-weight: 100;
+  font-family: 'Courier New', Courier, monospace
+}

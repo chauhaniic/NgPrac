@@ -1,0 +1,51 @@
+<!-- <h1>Hello from Parent Component</h1>
+<app-child></app-child> -->
+
+<div class="container">
+  <!-- {{productcart|json}} -->
+  <ul class="nav">
+    <li><a (click)="showParent()">Products</a></li>
+    <li><a (click)="showCart()">Cart</a></li>
+  </ul>
+  <div class="col-md-8 my-2">
+    <app-child [categoryName]="selectedCategory" (myEvent)="onMyEvent($event)"></app-child>
+  </div>
+  <div class="col-md-12 my-2" *ngIf="pflag==true">
+    <div class="row">
+      <div *ngFor="let item of productarr" class="col-sm col-md-6">
+        <div class="thumbnail">
+          <img class="imgp" src=" ./assets/img/{{item.images}} " alt="...">
+          <div class="caption">
+            <h3>{{item.pname|titlecase}}</h3>
+            <p>{{item.price|currency :['INR']}}</p>
+
+            <div class="">
+              <button class="btn btn-success ">Buy</button>
+              <button class="btn btn-primary" appRegDatat6 (click)="onAddCart(item)">Add to Cart</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  <div class="col-md-12 my-2" *ngIf="cflag==true">
+    <div class="row">
+      <div *ngFor="let item of productcart" class="col-sm col-md-3">
+        <div class="thumbnail">
+          <img class="imgc" src=" ./assets/img/{{item.images}} " alt="...">
+          <div class="caption">
+            <h3>{{item.pname|titlecase}}</h3>
+            <p>{{item.price|currency :['INR']}}</p>
+
+            <div class="">
+              <button class="btn btn-success ">Buy</button>
+              <button class="btn btn-primary" appRegDatat6 (click)="onAddCart(item)">Add to Cart</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>

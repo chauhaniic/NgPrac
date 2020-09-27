@@ -1,0 +1,45 @@
+<div class="container">
+  <form class="col col-md-6" (ngSubmit)="onRegister(f)" #f="ngForm">
+    <div class="form-group">
+      <label>Email address</label>
+      <input type="email" ngModel required email #usr_email="ngModel" name="usr_email" class="form-control" id=""
+        aria-describedby="emailHelp">
+      <small id="" class="form-text text-muted alert alert-danger danger"
+        *ngIf="usr_email.hasError('required') && !usr_email.pristine ">Email Required</small>
+      <small id="" class="form-text text-muted alert alert-danger"
+        *ngIf="usr_email.hasError('email') && !usr_email.pristine ">Invalid Email Address</small>
+    </div>
+    <div class="form-group">
+      <label for="fullName">Full Name</label>
+      <input type="text" pattern="[a-zA-Z ]*" ngModel required #usr_name="ngModel" class="form-control" name="usr_name">
+      <small id="" class="form-text text-muted alert alert-danger"
+        *ngIf="usr_name.hasError('required') && !usr_name.pristine ">Name Required</small>
+      <small class="form-text text-muted alert alert-danger"
+        *ngIf="usr_name.hasError('pattern') && !usr_name.pristine">Invalid Name</small>
+
+    </div>
+    <div class="form-group">
+      <label for="Salary">Passowrd</label>
+      <input type="password" ngModel required #usr_password="ngModel" class="form-control" name="usr_password">
+      <small id="" class="form-text text-muted alert alert-danger"
+        *ngIf="usr_password.hasError('required') && !usr_password.pristine ">Password Required</small>
+    </div>
+    <div class="form-group">
+      <label for="City">City</label>
+      <input type="text" pattern="[a-zA-Z ]*" ngModel required #usr_city="ngModel" class="form-control" name="usr_city">
+      <small id="" class="form-text text-muted alert alert-danger"
+        *ngIf="usr_city.hasError('required') && !usr_city.pristine ">City Required</small>
+      <small id="" class="form-text text-muted alert alert-danger"
+        *ngIf="usr_city.hasError('pattern') && !usr_city.pristine ">Invalid City</small>
+
+    </div>
+    <div class="form-group form-check">
+      <input type="checkbox" class="form-check-input" required ngModel #check_box="ngModel" name="check_box">
+      <label class="form-check-label" for="exampleCheck1">Check me out</label>
+      <small id="" class="form-text text-muted alert alert-danger"
+        *ngIf="check_box.hasError('required') && !check_box.pristine ">Confirmation Required</small>
+    </div>
+    <button type="submit" class="btn btn-primary">Register User</button>
+  </form>
+
+</div>

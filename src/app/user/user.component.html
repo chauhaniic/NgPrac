@@ -1,0 +1,76 @@
+<h1>user works!</h1>
+{{temp}}
+<ng-template #loggedd>
+  <p class="messsageclass">{{message|titlecase}} </p>
+  <div class="container">
+    <div class="row">
+      <div class="col">
+        <button class="btn btn-primary float-right" (click)="showLogin()">Login</button>
+      </div>
+      <div class="col">
+        <button class="btn btn-primary" (click)="showRegister()">Register</button>
+      </div>
+    </div>
+    <div class="login w-70" *ngIf="lflag">
+      <h3 class="h3">Login Here</h3>
+      <div class="form-group">
+        <label for="exampleInputEmail1">Email address</label>
+        <input type="email" class="form-control" [(ngModel)]="lemail" aria-describedby="emailHelp" required>
+      </div>
+      <div class="form-group">
+        <label for="exampleInputPassword1">Password</label>
+        <input type="password" class="form-control" required [(ngModel)]="lpassword">
+      </div>
+      <div class="form-group form-check">
+        <input type="checkbox" class="form-check-input">
+        <label class="form-check-label" for="exampleCheck1">Check me out</label>
+      </div>
+      <button type="submit" class="btn btn-primary" (click)="onLogin()">Login</button>
+    </div>
+
+
+    <div class="register w-70" *ngIf="rflag">
+      <h3 class="h3">Register Here</h3>
+      <div class="form-group">
+        <label for="exampleInputEmail1">Full Name</label>
+        <input type="text" class="form-control" [(ngModel)]="name">
+      </div>
+      <div class="form-group">
+        <label for="exampleInputEmail1">Email address</label>
+        <input type="email" class="form-control" aria-describedby="emailHelp" [(ngModel)]="email">
+        <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+      </div>
+      <div class="form-group">
+        <label for="exampleInputPassword1">Password</label>
+        <input type="password" class="form-control" id="exampleInputPassword1" [(ngModel)]="password">
+      </div>
+      <div class="form-group form-check">
+        <input type="checkbox" class="form-check-input" id="exampleCheck1">
+        <label class="form-check-label" for="exampleCheck1">Check me out</label>
+      </div>
+      <button type="submit" class="btn btn-primary" (click)="onRegister()">Register</button>
+    </div>
+
+  </div>
+
+</ng-template>
+
+
+
+<div class="container" #loggedin *ngIf="dflag;else loggedd">
+  <div class="row">
+    <div class="col">
+      <button class="btn btn-primary float-right" (click)="onLogout()">Logout</button>
+    </div>
+  </div>
+  <h2 class="h2">DashBoard</h2>
+  <div class="row">
+    <p>Welcome to DashBoard</p>
+    <hr>
+    <p class="p">You are Logged in</p>
+  </div>
+</div>
+
+<pre>
+  {{arrUser|json}}
+</pre>
