@@ -10,8 +10,8 @@ export class EchildComponent implements OnInit {
   constructor() {}
   @Output() myEvent = new EventEmitter();
   ngOnInit(): void {}
-  onSearchClick(val: string) {
-    console.log(val, 'It is EChild comp');
+  onTestClick(val: string) {
+    console.log(val, 'This is EChild comp');
     this.myEvent.emit(val);
   }
 }

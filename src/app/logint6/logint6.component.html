@@ -2,6 +2,7 @@
   <form class="col col-md-6" (ngSubmit)="onLogin(f)" #f="ngForm">
     <div class="login w-70">
       <h3 class="h3">Login Here</h3>
+      <small *ngIf="message!=''" class="form-text text-muted alert alert-danger">{{message}} </small>
       <div class="form-group">
         <label for="exampleInputEmail1">Email address</label>
         <input type="email" class="form-control" name="usr_email" ngModel #usr_email="ngModel"
@@ -21,7 +22,7 @@
         <input type="checkbox" class="form-check-input">
         <label class="form-check-label" for="exampleCheck1">Check me out</label>
       </div>
-      <button type="submit" class="btn btn-primary" [routerLink]="[ '/product' ]">Login</button>
+      <button type="submit" class="btn btn-primary">Login</button>
       <p>New User Create An Account <a [routerLink]="[ '/register' ]">Register Here</a> </p>
     </div>
   </form>

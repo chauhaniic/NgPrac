@@ -11,9 +11,7 @@ export class EparentComponent implements OnInit {
   temp: string = '';
   ngOnInit(): void {}
   onMyEvent(val) {
-    console.log(val, 'from Parent');
+    console.log(val, 'This is Parent');
     this.temp = val;
-
-    //this.productarr = this.productarr.filter((x) => x.pname.startsWith(val));
   }
 }
