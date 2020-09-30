@@ -1,0 +1,92 @@
+<div class="container">
+  <form class="col col-md-6" [formGroup]="signupForm" (ngSubmit)="onSignup()">
+    <div class="from-group">
+      <label>User Name:<span class="lblError">*</span></label>
+      <div class="controls">
+        <input formControlName="user_name" placeholder="User Name" type="text" class="form-control">
+        <p class="lblError"
+          *ngIf="signupForm.get('user_name').hasError('required') && !signupForm.get('user_name').pristine "> Name is
+          Required. </p>
+        <small class="lblError"
+          *ngIf="signupForm.get('user_name').hasError('minlength') && !signupForm.get('user_name').pristine ">
+          Min 5 length
+        </small>
+        <p class="lblError"
+          *ngIf="signupForm.get('user_name').hasError('invalidName') && !signupForm.get('user_name').pristine ">
+          Invalid Names
+        </p>
+      </div>
+    </div>
+
+    <div formGroupName="passwordGroup">
+
+      <div class="form-group">
+        <label for="Password">Password</label> <br />
+        <small class="lblError"
+          *ngIf="signupForm.get('passwordGroup').hasError('passwordMatchError') && !signupForm.get('passwordGroup').pristine ">Passwords
+          Not Match
+        </small>
+        <input formControlName="user_password" placeholder="Password Here" type="password" class="form-control"
+          name="usr_password">
+        <small class="lblError"
+          *ngIf="signupForm.get('passwordGroup').get('user_password').hasError('required') && !signupForm.get('passwordGroup').get('user_password').pristine ">Password
+          Required</small>
+        <small class="lblError"
+          *ngIf="signupForm.get('passwordGroup').get('user_password').hasError('minlength') && !signupForm.get('passwordGroup').get('user_password').pristine ">
+          Minimum Length is 6 Characters.
+        </small>
+      </div>
+      <div class="form-group">
+        <label for="Salary">Confirm Password</label>
+        <input formControlName="user_cpassword" placeholder="Confirm Password" type="password" class="form-control"
+          name="user_cpassword">
+        <small class="lblError"
+          *ngIf="signupForm.get('passwordGroup').get('user_cpassword').hasError('required') && !signupForm.get('passwordGroup').get('user_cpassword').pristine ">Password
+          Required</small>
+        <small class="lblError"
+          *ngIf="signupForm.get('passwordGroup').get('user_cpassword').hasError('minlength') && !signupForm.get('passwordGroup').get('user_cpassword').pristine ">
+          Minimum Length is 6 Characters.
+        </small>
+
+      </div>
+    </div>
+
+
+    <div class="form-group">
+      <label for="Choice">Choose for Notification</label>
+      <div class="controls">
+        <input type="radio" value="email" formControlName="user_notification" name="radio"> Email
+        <input type="radio" value="phone" formControlName="user_notification" name="radio"> Phone
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="Phone">Phone Number</label>
+      <input formControlName="user_phone" type="text" placeholder="Phone Number" class="form-control">
+      <small class="lblError"
+        *ngIf="signupForm.get('user_phone').hasError('required') && !signupForm.get('user_phone').pristine ">Phone No.
+        Required</small>
+      <small class="lblError"
+        *ngIf="signupForm.get('user_phone').hasError('minlength') && !signupForm.get('user_phone').pristine ">Invalid
+        Phone No. </small>
+    </div>
+
+    <div class="form-group">
+      <label for="Email">Email ID</label>
+      <input formControlName="user_email" type="text" placeholder="Email ID" class="form-control">
+      <small class="lblError"
+        *ngIf="signupForm.get('user_email').hasError('required') && !signupForm.get('user_email').pristine ">
+        Email Required</small>
+      <small class="lblError"
+        *ngIf="signupForm.get('user_email').hasError('email') && !signupForm.get('user_email').pristine ">Invalid
+        Email</small>
+    </div>
+
+    <div class="form-group form-check">
+      <input type="checkbox" class="form-check-input" required name="check_box">
+      <label class="form-check-label" for="exampleCheck1">Check me out</label>
+
+    </div>
+    <button type="submit" class="btn btn-primary">Sign Up Now</button>
+  </form>
+
+</div>

@@ -9,6 +9,7 @@ import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
 import { ParentComponent } from './parent/parent.component';
 import { Productt6Component } from './productt6/productt6.component';
 import { Registert6Component } from './registert6/registert6.component';
+import { SignupComponent } from './signup/signup.component';
 import { TodoComponent } from './todo/todo.component';
 import { UserComponent } from './user/user.component';
 
@@ -33,6 +34,7 @@ const task26: Routes = [
   { path: 'demoa', component: DemoappComponent },
   { path: 'employee', component: EmpComponent },
   { path: 'eparent', component: EparentComponent },
+  { path: 'signup', component: SignupComponent },
   { path: 'error404', component: PagenotfoundComponent },
   { path: '**', redirectTo: 'error404' },
 ];

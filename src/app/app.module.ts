@@ -5,7 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { DemoappComponent } from './demoapp/demoapp.component';
 import { TodoComponent } from './todo/todo.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DemonewComponent } from './demonew/demonew.component';
 import { HighLighterDirective } from './high-lighter.directive';
 import { UserComponent } from './user/user.component';
@@ -26,6 +26,7 @@ import { ChildComponent } from './child/child.component';
 import { RegDatat6Directive } from './reg-datat6.directive';
 import { EparentComponent } from './eparent/eparent.component';
 import { EchildComponent } from './echild/echild.component';
+import { SignupComponent } from './signup/signup.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -50,8 +51,15 @@ import { EchildComponent } from './echild/echild.component';
     RegDatat6Directive,
     EparentComponent,
     EchildComponent,
+    SignupComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule, FormsModule, arrRouting],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    FormsModule,
+    ReactiveFormsModule,
+    arrRouting,
+  ],
   providers: [],
   bootstrap: [AppComponent],
 })
