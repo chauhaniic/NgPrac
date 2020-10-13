@@ -49,14 +49,15 @@
         </small>
 
       </div>
+
     </div>
 
 
     <div class="form-group">
       <label for="Choice">Choose for Notification</label>
       <div class="controls">
-        <input type="radio" value="email" formControlName="user_notification" name="radio"> Email
-        <input type="radio" value="phone" formControlName="user_notification" name="radio"> Phone
+        <input type="radio" value="email" formControlName="user_notification"> Email
+        <input type="radio" value="phone" formControlName="user_notification"> Phone
       </div>
     </div>
     <div class="form-group">
@@ -81,6 +82,17 @@
         Email</small>
     </div>
 
+    <div class="form-group">
+      <label>Hobbies</label>
+      <div class="controls">
+        <button type="button" class="btn btn-secondary" (click)="onAddHobbiesClick()">Add</button>
+
+        <div formArrayName="user_hobbies" *ngFor="let item of getControl();let i=index">
+          <input type="text" [formControlName]="i" class="form-control">
+          <button type="button" class="btn btn-danger btn-sm pull" (click)="onRemoveHobbiesClick(i)"> Remove </button>
+        </div>
+      </div>
+    </div>
     <div class="form-group form-check">
       <input type="checkbox" class="form-check-input" required name="check_box">
       <label class="form-check-label" for="exampleCheck1">Check me out</label>

@@ -1,0 +1,125 @@
+<p>arraytest works!</p>
+
+<form class="from-group" [formGroup]="empExForm" (ngSubmit)="onSignup()">
+  <h2 class="h2">Exp Mode</h2>
+  <div class="form-group">
+    <label>Hobbies</label>
+    <div class="controls">
+      <button type="button" class="btn btn-secondary" (click)="onAddHobbiesClick()">Add</button>
+
+      <div formArrayName="user_hobbies" *ngFor="let item of getControl();let i=index">
+        <div class="col-4" [formGroupName]='i'>
+
+          <input type="text" formControlName="name" class="form-control">
+          <input type="text" formControlName="description" class="form-control">
+          <input type="text" formControlName="price" class="form-control">
+          <button type="button" class="btn btn-danger btn-sm pull" (click)="onRemoveHobbiesClick(i)"> Remove </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <button type="submit" class="btn btn-primary">Sign Up Now</button>
+</form>
+<form id="exp_info" class="form-group" [formGroup]="empExForm" (ngSubmit)="onSignup()">
+
+  <div class="edu_info table-responsive">
+    <h3 class="h3">Education Details</h3>
+    <table class="table">
+      <thead class="thead">
+
+        <td class="td">Qualification*</td>
+        <td class="td">Institute*</td>
+        <td class="td">Passing Year*</td>
+        <td class="td">Score*</td>
+        <td class="td">Qualification Area*</td>
+        <td class="td">Edit/Remove</td>
+      </thead>
+      <tbody class="tbody" formArrayName="edu_data" *ngFor="let item of getEduControl();let i=index">
+        <tr class="tr" [formGroupName]='i'>
+
+          <td class="td">
+            <input formControlName="qualification" type="text" class="form-control">
+            <!-- <small class="lblError"
+              *ngIf="empExForm.get('edu_data').get('qualification').hasError('required') && !empExForm.get('edu_data').get('qualification').pristine ">Pin
+              Code
+              Invalid
+            </small> -->
+          </td>
+          <td class="td"><input formControlName="institution" type="text" class="form-control"></td>
+          <td class="td"><input formControlName="passing_year" type="text" class="form-control"></td>
+          <td class="td"><input formControlName="score" type="number" class="form-control"></td>
+          <td class="td"><input formControlName="qua_area" type="text" class="form-control"></td>
+          <td class="td">
+            <button type="button" class="btn btn-danger" (click)="onValidateEduClick(i)">Validate</button>
+            <button type="button" class="btn btn-danger" (click)="onRemoveEduClick(i)">Remove</button>
+          </td>
+        </tr>
+
+
+      </tbody>
+      <tfoot class="tfoot">
+        <td class="td"><button type="button" class="btn btn-primary" (click)="onAddEducationClick()">Add More</button>
+        </td>
+      </tfoot>
+    </table>
+  </div>
+  <div class="exp_info table-responsive">
+    <h3 class="h3">Experience Details</h3>
+    <table class="table">
+      <thead class="thead">
+        <td class="td">From Date*</td>
+        <td class="td">To Date*</td>
+        <td class="td">Company*</td>
+        <td class="td">Designation*</td>
+        <td class="td">Relevant Date*</td>
+        <td class="td">Non Relevant Date*</td>
+        <td class="td">Edit/Remove</td>
+      </thead>
+      <tbody class="tbody" formArrayName="exp_data" *ngFor="let item of getExpControl();let i=index">
+        <tr class="tr" [formGroupName]='i'>
+          <td class="td"><input formControlName="from_date" type="date" class="form-control"></td>
+          <td class="td"><input formControlName="to_date" type="date" class="form-control"></td>
+          <td class="td"><input formControlName="company" type="text" class="form-control"></td>
+          <td class="td"><input formControlName="designation" type="text" class="form-control"></td>
+          <td class="td"><input formControlName="r_date" type="date" class="form-control"></td>
+          <td class="td"><input formControlName="nr_date" type="date" class="form-control"></td>
+          <td class="td"><button type="button" class="btn btn-danger">Remove</button></td>
+        </tr>
+
+      </tbody>
+      <tfoot class="tfoot">
+        <td class="td"><button type="button" class="btn btn-primary" (click)="onAddExpClick()">Add More</button></td>
+      </tfoot>
+    </table>
+  </div>
+  <div class="skill_info table-responsive">
+    <h3 class="h3">Skill Details</h3>
+    <table class="table">
+      <thead class="thead">
+        <td class="td">Skill Category*</td>
+        <td class="td">Skill*</td>
+        <td class="td">Skill Level*</td>
+        <td class="td">Is Current*</td>
+        <td class="td">Experience*</td>
+        <td class="td">Remarks*</td>
+        <td class="td">Edit/Remove</td>
+      </thead>
+      <tbody class="tbody" formGroupName="skill_data" *ngFor="let item of getSkillControl();let i=index">
+        <tr class="tr" [formGroupName]='i'>
+          <td class="td"><input formControlName="skill_cat" type="text" class="form-control"></td>
+          <td class="td"><input formControlName="skill" type="text" class="form-control"></td>
+          <td class="td"><input formControlName="skill_level" type="text" class="form-control"></td>
+          <td class="td"><input formControlName="is_current" type="text" class="form-control"></td>
+          <td class="td"><input formControlName="exper" type="text" class="form-control"></td>
+          <td class="td"><input formControlName="remarks" type="text" class="form-control"></td>
+          <td class="td"><button type="button" class="btn btn-danger">Remove</button></td>
+        </tr>
+
+      </tbody>
+      <tfoot class="tfoot">
+        <td class="td"><button type="button" class="btn btn-primary" (click)="onAddSkillClick()">Add More</button></td>
+      </tfoot>
+    </table>
+  </div>
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>

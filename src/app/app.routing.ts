@@ -1,7 +1,9 @@
 import { RouterModule, Routes } from '@angular/router';
+import { ArraytestComponent } from './arraytest/arraytest.component';
 import { Cartt6Component } from './cartt6/cartt6.component';
 import { DemoappComponent } from './demoapp/demoapp.component';
 import { DemonewComponent } from './demonew/demonew.component';
+import { EmpFormComponent } from './emp-form/emp-form.component';
 import { EmpComponent } from './emp/emp.component';
 import { EparentComponent } from './eparent/eparent.component';
 import { Logint6Component } from './logint6/logint6.component';
@@ -35,6 +37,8 @@ const task26: Routes = [
   { path: 'employee', component: EmpComponent },
   { path: 'eparent', component: EparentComponent },
   { path: 'signup', component: SignupComponent },
+  { path: 'empform', component: EmpFormComponent },
+  { path: 'atest', component: ArraytestComponent },
   { path: 'error404', component: PagenotfoundComponent },
   { path: '**', redirectTo: 'error404' },
 ];

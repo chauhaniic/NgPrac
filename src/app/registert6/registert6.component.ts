@@ -12,6 +12,7 @@ export class Registert6Component implements OnInit {
   email;
   password;
   message;
+  cflag: boolean = true;
   constructor() {}
   ngOnInit(): void {}
   arrUser: User[] = [
@@ -39,6 +40,15 @@ export class Registert6Component implements OnInit {
       );
       //this.regDone();
       alert('Dear ' + f.value.usr_name + ' Registration Done');
+    }
+  }
+  change_check() {
+    if (this.cflag == true) {
+      this.cflag = false;
+      console.log(this.cflag);
+    } else {
+      this.cflag = true;
+      console.log(this.cflag);
     }
   }
 }

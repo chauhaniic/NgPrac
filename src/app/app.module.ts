@@ -27,6 +27,8 @@ import { RegDatat6Directive } from './reg-datat6.directive';
 import { EparentComponent } from './eparent/eparent.component';
 import { EchildComponent } from './echild/echild.component';
 import { SignupComponent } from './signup/signup.component';
+import { EmpFormComponent } from './emp-form/emp-form.component';
+import { ArraytestComponent } from './arraytest/arraytest.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -52,6 +54,8 @@ import { SignupComponent } from './signup/signup.component';
     EparentComponent,
     EchildComponent,
     SignupComponent,
+    EmpFormComponent,
+    ArraytestComponent,
   ],
   imports: [
     BrowserModule,

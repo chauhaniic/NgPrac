@@ -24,7 +24,7 @@
       <small id="" class="form-text text-muted alert alert-danger"
         *ngIf="usr_password.hasError('required') && !usr_password.pristine ">Password Required</small>
     </div>
-    <div class="form-group">
+    <div class="form-group" *ngIf="cflag">
       <label for="City">City</label>
       <input type="text" pattern="[a-zA-Z ]*" ngModel required #usr_city="ngModel" class="form-control" name="usr_city">
       <small id="" class="form-text text-muted alert alert-danger"
@@ -34,7 +34,8 @@
 
     </div>
     <div class="form-group form-check">
-      <input type="checkbox" class="form-check-input" required ngModel #check_box="ngModel" name="check_box">
+      <input type="checkbox" (change)="change_check()" class="form-check-input" required ngModel #check_box="ngModel"
+        name="check_box">
       <label class="form-check-label" for="exampleCheck1">Check me out</label>
       <small id="" class="form-text text-muted alert alert-danger"
         *ngIf="check_box.hasError('required') && !check_box.pristine ">Confirmation Required</small>
