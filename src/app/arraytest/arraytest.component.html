@@ -39,6 +39,7 @@
 
           <td class="td">
             <input formControlName="qualification" type="text" class="form-control">
+            <small *ngIf="column==i" class="lblError">{{erroroutput}}</small>
             <!-- <small class="lblError"
               *ngIf="empExForm.get('edu_data').get('qualification').hasError('required') && !empExForm.get('edu_data').get('qualification').pristine ">Pin
               Code

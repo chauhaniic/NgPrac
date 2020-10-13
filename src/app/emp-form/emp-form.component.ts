@@ -245,6 +245,22 @@ export class EmpFormComponent implements OnInit {
   onAddSkillClick() {
     (this.empExForm.get('skill_data') as FormArray).push(this.createSkill());
   }
+  onSkillCheck(i) {
+    let num_data = this.empExForm.get('edu_data').value.length;
+    if (num_data > 0) {
+      for (let index = 0; index < num_data - 1; index++) {
+        let r = this.empExForm.get('edu_data') as FormArray;
+        let item = r.at(index);
+        if (
+          item.get('qualification').value == r.at(i).get('qualification').value
+        ) {
+          alert('Qualification match to ' + (index + 1) + 'Row');
+          //this.column = i;
+          break;
+        }
+      }
+    }
+  }
   onRemoveSkillClick(i) {
     (this.empExForm.get('skill_data') as FormArray).removeAt(i);
   }
@@ -273,6 +289,22 @@ export class EmpFormComponent implements OnInit {
   }
   onAddEducationClick() {
     (this.empExForm.get('edu_data') as FormArray).push(this.createEdu());
+  }
+  onEduCheck(i) {
+    let num_data = this.empExForm.get('edu_data').value.length;
+    if (num_data > 0) {
+      for (let index = 0; index < num_data - 1; index++) {
+        let r = this.empExForm.get('edu_data') as FormArray;
+        let item = r.at(index);
+        if (
+          item.get('qualification').value == r.at(i).get('qualification').value
+        ) {
+          alert('Qualification match to ' + (index + 1) + 'Row');
+          //this.column = i;
+          break;
+        }
+      }
+    }
   }
   onRemoveEduClick(i) {
     (this.empExForm.get('edu_data') as FormArray).removeAt(i);

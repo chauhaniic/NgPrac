@@ -490,6 +490,7 @@
             <td class="td"><input formControlName="score" type="number" class="form-control"></td>
             <td class="td"><input formControlName="qua_area" type="text" class="form-control"></td>
             <td class="td">
+              <button type="button" class="btn btn-secondary" (click)="onEduCheck(i)">Check</button>
               <button type="button" class="btn btn-danger" (click)="onRemoveEduClick(i)">Remove</button>
             </td>
           </tr>
@@ -552,7 +553,10 @@
             <td class="td"><input formControlName="is_current" type="text" class="form-control"></td>
             <td class="td"><input formControlName="exper" type="text" class="form-control"></td>
             <td class="td"><input formControlName="remarks" type="text" class="form-control"></td>
-            <td class="td"><button type="button" class="btn btn-danger" (click)="onRemoveSkillClick(i)">Remove</button>
+            <td class="td">
+              <button type="button" class="btn btn-secondary" (click)="onSkillCheck(i)">Check</button>
+              <button type="button" class="btn btn-danger" (click)="onRemoveSkillClick(i)">Remove</button>
+
             </td>
           </tr>
 

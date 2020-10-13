@@ -143,11 +143,24 @@ export class ArraytestComponent implements OnInit {
       qua_area: '',
     });
   }
+  erroroutput: string = '';
+  column: number;
   onValidateEduClick(i) {
     let num_data = this.empExForm.get('edu_data').value.length;
-    for (let index = 0; index < num_data; index++) {
-      console.log(this.empExForm.get('edu_data').get('qualification'));
-      console.log(this.empExForm.status);
+    if (num_data > 0) {
+      for (let index = 0; index < num_data - 1; index++) {
+        let r = this.empExForm.get('edu_data') as FormArray;
+        let item = r.at(index);
+        if (
+          item.get('qualification').value == r.at(i).get('qualification').value
+        ) {
+          this.erroroutput = 'Qualification match to ' + (index + 1) + 'Row';
+          this.column = i;
+          break;
+        }
+        console.log(item.get('institution').value);
+        console.log(this.empExForm.status);
+      }
     }
   }
   onAddEducationClick() {
