@@ -116,12 +116,9 @@
       <div class="form-group row">
         <label class="col-sm-3 col-form-label" for="">Marraige Date</label>
         <div class="col-sm-9">
-          <input class="form-control" type="date" formControlName="marriage_date" (click)="onCalc()" />
-          <label>{{life}} </label>
-          <input [(ngModel)]="bindd" ngIf="!display" value="{{ age|date:yyyy  }}">
+          <input class="form-control" type="date" formControlName="marriage_date" />
         </div>
       </div>
-      
       <div class="form-group row">
         <label class="col-sm-3 col-form-label" for="">Spouse Name</label>
         <div class="col-sm-9">

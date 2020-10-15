@@ -22,8 +22,6 @@ export class ArraytestComponent implements OnInit {
   empAddForm: FormGroup;
   mart_status: string = '';
   mflag:boolean=true;
-  bindd:number;
-  age:string;
   ngOnInit(): void {
     this.empExForm = new FormGroup({
       //items: this.formBuilder.array([this.createItem()]),
@@ -68,14 +66,8 @@ export class ArraytestComponent implements OnInit {
   mchange() {
     this.mart_status = this.empAddForm.get('maritual_status').value;
   }
-  today: number = Date.now();
-  life:number=0;
-  onCalc(){
-    this.age=this.empAddForm.get('marriage_date').value;
-    
-    let t=this.today|yyyy;
-    this.life=t-this.bindd;
-  }
+
+
   onSignup() {
     console.log(this.empAddForm.value);
     /*
