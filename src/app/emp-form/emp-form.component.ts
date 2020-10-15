@@ -31,6 +31,7 @@ export class EmpFormComponent implements OnInit {
   district: string;
   city: string;
   pincode: string;
+  mart_status:string;
   constructor(private formBuilder: FormBuilder) {}
   empBasicForm: FormGroup;
   empAddForm: FormGroup;
@@ -102,6 +103,27 @@ export class EmpFormComponent implements OnInit {
         ]),
       }),
       check_Add_Value: new FormControl(false),
+      birth_place: new FormControl(null, [
+        Validators.required,
+        Validators.pattern('[a-zA-Z ]*'),
+      ]),
+      religion: new FormControl(''),
+      caste: new FormControl(''),
+      domicile: new FormControl(null, [Validators.pattern('[a-zA-Z ]*')]),
+      nationality: new FormControl('indian', [Validators.required]),
+      voter_id: new FormControl(null, [Validators.pattern('[0-9a-zA-Z ]*')]),
+      pan_card: new FormControl(null, [
+        Validators.required,
+        Validators.pattern('[0-9a-zA-Z ]*'),
+      ]),
+      adhar_card: new FormControl(null, [
+        Validators.required,
+        Validators.pattern('[0-9a-zA-Z ]*'),
+      ]),
+      maritual_status: new FormControl('married'),
+      children: new FormControl('', [Validators.pattern('[0-9]')]),
+      marriage_date: new FormControl(''),
+      spouse_name: new FormControl('', [Validators.pattern('[0-9a-zA-Z ]*')]),
       bank_name: new FormControl(null, [Validators.required]),
       acc_type: new FormControl(null, [Validators.required]),
       acc_no: new FormControl(null, [
@@ -124,6 +146,9 @@ export class EmpFormComponent implements OnInit {
       exp_data: new FormArray([]),
       skill_data: new FormArray([]),
     });
+  }
+    mchange() {
+    this.mart_status = this.empAddForm.get('maritual_status').value;
   }
   temp: Date;
   calculateAge(control: AbstractControl): { [key: number]: boolean } {
@@ -254,7 +279,7 @@ export class EmpFormComponent implements OnInit {
         if (
           item.get('qualification').value == r.at(i).get('qualification').value
         ) {
-          alert('Qualification match to ' + (index + 1) + 'Row');
+          window.alert('Qualification match to ' + (index + 1) + 'Row');
           //this.column = i;
           break;
         }
@@ -299,7 +324,7 @@ export class EmpFormComponent implements OnInit {
         if (
           item.get('qualification').value == r.at(i).get('qualification').value
         ) {
-          alert('Qualification match to ' + (index + 1) + 'Row');
+          window.alert('Qualification match to ' + (index + 1) + 'Row');
           //this.column = i;
           break;
         }

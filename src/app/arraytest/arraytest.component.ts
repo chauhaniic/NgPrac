@@ -19,7 +19,11 @@ export class ArraytestComponent implements OnInit {
   pflag: boolean = true;
   items: FormArray;
   empExForm: FormGroup;
-
+  empAddForm: FormGroup;
+  mart_status: string = '';
+  mflag:boolean=true;
+  bindd:number;
+  age:string;
   ngOnInit(): void {
     this.empExForm = new FormGroup({
       //items: this.formBuilder.array([this.createItem()]),
@@ -37,10 +41,46 @@ export class ArraytestComponent implements OnInit {
         paddlin1: new FormControl(null),
       }),
     }); */
+    this.empAddForm = new FormGroup({
+      birth_place: new FormControl(null, [
+        Validators.required,
+        Validators.pattern('[a-zA-Z ]*'),
+      ]),
+      religion: new FormControl(''),
+      caste: new FormControl(''),
+      domicile: new FormControl(null, [Validators.pattern('[a-zA-Z ]*')]),
+      nationality: new FormControl('indian', [Validators.required]),
+      voter_id: new FormControl(null, [Validators.pattern('[0-9a-zA-Z ]*')]),
+      pan_card: new FormControl(null, [
+        Validators.required,
+        Validators.pattern('[0-9a-zA-Z ]*'),
+      ]),
+      adhar_card: new FormControl(null, [
+        Validators.required,
+        Validators.pattern('[0-9a-zA-Z ]*'),
+      ]),
+      maritual_status: new FormControl('married'),
+      children: new FormControl('', [Validators.pattern('[0-9]')]),
+      marriage_date: new FormControl(''),
+      spouse_name: new FormControl('', [Validators.pattern('[0-9a-zA-Z ]*')]),
+    });
+  }
+  mchange() {
+    this.mart_status = this.empAddForm.get('maritual_status').value;
+  }
+  today: number = Date.now();
+  life:number=0;
+  onCalc(){
+    this.age=this.empAddForm.get('marriage_date').value;
+    
+    let t=this.today|yyyy;
+    this.life=t-this.bindd;
   }
   onSignup() {
+    console.log(this.empAddForm.value);
+    /*
     console.log(this.empExForm.value);
-    console.log(this.empExForm.status);
+    console.log(this.empExForm.status); */
   }
   createItem(): FormGroup {
     return this.formBuilder.group({
