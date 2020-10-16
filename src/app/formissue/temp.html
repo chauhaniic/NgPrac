@@ -1,0 +1,719 @@
+<div class="jumbotron ">
+  <div class="container div">
+
+
+    <form [formGroup]="basicInfo" (ngSubmit)="  onNextClick()">
+
+      <div *ngIf="flag1">
+        <h2 style="text-align: center;">BASIC INFORMATION</h2>
+        <div class="row">
+          <div class="col">
+            <div class="form-group">
+              <label for="exampleFormControlInput1"><b>Employee Number*</b></label>
+              <input formControlName="empNum" type="email" class="form-control" id="exampleFormControlInput1"
+                placeholder="employee number" />
+              <span *ngIf="basicInfo.get('empNum').hasError('required') && !basicInfo.get('empNum').pristine"
+                class="text-danger">*Emp Num is required</span>
+            </div>
+          </div>
+          <div class="col">
+            <div class="form-group">
+              <label for="exampleFormControlInput1">Title*</label>
+              <input formControlName="title" type="email" class="form-control" id="exampleFormControlInput1"
+                placeholder="title" />
+              <span *ngIf="basicInfo.get('title').hasError('required') && !basicInfo.get('title').pristine"
+                class="text-danger">*Title is required</span>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            <div class="form-group">
+              <label for="exampleFormControlInput1">Name*</label>
+              <input formControlName="name" type="email" class="form-control" id="exampleFormControlInput1"
+                placeholder="name" />
+              <span *ngIf="basicInfo.get('name').hasError('required') && !basicInfo.get('name').pristine"
+                class="text-danger">*Name is required</span>
+              <span *ngIf="basicInfo.get('name').hasError('minlength') && !basicInfo.get('name').pristine"
+                class="text-danger">*invalid Name</span>
+            </div>
+          </div>
+          <div class="col">
+            <div class="form-group">
+              <label for="exampleFormControlInput1">First Name*</label>
+              <input formControlName="fname" type="email" class="form-control" id="exampleFormControlInput1"
+                placeholder="first name" />
+              <span *ngIf="basicInfo.get('fname').hasError('required') && !basicInfo.get('fname').pristine"
+                class="text-danger">*First Name is required</span>
+              <span *ngIf="basicInfo.get('name').hasError('minlength') && !basicInfo.get('name').pristine"
+                class="text-danger">*invalid first name</span>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            <div class="form-group">
+              <label for="exampleFormControlInput1">Middle name</label>
+              <input formControlName="mname" type="email" class="form-control" id="exampleFormControlInput1"
+                placeholder="middle name" />
+            </div>
+          </div>
+          <div class="col">
+            <div class="form-group">
+              <label for="exampleFormControlInput1">Last name</label>
+              <input formControlName="lname" type="email" class="form-control" id="exampleFormControlInput1"
+                placeholder="last name" />
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            <div class="form-group">
+              <label for="exampleFormControlInput1">Addressed as</label>
+              <input formControlName="addAs" type="email" class="form-control" id="exampleFormControlInput1"
+                placeholder="addressed as" />
+            </div>
+          </div>
+          <div class="col">
+            <div class="form-group">
+              <label for="exampleFormControlInput1">Initials</label>
+              <input formControlName="initials" type="email" class="form-control" id="exampleFormControlInput1"
+                placeholder="initials" />
+            </div>
+          </div>
+        </div>
+        <div class="form-check form-check-inline">
+          <input formControlName="gender" class="form-check-input" type="radio" id="exampleRadios1" value="male"
+            checked />
+          <label class="form-check-label" for="exampleRadios1"> Male </label>
+        </div>
+        <div class="form-check form-check-inline">
+          <input formControlName="gender" class="form-check-input" type="radio" id="exampleRadios2" value="female" />
+          <label class="form-check-label" for="exampleRadios2"> Female </label>
+        </div> &nbsp; &nbsp; &nbsp;<br>
+        <div class="form-group">
+          <label for="exampleFormControlInput1">Date of Birth</label>
+          <input formControlName="dob" type="date" class="form-control" id="exampleFormControlInput1"
+            placeholder="age" />
+        </div>
+        <div class="row">
+          <div class="col">
+            <div class="form-group">
+              <label for="exampleFormControlInput1">Employee Age</label>
+              <input formControlName="empAge" type="email" class="form-control" id="exampleFormControlInput1"
+                placeholder="age" value={{age}} />
+            </div>
+          </div>
+          <div class="col">
+            <div class="form-group">
+              <label for="exampleFormControlInput1">Fax</label>
+              <input formControlName="Fax" type="email" class="form-control" id="exampleFormControlInput1"
+                placeholder="fax" />
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            <div class="form-group">
+              <label for="exampleFormControlInput1">Official Phone</label>
+              <input formControlName="offPhone" type="text" class="form-control" id="exampleFormControlInput1"
+                placeholder="official phone" />
+            </div>
+          </div>
+          <div class="col">
+            <div class="form-group">
+              <label for="exampleFormControlInput1">Personal Mobile*</label>
+              <input formControlName="perMobile" type="string" class="form-control" id="exampleFormControlInput1"
+                placeholder="personal mobile" />
+              <span *ngIf="basicInfo.get('perMobile').hasError('required') && !basicInfo.get('perMobile').pristine"
+                class="text-danger">*Personal Mobile is required</span>
+              <span *ngIf="basicInfo.get('perMobile').hasError('min') && !basicInfo.get('perMobile').pristine"
+                class="text-danger">*Mobile is invalid</span>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            <div class="form-group">
+              <label for="exampleFormControlInput1">Official Email</label>
+              <input formControlName="OfficialMail" type="email" class="form-control" id="exampleFormControlInput1"
+                placeholder="official email" />
+            </div>
+          </div>
+          <div class="col">
+            <div class="form-group">
+              <label for="exampleFormControlInput1">Personal email*</label>
+              <input formControlName="perEmail" type="email" class="form-control" id="exampleFormControlInput1"
+                placeholder="personal email" />
+            </div>
+          </div>
+          <span *ngIf="basicInfo.get('perEmail').hasError('required') && !basicInfo.get('perEmail').pristine"
+            class="text-danger">*personal email is required</span>
+          <span *ngIf="basicInfo.get('perEmail').hasError('email') && !basicInfo.get('perEmail').pristine"
+            class="text-danger">*invalid email</span>
+        </div>
+        <div class="row">
+          <div class="col">
+            <div class="form-group">
+              <label for="exampleFormControlInput1">Personal email 2</label>
+              <input formControlName="perEmail2" type="email" class="form-control" id="exampleFormControlInput1"
+                placeholder="personal email 2" />
+            </div>
+          </div>
+          <div class="col">
+            <div class="form-group">
+              <label for="exampleFormControlInput1">Personal email 3</label>
+              <input formControlName="perEmail3" type="email" class="form-control" id="exampleFormControlInput1"
+                placeholder="personal email 3" />
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="exampleFormControlFile1">Upload photo</label>
+          <input formControlName="Photofile" type="file" class="form-control-file" id="exampleFormControlFile1" />
+        </div>
+
+        <button type="submit" class="btn btn-primary">Next ➡</button>
+
+        <h4 class="text-danger">*indicates the fields are mandatory</h4>
+      </div>
+    </form>
+  </div>
+
+  <!-- <div class="jumbotron "> -->
+  <div class="container">
+    <form [formGroup]="empInfo" (ngSubmit)="onProceedClick()">
+      <div *ngIf="flag2">
+        <h2 style="text-align: center;">Present Address</h2>
+        <div class="row">
+          <div class="col">
+            <div class="form-group">
+              <label for="exampleFormControlInput1">Adderss Permanent*</label>
+              <input formControlName="PAddresspermanent" type="email" class="form-control" id="exampleFormControlInput1"
+                placeholder="Adderss Permanent" />
+              <span
+                *ngIf="empInfo.get('PAddresspermanent').hasError('required') && !empInfo.get('PAddresspermanent').pristine"
+                class="text-danger">*address permanent is required</span>
+            </div>
+          </div>
+          <div class="col">
+            <div class="form-group">
+              <label for="exampleFormControlInput1">City*</label>
+              <input formControlName="PCity" type="email" class="form-control" id="exampleFormControlInput1"
+                placeholder="City" />
+              <span *ngIf="empInfo.get('PCity').hasError('required') && !empInfo.get('PCity').pristine"
+                class="text-danger">*City is required</span>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            <div class="form-group">
+              <label for="exampleFormControlInput1">Country</label>
+              <input formControlName="PCountry" type="email" class="form-control" id="exampleFormControlInput1"
+                placeholder="Country" />
+            </div>
+          </div>
+          <div class="col">
+            <div class="form-group">
+              <label for="exampleFormControlInput1">State</label>
+              <input formControlName="PState" type="email" class="form-control" id="exampleFormControlInput1"
+                placeholder="State" />
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            <div class="form-group">
+              <label for="exampleFormControlInput1">District</label>
+              <input formControlName="PDistrict" type="email" class="form-control" id="exampleFormControlInput1"
+                placeholder="District" />
+            </div>
+          </div>
+          <div class="col">
+            <div class="form-group">
+              <label for="exampleFormControlInput1">Pin</label>
+              <input formControlName="PPin" type="email" class="form-control" id="exampleFormControlInput1"
+                placeholder="Pin" />
+            </div>
+          </div>
+        </div>
+        <h4 class="text-danger">*indicates the fields are mandatory</h4>
+
+        <div class="form-check">
+          <input formControlName="Padd" class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+          <label class="form-check-label" for="defaultCheck1">&nbsp;&nbsp;
+            Same to Permanent Address
+          </label>
+        </div>
+        <h2 style="text-align: center;">Permanent Address</h2>
+        <div class="row">
+          <div class="col">
+            <div class="form-group">
+              <label for="exampleFormControlInput1">Adderss Permanent*</label>
+              <input formControlName="Addresspermanent" type="email" class="form-control" id="exampleFormControlInput1"
+                placeholder="Adderss Permanent" value={{address}} />
+              <span
+                *ngIf="empInfo.get('Addresspermanent').hasError('required') && !empInfo.get('Addresspermanent').pristine"
+                class="text-danger">*address permanent is required</span>
+            </div>
+          </div>
+          <div class="col">
+            <div class="form-group">
+              <label for="exampleFormControlInput1">City*</label>
+              <input formControlName="City" type="email" class="form-control" id="exampleFormControlInput1"
+                placeholder="City" value={{city}} />
+              <span *ngIf="empInfo.get('City').hasError('required') && !empInfo.get('City').pristine"
+                class="text-danger">*City is required</span>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            <div class="form-group">
+              <label for="exampleFormControlInput1">Country</label>
+              <input formControlName="Country" type="email" class="form-control" id="exampleFormControlInput1"
+                placeholder="Country" value={{country}} />
+            </div>
+          </div>
+          <div class="col">
+            <div class="form-group">
+              <label for="exampleFormControlInput1">State</label>
+              <input formControlName="State" type="email" class="form-control" id="exampleFormControlInput1"
+                placeholder="State" value={{state}} />
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            <div class="form-group">
+              <label for="exampleFormControlInput1">District</label>
+              <input formControlName="District" type="email" class="form-control" id="exampleFormControlInput1"
+                placeholder="District" value={{dis}} />
+            </div>
+          </div>
+          <div class="col">
+            <div class="form-group">
+              <label for="exampleFormControlInput1">Pin</label>
+              <input formControlName="Pin" type="email" class="form-control" id="exampleFormControlInput1"
+                placeholder="Pin" value={{pin}} />
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            <div class="form-group">
+              <label for="exampleFormControlInput1">Phone1</label>
+              <input formControlName="Phone1" type="email" class="form-control" id="exampleFormControlInput1"
+                placeholder="Phone1" />
+            </div>
+          </div>
+          <div class="col">
+            <div class="form-group">
+              <label for="exampleFormControlInput1">Phone2</label>
+              <input formControlName="Phone2" type="email" class="form-control" id="exampleFormControlInput1"
+                placeholder="Phone2" />
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            <div class="form-group">
+
+
+              <label for="exampleFormControlInput1">Fax/mobile</label>
+              <input formControlName="Fax" type="email" class="form-control" id="exampleFormControlInput1"
+                placeholder="Fax/mobile" />
+            </div>
+          </div>
+          <div class="col">
+            <div class="form-group">
+
+              <label for="exampleFormControlInput1">Personal Email ID</label>
+              <input formControlName="PersonalEmail" type="email" class="form-control" id="exampleFormControlInput1"
+                placeholder="Personal Email ID" />
+            </div>
+          </div>
+        </div>
+        <h4 class="text-danger">*indicates the fields are mandatory</h4>
+
+        <h2 style="text-align: center;">PERSONAL DETAILS</h2>
+        <div class="row">
+          <div class="col">
+            <div class="form-group">
+              <label for="exampleFormControlInput1">Birth Place*</label>
+              <input formControlName="BirthPlace" type="email" class="form-control" id="exampleFormControlInput1"
+                placeholder="Birth place" />
+              <span *ngIf="empInfo.get('BirthPlace').hasError('required') && !empInfo.get('BirthPlace').pristine"
+                class="text-danger">*Birth Place is required</span>
+            </div>
+          </div>
+          <div class="col">
+            <div class="form-group">
+              <label for="exampleFormControlInput1">Religion</label>
+              <input formControlName="Religion" type="email" class="form-control" id="exampleFormControlInput1"
+                placeholder="Religion" />
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            <div class="form-group">
+              <label for="exampleFormControlInput1">Caste</label>
+              <input formControlName="Caste" type="email" class="form-control" id="exampleFormControlInput1"
+                placeholder="Caste" />
+            </div>
+          </div>
+          <div class="col">
+            <div class="form-group">
+              <label for="exampleFormControlInput1">Domicile</label>
+              <input formControlName="Domicile" type="email" class="form-control" id="exampleFormControlInput1"
+                placeholder="Domicile" />
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            <div class="form-group">
+              <label for="exampleFormControlInput1">Nationality*</label>
+              <input formControlName="Nationality" type="email" class="form-control" id="exampleFormControlInput1"
+                placeholder="Nationality" />
+            </div>
+            <span *ngIf="empInfo.get('Nationality').hasError('required') && !empInfo.get('Nationality').pristine"
+              class="text-danger">*Nationality is required</span>
+          </div>
+          <div class="col">
+            <div class="form-group">
+              <label for="exampleFormControlInput1">Voter ID</label>
+              <input formControlName="VoterID" type="email" class="form-control" id="exampleFormControlInput1"
+                placeholder="Voter ID" />
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            <div class="form-group">
+              <label for="exampleFormControlInput1">PAN No</label>
+              <input formControlName="PANno" type="email" class="form-control" id="exampleFormControlInput1"
+                placeholder="PAN No" />
+            </div>
+          </div>
+          <div class="col">
+            <div class="form-group">
+              <label for="exampleFormControlInput1">Aadhar No*</label>
+              <input formControlName="AadharNo" type="email" class="form-control" id="exampleFormControlInput1"
+                placeholder="Aadhar no" />
+            </div>
+          </div>
+          <span *ngIf="empInfo.get('AadharNo').hasError('required') && !empInfo.get('AadharNo').pristine"
+            class="text-danger">*Aadhar No is required</span>
+        </div>
+        <div class="row">
+          <div class="col">
+            <div class="form-group">
+              <label for="exampleFormControlInput1">Marital Status</label>
+              <input formControlName="MaritalStatus" type="email" class="form-control" id="exampleFormControlInput1"
+                placeholder="Marital Status" />
+            </div>
+          </div>
+          <div class="col">
+            <div class="form-group">
+              <label for="exampleFormControlInput1">No Of Children</label>
+              <input formControlName="NoOfChildren" type="email" class="form-control" id="exampleFormControlInput1"
+                placeholder="No Of Children" />
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            <div class="form-group">
+              <label for="exampleFormControlInput1">Marriage Date</label>
+              <input formControlName="MarriageDate" type="email" class="form-control" id="exampleFormControlInput1"
+                placeholder="Marriage Date" />
+            </div>
+          </div>
+          <div class="col">
+            <div class="form-group">
+              <label for="exampleFormControlInput1">Spouce Name</label>
+              <input formControlName="SpouseName" type="email" class="form-control" id="exampleFormControlInput1"
+                placeholder="Spouce Name" />
+            </div>
+          </div>
+        </div>
+        <h4 class="text-danger">*indicates the fields are mandatory</h4>
+
+        <h2 style="text-align: center;">BANK DETAILS</h2>
+        <div class="row">
+          <div class="col">
+            <div class="form-group">
+              <label for="exampleFormControlInput1">Bank Name*</label>
+              <input formControlName="BankName" type="email" class="form-control" id="exampleFormControlInput1"
+                placeholder="Bank Name" />
+            </div>
+            <span *ngIf="empInfo.get('BankName').hasError('required') && !empInfo.get('BankName').pristine"
+              class="text-danger">*Bank Name is required</span>
+          </div>
+          <div class="col">
+            <div class="form-group">
+              <label for="exampleFormControlInput1">Account Type</label>
+              <input formControlName="AccountType" type="email" class="form-control" id="exampleFormControlInput1"
+                placeholder="Account type" />
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            <div class="form-group">
+              <label for="exampleFormControlInput1">Payment Type*</label>
+              <input formControlName="PaymentType" type="email" class="form-control" id="exampleFormControlInput1"
+                placeholder="Payment type" />
+            </div>
+            <span *ngIf="empInfo.get('PaymentType').hasError('required') && !empInfo.get('PaymentType').pristine"
+              class="text-danger">*Payment type is required</span>
+          </div>
+          <div class="col">
+            <div class="form-group">
+              <label for="exampleFormControlInput1">Account No*</label>
+              <input formControlName="AccountNo" type="email" class="form-control" id="exampleFormControlInput1"
+                placeholder="Account No" />
+            </div>
+          </div>
+          <span *ngIf="empInfo.get('AccountNo').hasError('required') && !empInfo.get('AccountNo').pristine"
+            class="text-danger">*Account no is required</span>
+        </div>
+        <div class="row">
+          <div class="col">
+            <div class="form-group">
+              <label for="exampleFormControlInput1">Branch Details</label>
+              <input formControlName="BranchDetails" type="email" class="form-control" id="exampleFormControlInput1"
+                placeholder="Branch Details" />
+            </div>
+          </div>
+          <div class="col">
+            <div class="form-group">
+              <label for="exampleFormControlInput1">IFSC Code<span class="text-danger"><b>*</b></span></label>
+              <input formControlName="IFSCcode" type="email" class="form-control" id="exampleFormControlInput1"
+                placeholder="IFSC Code" />
+            </div>
+          </div>
+          <span *ngIf="empInfo.get('IFSCcode').hasError('required') && !empInfo.get('IFSCcode').pristine"
+            class="text-danger">*IFSC Code is required</span>
+        </div>
+        <div class="row">
+          <div class="col">
+            <div class="form-group">
+              <label for="exampleFormControlInput1">Reimbursement Bank Name</label>
+              <input formControlName="ReimbursementBankName" type="email" class="form-control"
+                id="exampleFormControlInput1" placeholder="Reimbursement Bank Name" />
+            </div>
+          </div>
+          <div class="col">
+            <div class="form-group">
+              <label for="exampleFormControlInput1">Reimbursement Acc No</label>
+              <input formControlName="ReimbursementAccNo" type="email" class="form-control"
+                id="exampleFormControlInput1" placeholder="Reimbursement Acc No" />
+            </div>
+          </div>
+        </div>
+        <h4 class="text-danger">*indicates the fields are mandatory</h4>
+        <button (click)="onBackClick()" class="btn btn-primary">⬅Back</button><br><br>
+        <button type="submit" class="btn btn-primary">Next➡</button>
+      </div>
+    </form>
+  </div>
+  <!-- </div> -->
+  <!-- <div class="jumbotron "> -->
+
+  <div class="container">
+    <div class="col-lg-12 border">
+      <div class="row">
+        <div *ngIf="flag3">
+          <form [formGroup]='qualificationform'>
+            <h2 style="text-align: center;">Qualification</h2>
+            &nbsp;&nbsp;&nbsp;&nbsp;<button type="button" class="btn btn-success" (click)="addqualification()">Add
+              Qualification ➕</button>
+            <div><br></div>
+            <div formArrayName="qualification_details">
+              <div *ngFor="let item of qualiarray.controls; let i=index;" [formGroupName]="i">
+
+                <div class="row">
+                  <div class="col-sm-2 form-group div">
+                    <label>Qualification<span class="lblError">*</span></label>
+                    <input type="text" class="form-control" formControlName="qualification"
+                      placeholder="Enter Qualification">
+                    <p class="lblError"
+                      *ngIf="item.get('qualification').hasError('required') && !item.get('qualification').pristine"
+                      class="text-danger">*Qualification is required</p>
+                    <p class="lblError" *ngIf="duplicate(item.get('qualification').value, i) && i > 0"
+                      class="text-danger">*Duplicates not Allowed</p>
+
+                  </div>
+                  <div class="col-sm-2 form-group div">
+
+                    <label>Institute<span class="lblError">*</span></label><br>
+                    <input type="text" class="form-control" formControlName="institute" placeholder="Institute name">
+                    <p class="lblError"
+                      *ngIf="item.get('institute').hasError('required') && !item.get('institute').pristine "
+                      class="text-danger">*Institute is required</p>
+                  </div>
+
+                  <div class="col-sm-2 form-group div">
+                    <label>Passing Year<span class="lblError">*</span></label>
+                    <input type="month" class="form-control" formControlName="year" placeholder="Passing Year">
+                    <p class="lblError" *ngIf="item.get('year').hasError('required') && !item.get('year').pristine "
+                      class="text-danger">*Passing Year is required</p>
+
+                  </div>
+
+                  <div class="col-sm-2 form-group div">
+                    <label>Score<span class="lblError">*</span></label>
+                    <input type="text" class="form-control" formControlName="score" placeholder="Enter Score">
+                    <p class="lblError" *ngIf="item.get('score').hasError('required') && !item.get('score').pristine "
+                      class="text-danger">*Score is required</p>
+
+                  </div>
+
+                  <div class="col-sm-3 form-group div">
+
+                    <button type="button" class="btn btn-outline-danger " (click)="deletequalification(i)">Delete
+                      ❌</button>
+                    &nbsp;
+                    <!-- <div>&nbsp;&nbsp;&nbsp;&nbsp;</div> -->
+
+                    <button (click)="onEditQualificationClick()" class="btn btn-outline-primary ">RESET 🚫</button>
+                  </div>
+                </div>
+                <div>&nbsp;</div>
+                <h4 class="text-danger">*indicates the fields are mandatory</h4>
+
+              </div>
+            </div> <br>
+            <!-- <div class="container"> -->
+            <!-- <div *ngIf="flag3"> -->
+            <!-- <form [formGroup]='qualificationform'> -->
+            <div class="container mt-4">
+              <h2 style="text-align: center;">EXPERIENCE</h2>
+            </div>
+            &nbsp;&nbsp;&nbsp;&nbsp;<button type="button" class="btn btn-success" (click)="addexperience()">Add
+              Experience ➕</button>
+            <div><br></div>
+            <div formArrayName="experience_details">
+              <div *ngFor="let item of experiencearray.controls; let c=index;" [formGroupName]="c">
+
+                <div class="row">
+                  <div class="col-sm-2">
+                    <label>From Date<span class="lblError">*</span></label>
+                    <input type="date" class="form-control" formControlName="fromdate" placeholder="Enter fromdate">
+                    <p class="lblError"
+                      *ngIf="item.get('fromdate').hasError('required') && !item.get('fromdate').pristine"
+                      class="text-danger">*Qualification is required</p>
+                    <!-- <p class="lblError" *ngIf="duplicate(item.get('qualification').value, i) && i > 0" class="text-danger">*Duplicates not Allowed</p> -->
+
+                  </div>
+                  <div class="col-sm-2">
+
+                    <label>To Date<span class="lblError">*</span></label><br>
+                    <input type="date" class="form-control" formControlName="todate" placeholder="to date">
+                    <p class="lblError" *ngIf="item.get('todate').hasError('required') && !item.get('todate').pristine "
+                      class="text-danger">*Institute is required</p>
+                  </div>
+
+                  <div class="col-sm-2">
+                    <label>Organisation<span class="lblError">*</span></label>
+                    <input type="text" class="form-control" formControlName="organization" placeholder="Organisation">
+                    <p class="lblError"
+                      *ngIf="item.get('organization').hasError('required') && !item.get('organization').pristine "
+                      class="text-danger">*Passing Year is required</p>
+
+                  </div>
+
+                  <div class="col-sm-2">
+                    <label>Experience<span class="lblError">*</span></label>
+                    <input type="text" class="form-control" formControlName="experience" placeholder="Experience">
+                    <p class="lblError"
+                      *ngIf="item.get('experience').hasError('required') && !item.get('experience').pristine "
+                      class="text-danger">*Score is required</p>
+
+                  </div>
+
+                  <div class="col-sm-3">
+
+                    <button type="button" class="btn btn-outline-danger " (click)="deleteexperience(c)">Delete
+                      ❌</button>
+                    &nbsp;
+
+                    <button (click)="resetexperience()" class="btn btn-outline-primary ">RESET🚫</button>
+                  </div>
+                </div>
+                <div>&nbsp;</div>
+                <h4 class="text-danger">*indicates the fields are mandatory</h4>
+                <br>
+
+              </div>
+
+            </div>
+
+
+            <h2 style="text-align: center;">SKILL</h2>
+            &nbsp;&nbsp;&nbsp;&nbsp;<button type="button" class="btn btn-success" (click)="onAddSkillClick()">Add Skill
+              ➕</button>
+            <div><br></div>
+            <div formArrayName="skill_details">
+              <div *ngFor="let item of skillarrr.controls; let i=index;" [formGroupName]="i">
+                <div class="row">
+                  <div class="col-sm-2">
+                    <label>Skill cat<span class="lblError">*</span></label>
+                    <input type="text" class="form-control" formControlName="skillcatogary"
+                      placeholder="Enter skill catogary">
+                    <p class="lblError"
+                      *ngIf="item.get('skillcatogary').hasError('required') && !item.get('skillcatogary').pristine"
+                      class="text-danger">*skill category is required</p>
+                    <!-- <p class="lblError" *ngIf="duplicate(item.get('qualification').value, i) && i > 0" class="text-danger">*Duplicates not Allowed</p> -->
+
+                  </div>
+                  <div class="col-sm-2">
+
+                    <label>SKILL<span class="lblError">*</span></label><br>
+                    <input type="text" class="form-control" formControlName="skill" placeholder="Enter Skill">
+                    <p class="lblError" *ngIf="item.get('skill').hasError('required') && !item.get('skill').pristine "
+                      class="text-danger">*Skill is required</p>
+                    <p class="lblError" *ngIf="duplicateskill(item.get('skill').value, i) && i > 0" class="text-danger">
+                      *Duplicates not Allowed</p>
+                  </div>
+
+                  <div class="col-sm-2">
+                    <label>Skill Level<span class="lblError">*</span></label>
+                    <input type="text" class="form-control" formControlName="skilllevel" placeholder="Skill Level">
+                    <p class="lblError"
+                      *ngIf="item.get('skilllevel').hasError('required') && !item.get('skilllevel').pristine "
+                      class="text-danger">*Skill Level is required</p>
+
+                  </div>
+
+                  <div class="col-sm-2">
+                    <label>Is Current<span class="lblError">*</span></label>
+                    <input type="text" class="form-control" formControlName="iscurrent" placeholder="current skill">
+                    <p class="lblError"
+                      *ngIf="item.get('iscurrent').hasError('required') && !item.get('iscurrent').pristine "
+                      class="text-danger">*Score is required</p>
+
+                  </div>
+
+                  <div class="col-3">
+                    <button type="button" class="btn btn-outline-danger " (click)=" onDeleteSkillClick(i)">Delete
+                      ❌</button>
+                    &nbsp;
+                    <button (click)="onEditSkillClick()" class="btn btn-outline-primary ">RESET 🚫</button>
+                  </div>
+
+                </div>
+
+                <div>&nbsp;</div>
+                <h4 class="text-danger">*indicates the fields are mandatory</h4>
+
+
+              </div>
+            </div>
+
+            <button (click)="onPreviousClick()" class="btn btn-primary">⬅Back</button>&nbsp;
+            <button type="submit" class="btn btn-danger">Submit ✅</button>

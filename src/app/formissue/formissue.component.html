@@ -1,0 +1,53 @@
+<div class="container">
+  <p>formissue works!</p>
+  <form id="exp_info" class="form-group" [formGroup]="empExForm" (ngSubmit)="empExpInfo()">
+    <div class="edu_info table-responsive">
+      <h3 class="h3">Education Details</h3>
+      <table class="table">
+        <thead class="thead">
+          <td class="td">Qualification*</td>
+          <td class="td">Institute*</td>
+          <td class="td">Passing Year*</td>
+          <td class="td">Score*</td>
+          <td class="td">Qualification Area*</td>
+          <td class="td">Edit/Remove</td>
+        </thead>
+        <tbody class="tbody" formArrayName="edu_data" *ngFor="let item of getEduControl(); let i = index">
+          <tr class="tr" [formGroupName]="i">
+            <td class="td">
+              <input formControlName="qualification" type="text" class="form-control" />
+            </td>
+            <td class="td">
+              <input formControlName="institution" type="text" class="form-control" />
+            </td>
+            <td class="td">
+              <input formControlName="passing_year" type="text" class="form-control" />
+            </td>
+            <td class="td">
+              <input formControlName="score" type="number" class="form-control" />
+            </td>
+            <td class="td">
+              <input formControlName="qua_area" type="text" class="form-control" />
+            </td>
+            <td class="td">
+              <button type="button" class="btn btn-secondary" (click)="onEduCheck(i)">
+                Check
+              </button>
+              <button type="button" class="btn btn-danger" (click)="onRemoveEduClick(i)">
+                Remove
+              </button>
+            </td>
+          </tr>
+        </tbody>
+        <tfoot class="tfoot">
+          <tr class="tr">
+            <button type="button" class="btn btn-primary" (click)="onAddEducationClick()">
+              Add More
+            </button>
+          </tr>
+        </tfoot>
+      </table>
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </form>
+</div>

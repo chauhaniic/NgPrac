@@ -8,7 +8,7 @@ import {
   FormGroup,
   Validators,
 } from '@angular/forms';
-
+import * as moment from 'moment';
 @Component({
   selector: 'app-arraytest',
   templateUrl: './arraytest.component.html',
@@ -21,7 +21,7 @@ export class ArraytestComponent implements OnInit {
   empExForm: FormGroup;
   empAddForm: FormGroup;
   mart_status: string = '';
-  mflag:boolean=true;
+  mflag: boolean = true;
   ngOnInit(): void {
     this.empExForm = new FormGroup({
       //items: this.formBuilder.array([this.createItem()]),
@@ -39,7 +39,7 @@ export class ArraytestComponent implements OnInit {
         paddlin1: new FormControl(null),
       }),
     }); */
-    this.empAddForm = new FormGroup({
+    /*     this.empAddForm = new FormGroup({
       birth_place: new FormControl(null, [
         Validators.required,
         Validators.pattern('[a-zA-Z ]*'),
@@ -59,14 +59,30 @@ export class ArraytestComponent implements OnInit {
       ]),
       maritual_status: new FormControl('married'),
       children: new FormControl('', [Validators.pattern('[0-9]')]),
-      marriage_date: new FormControl(''),
+      marriage_date: new FormControl('', [this.calc.bind(this)]),
       spouse_name: new FormControl('', [Validators.pattern('[0-9a-zA-Z ]*')]),
-    });
+    }); */
   }
-  mchange() {
-    this.mart_status = this.empAddForm.get('maritual_status').value;
-  }
-
+  /* dob: Date;
+  ageM: number = 0;
+  today = new Date();
+  calc(control: FormControl) {
+    this.dob = control.value;
+    this.mchange();
+  } */
+  /* mchange() {
+    this.ageM = moment().diff(this.dob, 'years'); */
+  //this.mart_status = this.empAddForm.get('maritual_status').value;
+  //this.dob = this.empAddForm.get('marraige_date').value;
+  /* let age = this.today.getFullYear() - this.dob.getFullYear();
+    const m = this.today.getMonth() - this.dob.getMonth();
+    if (m < 0 || (m === 0 && this.today.getDate() < this.dob.getDate())) {
+      age--;
+    }
+    this.ageM = age;
+    console.log(age);
+    console.log(this.ageM); */
+  //}
 
   onSignup() {
     console.log(this.empAddForm.value);

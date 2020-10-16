@@ -4,7 +4,7 @@
       <h3 class="h3">Basic Info</h3>
       <div class="form-group row">
         <label class="col-sm-3 col-form-label" for="EmpId">Employee ID: <span class="lblError">*</span></label>
-        <div class="col-sm-9">
+        <div class="col-sm-6">
           <input class="form-control" type="number" formControlName="emp_id" />
           <small class="lblError" *ngIf="
               empBasicForm.get('emp_id').hasError('required') &&
@@ -12,26 +12,27 @@
             ">Employee ID Required</small>
         </div>
       </div>
-      <div class="form-group row">
+      <!-- <div class="form-group row">
         <label class="col-sm-3 col-form-label" for="EmpId">Employee Title: <span class="lblError">*</span></label>
         <div class="col-sm-9">
-          <input class="form-control" type="text" formControlName="emp_title" />
-          <small class="lblError" *ngIf="
-              empBasicForm.get('emp_title').hasError('required') &&
-              !empBasicForm.get('emp_title').pristine
-            ">Employee ID Required</small>
+
         </div>
-      </div>
+      </div> -->
       <div class="form-group row">
         <label class="col-sm-3 col-form-label" for="FullName">Full Name: <span class="lblError">*</span></label>
-
+        <div class="col-md-2">
+          <select class="form-group form-control">
+            <option value="mr">Mr.</option>
+            <option value="mrs">Mrs./Miss</option>
+          </select>
+        </div>
         <div class="col-md-3">
           <input class="form-control" type="text" placeholder="First Name *" formControlName="fname" />
         </div>
-        <div class="col-md-3">
+        <div class="col-md-2">
           <input class="form-control" type="text" placeholder="Middle Name" formControlName="mname" />
         </div>
-        <div class="col-md-3">
+        <div class="col-md-2">
           <input class="form-control" type="text" placeholder="Last Name" formControlName="lname" />
         </div>
 
@@ -63,19 +64,19 @@
       </div>
       <div class="form-group row">
         <label class="col-sm-3 col-form-label" for="">DOB <span class="lblError">*</span></label>
-        <div class="col-sm-9">
+        <div class="col-sm-3">
           <input type="date" formControlName="dob" class="form-control" />
         </div>
-      </div>
-      <div class="form-group row">
+        <!-- </div>
+      <div class="form-group row"> -->
         <label class="col-sm-3 col-form-label" for="">Age</label>
-        <div class="col-sm-9">
-          <label type="text" class="disabled"></label>
+        <div class="col-sm-3">
+          <label type="text" class="disabled"> {{age}} </label>
         </div>
       </div>
       <div class="form-group row">
         <label class="col-sm-3 col-form-label" for="">Official Phone No. <span class="lblError">*</span></label>
-        <div class="col-sm-9">
+        <div class="col-sm-4">
           <input class="form-control" type="text" formControlName="emp_ophone" />
           <small class="lblError" *ngIf="
               empBasicForm.get('emp_ophone').hasError('required') &&
@@ -87,22 +88,22 @@
                 !empBasicForm.get('emp_ophone').pristine)
             ">Phone No. Invalid</small>
         </div>
-      </div>
-      <div class="form-group row">
-        <label class="col-sm-3 col-form-label" for="">Phone 1</label>
-        <div class="col-sm-9">
+        <!-- </div>
+      <div class="form-group row"> -->
+        <label class="col-sm-2 col-form-label" for="">Phone 1</label>
+        <div class="col-sm-3">
           <input class="form-control" type="text" formControlName="emp_phone1" />
         </div>
       </div>
       <div class="form-group row">
         <label class="col-sm-3 col-form-label" for="">Fax</label>
-        <div class="col-sm-9">
+        <div class="col-sm-6">
           <input class="form-control" type="text" formControlName="emp_fax" />
         </div>
       </div>
       <div class="form-group row">
         <label class="col-sm-3 col-form-label" for="">Official Email <span class="lblError">*</span></label>
-        <div class="col-sm-9">
+        <div class="col-sm-6">
           <input class="form-control" type="text" formControlName="emp_oemail" />
           <small class="lblError" *ngIf="
               empBasicForm.get('emp_oemail').hasError('required') &&
@@ -117,14 +118,24 @@
       </div>
       <div class="form-group row">
         <label class="col-sm-3 col-form-label" for="">Personal EMail 1</label>
-        <div class="col-sm-9">
+        <div class="col-sm-4">
           <input class="form-control" type="text" formControlName="emp_pemail" />
+          <small class="lblError" *ngIf="
+              empBasicForm.get('emp_pemail').hasError('email') &&
+              !empBasicForm.get('emp_pemail').pristine
+            ">Invalid Email
+          </small>
         </div>
-      </div>
-      <div class="form-group row">
-        <label class="col-sm-3 col-form-label" for="">Personal Email 2</label>
-        <div class="col-sm-9">
+        <!-- </div>
+      <div class="form-group row"> -->
+        <label class="col-sm-2 col-form-label" for="">Personal Email 2</label>
+        <div class="col-sm-3">
           <input class="form-control" type="text" formControlName="emp_pemail2" />
+          <small class="lblError" *ngIf="
+              empBasicForm.get('emp_pemail2').hasError('email') &&
+              !empBasicForm.get('emp_pemail2').pristine
+            ">Invalid Email
+          </small>
         </div>
       </div>
       <div class="form-group row">
@@ -138,6 +149,9 @@
         </div>
       </div>
     </div>
+    <div class="form-group">
+      <label for="" class="lblError col-sm-6 col-form-label">*indicates the fields are mandatory.</label>
+    </div>
 
     <button type="submit" class="btn btn-primary btn-large">
       Continue for Further Steps
@@ -146,20 +160,22 @@
 
   <form *ngIf="aflag" id="add_info" class="form-group" [formGroup]="empAddForm" (ngSubmit)="empAddInfo()">
     <div class="address_info">
+
+
       <h3 class="h3">Address Info</h3>
+      <hr class="hr">
       <h4 class="h4">Postal Address</h4>
-      <div formGroupName="postalPart">
+      <div>
         <div class="form-group row">
           <label class="col-sm-3 col-form-label" for="">Address Line 1</label>
           <div class="col-sm-9">
             <input class="form-control" type="text" formControlName="add_line1" />
             <small class="lblError" *ngIf="
                 empAddForm
-                  .get('postalPart')
                   .get('add_line1')
                   .hasError('required') &&
-                !empAddForm.get('postalPart').get('add_line1').pristine
-              ">Employee ID Required</small>
+                !empAddForm.get('add_line1').pristine
+              ">Required</small>
           </div>
         </div>
         <div class="form-group row">
@@ -178,7 +194,7 @@
               <option value="sri lanka">Sri Lanka</option>
               <option value="uk">UK</option>
             </select>
-            
+
           </div>
         </div>
         <div class="form-group row">
@@ -242,18 +258,15 @@
             <input class="form-control" type="number" formControlName="add_pincode" />
             <small class="lblError" *ngIf="
                 empAddForm
-                  .get('postalPart')
                   .get('add_pincode')
                   .hasError('required') &&
-                !empAddForm.get('postalPart').get('add_pincode').pristine
+                !empAddForm.get('add_pincode').pristine
               ">Phone No. Required</small>
             <small class="lblError" *ngIf="
                 empAddForm
-                  .get('postalPart')
                   .get('add_pincode')
                   .hasError('minlength') ||
                 (empAddForm
-                  .get('postalPart')
                   .get('add_pincode')
                   .hasError('maxlength') &&
                   !empAddForm.get('add_pincode').pristine)
@@ -269,114 +282,110 @@
           Permanent Address is Same as Postal Address.
         </label>
       </div>
-      <div *ngIf="pflag" formGroupName="permanentPart">
+      <div *ngIf="pflag">
         <div>
           <h4 class="h4">Permanent Address</h4>
           <div class="form-group row">
             <label class="col-sm-3 col-form-label" for="">Address Line 1</label>
             <div class="col-sm-9">
-              <input class="form-control" type="text" formControlName="padd_line1" />
+              <input class="form-control" type="text" formControlName="padd_line1" disabled="{{dflag}}" />
               <small class="lblError" *ngIf="
                   empAddForm
-                    .get('permanentPart')
                     .get('padd_line1')
                     .hasError('required') &&
-                  !empAddForm.get('permanentPart').get('padd_line1').pristine
-                ">Employee ID Required</small>
+                  !empAddForm.get('padd_line1').pristine
+                "> Required</small>
             </div>
           </div>
           <div class="form-group row">
             <label class="col-sm-3 col-form-label" for="">Address Line 2</label>
             <div class="col-sm-9">
-              <input class="form-control" type="text" formControlName="padd_line2" />
+              <input class="form-control" type="text" formControlName="padd_line2" disabled="{{dflag}}" />
             </div>
           </div>
           <div class="form-group row">
             <label class="col-sm-3 col-form-label" for="">Country</label>
             <div class="col-sm-9">
-              <select formControlName="padd_country" id="" class="form-control">
-              <option value="">Selected</option>
-              <option value="india">India</option>
-              <option value="uae">UAE</option>
-              <option value="sri lanka">Sri Lanka</option>
-              <option value="uk">UK</option>
-            </select>
+              <select formControlName="padd_country" id="" class="form-control" disabled="{{dflag}}">
+                <option value="">Selected</option>
+                <option value="india">India</option>
+                <option value="uae">UAE</option>
+                <option value="sri lanka">Sri Lanka</option>
+                <option value="uk">UK</option>
+              </select>
             </div>
           </div>
           <div class="form-group row">
             <label class="col-sm-3 col-form-label" for="">State</label>
             <div class="col-sm-9">
-                <select name="state" formControlName="padd_state" class="form-control">
-                  <option value="Andhra Pradesh">Andhra Pradesh</option>
-                  <option value="Andaman and Nicobar Islands">Andaman and Nicobar Islands</option>
-                  <option value="Arunachal Pradesh">Arunachal Pradesh</option>
-                  <option value="Assam">Assam</option>
-                  <option value="Bihar">Bihar</option>
-                  <option value="Chandigarh">Chandigarh</option>
-                  <option value="Chhattisgarh">Chhattisgarh</option>
-                  <option value="Dadar and Nagar Haveli">Dadar and Nagar Haveli</option>
-                  <option value="Daman and Diu">Daman and Diu</option>
-                  <option value="Delhi">Delhi</option>
-                  <option value="Lakshadweep">Lakshadweep</option>
-                  <option value="Puducherry">Puducherry</option>
-                  <option value="Goa">Goa</option>
-                  <option value="Gujarat">Gujarat</option>
-                  <option value="Haryana">Haryana</option>
-                  <option value="Himachal Pradesh">Himachal Pradesh</option>
-                  <option value="Jammu and Kashmir">Jammu and Kashmir</option>
-                  <option value="Jharkhand">Jharkhand</option>
-                  <option value="Karnataka">Karnataka</option>
-                  <option value="Kerala">Kerala</option>
-                  <option value="Madhya Pradesh">Madhya Pradesh</option>
-                  <option value="Maharashtra">Maharashtra</option>
-                  <option value="Manipur">Manipur</option>
-                  <option value="Meghalaya">Meghalaya</option>
-                  <option value="Mizoram">Mizoram</option>
-                  <option value="Nagaland">Nagaland</option>
-                  <option value="Odisha">Odisha</option>
-                  <option value="Punjab">Punjab</option>
-                  <option value="Rajasthan">Rajasthan</option>
-                  <option value="Sikkim">Sikkim</option>
-                  <option value="Tamil Nadu">Tamil Nadu</option>
-                  <option value="Telangana">Telangana</option>
-                  <option value="Tripura">Tripura</option>
-                  <option value="Uttar Pradesh">Uttar Pradesh</option>
-                  <option value="Uttarakhand">Uttarakhand</option>
-                  <option value="West Bengal">West Bengal</option>
-                </select>
-              
+              <select name="state" formControlName="padd_state" class="form-control" disabled="{{dflag}}">
+                <option value="Andhra Pradesh">Andhra Pradesh</option>
+                <option value="Andaman and Nicobar Islands">Andaman and Nicobar Islands</option>
+                <option value="Arunachal Pradesh">Arunachal Pradesh</option>
+                <option value="Assam">Assam</option>
+                <option value="Bihar">Bihar</option>
+                <option value="Chandigarh">Chandigarh</option>
+                <option value="Chhattisgarh">Chhattisgarh</option>
+                <option value="Dadar and Nagar Haveli">Dadar and Nagar Haveli</option>
+                <option value="Daman and Diu">Daman and Diu</option>
+                <option value="Delhi">Delhi</option>
+                <option value="Lakshadweep">Lakshadweep</option>
+                <option value="Puducherry">Puducherry</option>
+                <option value="Goa">Goa</option>
+                <option value="Gujarat">Gujarat</option>
+                <option value="Haryana">Haryana</option>
+                <option value="Himachal Pradesh">Himachal Pradesh</option>
+                <option value="Jammu and Kashmir">Jammu and Kashmir</option>
+                <option value="Jharkhand">Jharkhand</option>
+                <option value="Karnataka">Karnataka</option>
+                <option value="Kerala">Kerala</option>
+                <option value="Madhya Pradesh">Madhya Pradesh</option>
+                <option value="Maharashtra">Maharashtra</option>
+                <option value="Manipur">Manipur</option>
+                <option value="Meghalaya">Meghalaya</option>
+                <option value="Mizoram">Mizoram</option>
+                <option value="Nagaland">Nagaland</option>
+                <option value="Odisha">Odisha</option>
+                <option value="Punjab">Punjab</option>
+                <option value="Rajasthan">Rajasthan</option>
+                <option value="Sikkim">Sikkim</option>
+                <option value="Tamil Nadu">Tamil Nadu</option>
+                <option value="Telangana">Telangana</option>
+                <option value="Tripura">Tripura</option>
+                <option value="Uttar Pradesh">Uttar Pradesh</option>
+                <option value="Uttarakhand">Uttarakhand</option>
+                <option value="West Bengal">West Bengal</option>
+              </select>
+
             </div>
           </div>
           <div class="form-group row">
             <label class="col-sm-3 col-form-label" for="">City</label>
             <div class="col-sm-9">
-              <input class="form-control" type="text" formControlName="padd_city" />
+              <input class="form-control" type="text" formControlName="padd_city" disabled="{{dflag}}" />
             </div>
           </div>
           <div class="form-group row">
             <label class="col-sm-3 col-form-label" for="">District</label>
             <div class="col-sm-9">
-              <input class="form-control" type="text" formControlName="padd_district" />
+              <input class="form-control" type="text" formControlName="padd_district" disabled="{{dflag}}" />
             </div>
           </div>
           <div class="form-group row">
             <label class="col-sm-3 col-form-label" for="">Pincode</label>
             <div class="col-sm-9">
-              <input class="form-control" type="number" formControlName="padd_pincode" />
+              <input class="form-control" type="number" formControlName="padd_pincode" disabled="{{dflag}}" />
               <small class="lblError" *ngIf="
                   empAddForm
-                    .get('permanentPart')
                     .get('padd_pincode')
                     .hasError('required') &&
-                  !empAddForm.get('permanentPart').get('padd_pincode').pristine
+                  !empAddForm.get('padd_pincode').pristine
                 ">Phone No. Required</small>
               <small class="lblError" *ngIf="
                   empAddForm
-                    .get('permanentPart')
                     .get('padd_pincode')
                     .hasError('minlength') ||
                   (empAddForm
-                    .get('permanentPart')
                     .get('padd_pincode')
                     .hasError('maxlength') &&
                     !empAddForm.get('padd_pincode').pristine)
@@ -473,9 +482,9 @@
         </div>
       </div>
       <div class="form-group row">
-        <label class="col-sm-3 col-form-label" for="">Adhar Card No.</label>
+        <label class="col-sm-3 col-form-label" for="">Adhar Card No.<span class="lblError">*</span></label>
         <div class="col-sm-9">
-          <input class="form-control" type="text" formControlName="adhar_card" />
+          <input class="form-control" type="text" formControlName="adhar_card" appCreditCard />
           <small class="lblError" *ngIf="
             empAddForm.get('adhar_card').hasError('required') &&
             !empAddForm.get('adhar_card').pristine
@@ -493,14 +502,14 @@
             <option class="form-option" value="married">Married</option>
             <option class="form-option" value="divorced">Devorced</option>
             <option class="form-option" value="separated">Separated</option>
-            <option class="form-option" value="single" >Single</option>
+            <option class="form-option" value="single">Single</option>
             <option class="form-option" value="widow">Widow</option>
           </select>
         </div>
       </div>
       <div *ngIf="mart_status!='single'">
         <div class="form-group row">
-          <label class="col-sm-3 col-form-label" for="">No. of Children <span class="lblError">*</span></label>
+          <label class="col-sm-3 col-form-label" for="">No. of Children </label>
           <div class="col-sm-9">
             <input class="form-control" type="text" formControlName="children" />
             <small class="lblError" *ngIf="
@@ -512,7 +521,7 @@
         <div class="form-group row">
           <label class="col-sm-3 col-form-label" for="">Marraige Date</label>
           <div class="col-sm-9">
-            <input class="form-control" type="dob" formControlName="marriage_date" />
+            <input class="form-control" type="date" formControlName="marriage_date" />
           </div>
         </div>
         <div class="form-group row">
@@ -523,7 +532,7 @@
         </div>
 
       </div>
-      
+
     </div>
     <div id="bank_info">
       <h3 class="h3">Bank Info</h3>
@@ -534,7 +543,7 @@
           <small class="lblError" *ngIf="
               empAddForm.get('bank_name').hasError('required') &&
               !empAddForm.get('bank_name').pristine
-            ">Employee ID Required</small>
+            ">Bank Name Required</small>
         </div>
       </div>
       <div class="form-group row">
@@ -544,7 +553,7 @@
           <small class="lblError" *ngIf="
               empAddForm.get('acc_type').hasError('required') &&
               !empAddForm.get('acc_type').pristine
-            ">Employee ID Required</small>
+            ">Account Type Required</small>
         </div>
       </div>
       <div class="form-group row">
@@ -554,7 +563,7 @@
           <small class="lblError" *ngIf="
               empAddForm.get('pay_type').hasError('required') &&
               !empAddForm.get('pay_type').pristine
-            ">Employee ID Required</small>
+            ">Payment Required</small>
         </div>
       </div>
       <div class="form-group row">
@@ -564,7 +573,7 @@
           <small class="lblError" *ngIf="
               empAddForm.get('acc_no').hasError('required') &&
               !empAddForm.get('acc_no').pristine
-            ">Employee ID Required</small>
+            ">Account No. Required</small>
           <small class="lblError" *ngIf="
               empAddForm.get('acc_no').hasError('pattern') &&
               !empAddForm.get('acc_no').pristine
@@ -579,7 +588,7 @@
           <small class="lblError" *ngIf="
               empAddForm.get('branch_det').hasError('required') &&
               !empAddForm.get('branch_det').pristine
-            ">Employee ID Required</small>
+            ">Branch Required</small>
         </div>
       </div>
       <div class="form-group row">
@@ -589,29 +598,25 @@
           <small class="lblError" *ngIf="
               empAddForm.get('ifsc').hasError('required') &&
               !empAddForm.get('ifsc').pristine
-            ">Employee ID Required</small>
+            ">IFSC Code Required</small>
         </div>
       </div>
       <div class="form-group row">
         <label class="col-sm-3 col-form-label" for="">Reimbursement Bank Name</label>
         <div class="col-sm-9">
           <input class="form-control" type="text" formControlName="rbank_name" />
-          <small class="lblError" *ngIf="
-              empAddForm.get('rbank_name').hasError('required') &&
-              !empAddForm.get('rbank_name').pristine
-            ">Employee ID Required</small>
+
         </div>
       </div>
       <div class="form-group row">
         <label class="col-sm-3 col-form-label" for="">Reimbursement Account No</label>
         <div class="col-sm-9">
           <input class="form-control" type="text" formControlName="racc_no" />
-          <small class="lblError" *ngIf="
-              empAddForm.get('racc_no').hasError('required') &&
-              !empAddForm.get('racc_no').pristine
-            ">Employee ID Required</small>
         </div>
       </div>
+    </div>
+    <div class="form-group">
+      <label for="" class="lblError col-sm-6 col-form-label">*indicates the fields are mandatory.</label>
     </div>
     <button type="submit" class="btn btn-primary">Next</button>
   </form>
@@ -707,17 +712,22 @@
       <h3 class="h3">Education Details</h3>
       <table class="table">
         <thead class="thead">
-          <td class="td">Qualification*</td>
-          <td class="td">Institute*</td>
-          <td class="td">Passing Year*</td>
-          <td class="td">Score*</td>
-          <td class="td">Qualification Area*</td>
+          <td class="td">Qualification<span class="lblError">*</span></td>
+          <td class="td">Institute<span class="lblError">*</span></td>
+          <td class="td">Passing Year<span class="lblError">*</span></td>
+          <td class="td">Score<span class="lblError">*</span></td>
+          <td class="td">Qualification Area<span class="lblError">*</span></td>
           <td class="td">Edit/Remove</td>
         </thead>
         <tbody class="tbody" formArrayName="edu_data" *ngFor="let item of getEduControl(); let i = index">
           <tr class="tr" [formGroupName]="i">
             <td class="td">
               <input formControlName="qualification" type="text" class="form-control" />
+              <small class="lblError" *ngIf="duplicateEdu(item.get('qualification').value, i) && i > 0"
+                class="text-danger">*Duplicates not Allowed</small>
+              <small class="lblError"
+                *ngIf="item.get('qualification').hasError('required') && !item.get('qualification').pristine"
+                class="text-danger">*Qualification is required</small>
             </td>
             <td class="td">
               <input formControlName="institution" type="text" class="form-control" />
@@ -732,7 +742,7 @@
               <input formControlName="qua_area" type="text" class="form-control" />
             </td>
             <td class="td">
-              <button type="button" class="btn btn-danger" (click)="onEduCheck(i)">
+              <button type="button" class="btn btn-secondary" (click)="onEduCheck(i)">
                 Check
               </button>
               <button type="button" class="btn btn-danger" (click)="onRemoveEduClick(i)">
@@ -742,11 +752,15 @@
           </tr>
         </tbody>
         <tfoot class="tfoot">
-          <td class="td">
-            <button type="button" class="btn btn-primary" (click)="onAddEducationClick()">
-              Add More
-            </button>
-          </td>
+          <tr class="tr">
+            <td class="td">
+              <small class="lblError">* indicates required elements</small>
+              <button type="button" class="btn btn-primary" (click)="onAddEducationClick()">
+                Add More
+              </button>
+            </td>
+          </tr>
+
         </tfoot>
       </table>
     </div>
@@ -754,21 +768,25 @@
       <h3 class="h3">Experience Details</h3>
       <table class="table">
         <thead class="thead">
-          <td class="td">From Date*</td>
-          <td class="td">To Date*</td>
-          <td class="td">Company*</td>
-          <td class="td">Designation*</td>
-          <td class="td">Relevant Date*</td>
-          <td class="td">Non Relevant Date*</td>
+          <td class="td">From Date<span class="lblError">*</span></td>
+          <td class="td">To Date<span class="lblError">*</span></td>
+          <td class="td">Company<span class="lblError">*</span></td>
+          <td class="td">Designation<span class="lblError">*</span></td>
+          <td class="td">Relevant Date<span class="lblError">*</span></td>
+          <td class="td">Non Relevant Date<span class="lblError">*</span></td>
           <td class="td">Edit/Remove</td>
         </thead>
         <tbody class="tbody" formArrayName="exp_data" *ngFor="let item of getExpControl(); let i = index">
           <tr class="tr" [formGroupName]="i">
             <td class="td">
               <input formControlName="from_date" type="date" class="form-control" />
+              <small class="lblError" *ngIf="duplicateExp(item.get('from_date').value, i) && i > 0"
+                class="text-danger">*Date Overlap</small>
             </td>
             <td class="td">
               <input formControlName="to_date" type="date" class="form-control" />
+              <small class="lblError" *ngIf="duplicateExp(item.get('to_date').value, i) && i > 0"
+                class="text-danger">*Date OverLap</small>
             </td>
             <td class="td">
               <input formControlName="company" type="text" class="form-control" />
@@ -791,6 +809,7 @@
         </tbody>
         <tfoot class="tfoot">
           <td class="td">
+            <small class="lblError">* indicates required elements</small>
             <button type="button" class="btn btn-primary" (click)="onAddExpClick()">
               Add More
             </button>
@@ -802,36 +821,53 @@
       <h3 class="h3">Skill Details</h3>
       <table class="table">
         <thead class="thead">
-          <td class="td">Skill Category*</td>
-          <td class="td">Skill*</td>
-          <td class="td">Skill Level*</td>
-          <td class="td">Is Current*</td>
-          <td class="td">Experience*</td>
-          <td class="td">Remarks*</td>
+          <td class="td">Skill Category<span class="lblError">*</span></td>
+          <td class="td">Skill<span class="lblError">*</span></td>
+          <td class="td">Skill Level<span class="lblError">*</span></td>
+          <td class="td">Is_Current<span class="lblError">*</span></td>
+          <td class="td">Experience<span class="lblError">*</span></td>
+          <td class="td">Remarks<span class="lblError">*</span></td>
           <td class="td">Edit/Remove</td>
         </thead>
         <tbody class="tbody" formGroupName="skill_data" *ngFor="let item of getSkillControl(); let i = index">
           <tr class="tr" [formGroupName]="i">
             <td class="td">
               <input formControlName="skill_cat" type="text" class="form-control" />
+              <small class="lblError"
+                *ngIf="item.get('skill_cat').hasError('required') && !item.get('skill_cat').pristine"
+                class="text-danger">*Skill Cat is required</small>
             </td>
             <td class="td">
               <input formControlName="skill" type="text" class="form-control" />
+              <small class="lblError" *ngIf="duplicateSkill(item.get('skill').value, i) && i > 0"
+                class="text-danger">*Duplicates not Allowed</small>
+              <small class="lblError" *ngIf="item.get('skill').hasError('required') && !item.get('skill').pristine"
+                class="text-danger">*Skill is required</small>
             </td>
             <td class="td">
               <input formControlName="skill_level" type="text" class="form-control" />
+              <small class="lblError"
+                *ngIf="item.get('skill_level').hasError('required') && !item.get('skill_level').pristine"
+                class="text-danger">*Skill Level is required</small>
             </td>
-            <td class="td">
-              <input formControlName="is_current" type="text" class="form-control" />
+            <td class="td" colspan="1">
+
+              <select formControlName="is_current" class="form-control">
+                <option value="yes" class="form-option">Yes</option>
+                <option value="no" class="form-option">No</option>
+              </select>
             </td>
             <td class="td">
               <input formControlName="exper" type="text" class="form-control" />
+              <small class="lblError"
+                *ngIf="item.get('skill_cat').hasError('required') && !item.get('skill_cat').pristine"
+                class="text-danger">*Skill Cat is required</small>
             </td>
             <td class="td">
               <input formControlName="remarks" type="text" class="form-control" />
             </td>
             <td class="td">
-              <button type="button" class="btn btn-danger" (click)="onSkillCheck(i)">
+              <button type="button" class="btn btn-secondary" (click)="onSkillCheck(i)">
                 Check
               </button>
               <button type="button" class="btn btn-danger" (click)="onRemoveSkillClick(i)">
@@ -841,11 +877,15 @@
           </tr>
         </tbody>
         <tfoot class="tfoot">
-          <td class="td">
-            <button type="button" class="btn btn-primary" (click)="onAddSkillClick()">
-              Add More
-            </button>
-          </td>
+          <tr class="tr">
+            <td class="td" colspan="2">
+              <small class="lblError">* indicates required elements</small> <br class="br">
+              <button type="button" class="btn btn-primary" (click)="onAddSkillClick()">
+                Add More
+              </button>
+            </td>
+          </tr>
+
         </tfoot>
       </table>
     </div>
