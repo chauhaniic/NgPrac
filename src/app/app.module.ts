@@ -29,8 +29,7 @@ import { EchildComponent } from './echild/echild.component';
 import { SignupComponent } from './signup/signup.component';
 import { EmpFormComponent } from './emp-form/emp-form.component';
 import { ArraytestComponent } from './arraytest/arraytest.component';
-import { FormissueComponent } from './formissue/formissue.component';
-/* import { EmpinfoComponent } from './empinfo/empinfo.component'; */
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -58,8 +57,6 @@ import { FormissueComponent } from './formissue/formissue.component';
     SignupComponent,
     EmpFormComponent,
     ArraytestComponent,
-    FormissueComponent /*
-    EmpinfoComponent, */,
   ],
   imports: [
     BrowserModule,

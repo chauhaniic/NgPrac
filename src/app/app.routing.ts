@@ -7,7 +7,7 @@ import { EmpFormComponent } from './emp-form/emp-form.component';
 import { EmpComponent } from './emp/emp.component';
 /* import { EmpinfoComponent } from './empinfo/empinfo.component'; */
 import { EparentComponent } from './eparent/eparent.component';
-import { FormissueComponent } from './formissue/formissue.component';
+/* import { FormissueComponent } from './formissue/formissue.component'; */
 import { Logint6Component } from './logint6/logint6.component';
 import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
 import { ParentComponent } from './parent/parent.component';
@@ -40,8 +40,11 @@ const task26: Routes = [
   { path: 'eparent', component: EparentComponent },
   { path: 'signup', component: SignupComponent },
   { path: 'empform', component: EmpFormComponent },
-  { path: 'atest', component: ArraytestComponent },
-  { path: 'fissue', component: FormissueComponent },
+  {
+    path: 'atest',
+    component: ArraytestComponent,
+  } /*
+  { path: 'fissue', component: FormissueComponent }, */,
   /* { path: 'empinfo', component: EmpinfoComponent },
    */ { path: 'error404', component: PagenotfoundComponent },
   { path: '**', redirectTo: 'error404' },

@@ -16,10 +16,10 @@ import * as moment from 'moment';
   styleUrls: ['./emp-form.component.css'],
 })
 export class EmpFormComponent implements OnInit {
-  bflag: boolean = true;
+  bflag: boolean = false;
   aflag: boolean = false;
-  eflag: boolean = false;
-  pflag: boolean = true;
+  eflag: boolean = true;
+  pflag: boolean = false;
   age: number = 0;
   today: number = Date.now();
   check_option: boolean = false;
@@ -151,51 +151,65 @@ export class EmpFormComponent implements OnInit {
       .valueChanges.subscribe((value) => this.map_Add(value));
     this.empAddForm.get('add_line1').valueChanges.subscribe((value) => {
       if (value) {
-        this.empAddForm
-          .get('padd_line1')
-          .setValue(this.empAddForm.get('add_line1').value);
+        if (this.pflag) {
+          this.empAddForm
+            .get('padd_line1')
+            .setValue(this.empAddForm.get('add_line1').value);
+        }
       }
     });
     this.empAddForm.get('add_line2').valueChanges.subscribe((value) => {
       if (value) {
-        this.empAddForm
-          .get('padd_line2')
-          .setValue(this.empAddForm.get('add_line2').value);
+        if (this.pflag) {
+          this.empAddForm
+            .get('padd_line2')
+            .setValue(this.empAddForm.get('add_line2').value);
+        }
       }
     });
     this.empAddForm.get('add_country').valueChanges.subscribe((value) => {
       if (value) {
-        this.empAddForm
-          .get('padd_country')
-          .setValue(this.empAddForm.get('add_country').value);
+        if (this.pflag) {
+          this.empAddForm
+            .get('padd_country')
+            .setValue(this.empAddForm.get('add_country').value);
+        }
       }
     });
     this.empAddForm.get('add_state').valueChanges.subscribe((value) => {
       if (value) {
-        this.empAddForm
-          .get('padd_state')
-          .setValue(this.empAddForm.get('add_state').value);
+        if (this.pflag) {
+          this.empAddForm
+            .get('padd_state')
+            .setValue(this.empAddForm.get('add_state').value);
+        }
       }
     });
     this.empAddForm.get('add_city').valueChanges.subscribe((value) => {
       if (value) {
-        this.empAddForm
-          .get('padd_city')
-          .setValue(this.empAddForm.get('add_city').value);
+        if (this.pflag) {
+          this.empAddForm
+            .get('padd_city')
+            .setValue(this.empAddForm.get('add_city').value);
+        }
       }
     });
     this.empAddForm.get('add_district').valueChanges.subscribe((value) => {
       if (value) {
-        this.empAddForm
-          .get('padd_district')
-          .setValue(this.empAddForm.get('add_district').value);
+        if (this.pflag) {
+          this.empAddForm
+            .get('padd_district')
+            .setValue(this.empAddForm.get('add_district').value);
+        }
       }
     });
     this.empAddForm.get('add_pincode').valueChanges.subscribe((value) => {
       if (value) {
-        this.empAddForm
-          .get('padd_pincode')
-          .setValue(this.empAddForm.get('add_pincode').value);
+        if (this.pflag) {
+          this.empAddForm
+            .get('padd_pincode')
+            .setValue(this.empAddForm.get('add_pincode').value);
+        }
       }
     });
 
@@ -210,7 +224,7 @@ export class EmpFormComponent implements OnInit {
   }
   map_Add(value: boolean) {
     if (value) {
-      this.dflag = true;
+      this.pflag = true;
       this.empAddForm
         .get('padd_line1')
         .setValue(this.empAddForm.get('add_line1').value);
@@ -233,7 +247,7 @@ export class EmpFormComponent implements OnInit {
         .get('padd_pincode')
         .setValue(this.empAddForm.get('add_pincode').value);
     } else {
-      this.dflag = false;
+      this.pflag = false;
       this.empAddForm.get('padd_line1').setValue(null);
       this.empAddForm.get('padd_line2').setValue(null);
       this.empAddForm.get('padd_country').setValue(null);
@@ -337,48 +351,66 @@ export class EmpFormComponent implements OnInit {
   getExpFormc(form): Array<any> {
     return form.controls.exp_data.controls;
   }
-  duplicateExp(given_date, a): boolean {
-    let myarr = this.getExpFormc(this.empExForm);
+  duplicateExp_from_date(given_date, a): number {
+    //let myarr = this.getExpFormc(this.empExForm);
     var to = new Date(given_date);
-
-    /*     let text = myarr.filter(
-      //moment('2010-10-20').isBetween('2010-10-19', '2010-10-25'); // true
-      (data) =>
-        data.controls.given_date.value == given_date && given_date != null
-    );
-    console.log(myarr);
-    if (text.length > 1) {
-      return true;
-    } */
+    //console.log(to.getFullYear());
     let dp = true;
     let num_data = this.empExForm.get('exp_data').value.length;
 
     let r = this.empExForm.get('exp_data') as FormArray;
-    console.log(
+    /* console.log(
       moment(to).isBefore(r.at(a).get('from_date').value) ||
         moment(to).isBefore(r.at(a).get('to_date').value)
-    );
+    ); */
     /* if (
       moment(to).isBefore(r.at(a).get('from_date').value) ||
       moment(to).isBefore(r.at(a).get('to_date').value)
     ) {
       return true;
     } */
-
+    //console.log(moment().isBefore(r.at(a).get('from_date').value));
+    if (moment().isBefore(r.at(a).get('from_date').value)) {
+      return 1;
+    }
+    if (
+      moment(r.at(a).get('to_date').value).isBefore(
+        r.at(a).get('from_date').value
+      )
+    ) {
+      return 2;
+    }
+    console.log(num_data);
     if (num_data > 0) {
       for (let index = 0; index < num_data - 1; index++) {
-        let r = this.empExForm.get('exp_data') as FormArray;
+        //let r = this.empExForm.get('exp_data') as FormArray;
         let item = r.at(index);
-        if (
-          moment().isBefore(r.at(a).get('from_date').value) ||
-          moment().isBefore(r.at(a).get('to_date').value)
-        ) {
-          return true;
-        }
         if (
           moment(r.at(a).get('from_date').value).isBetween(
             item.get('from_date').value,
             item.get('to_date').value
+          )
+        ) {
+          return 3;
+        }
+        if (
+          moment(r.at(a).get('from_date').value).isBefore(
+            item.get('from_date').value
+          )
+        ) {
+          return 4;
+        }
+        //console.log(num_data);
+        /* if (
+          moment().isBefore(r.at(a).get('from_date').value) ||
+          moment().isBefore(r.at(a).get('to_date').value)
+        ) {
+          return true;
+        } */
+        /* if (
+          moment(r.at(a).get('from_date').value).isBetween(
+            item.get('to_date').value,
+            item.get('from_date').value
           )
         ) {
           //window.alert('Qualification match to ' + (index + 1) + 'Row');
@@ -388,26 +420,107 @@ export class EmpFormComponent implements OnInit {
           //break;
         }
         if (
-          moment(r.at(a).get('to_date').value).isSameOrAfter(
-            r.at(a).get('from_date').value
-          )
-        ) {
-          return true;
-        }
-        if (
-          moment(r.at(a).get('from_date').value).isSameOrBefore(
+          moment(r.at(a).get('from_date').value).isSameOrAfter(
             r.at(a).get('to_date').value
           )
         ) {
           return true;
         }
+        if (
+          moment(r.at(a).get('to_date').value).isSameOrBefore(
+            r.at(a).get('from_date').value
+          )
+        ) {
+          return true;
+        } */
       }
     }
     if (dp) {
       //alert('No Duplicates.');
     }
 
-    return false;
+    return 0;
+  }
+  duplicateExp_to_date(given_date, a): number {
+    let myarr = this.getExpFormc(this.empExForm);
+    var to = new Date(given_date);
+
+    let dp = true;
+    let num_data = this.empExForm.get('exp_data').value.length;
+
+    let r = this.empExForm.get('exp_data') as FormArray;
+    //console.log(moment(to).isBefore(r.at(a).get('to_date').value));
+    //console.log(moment(to).isBefore(r.at(a).get('from_date').value));
+    /* if (
+      moment(to).isBefore(r.at(a).get('from_date').value) ||
+      moment(to).isBefore(r.at(a).get('to_date').value)
+    ) {
+      return true;
+    } */
+
+    if (moment().isBefore(r.at(a).get('to_date').value)) {
+      return 1;
+    }
+    if (
+      moment(r.at(a).get('from_date').value).isAfter(
+        r.at(a).get('to_date').value
+      )
+    ) {
+      return 2;
+    }
+    if (
+      moment(r.at(a).get('from_date').value).isAfter(
+        r.at(a).get('to_date').value
+      )
+    ) {
+      return 0;
+    }
+    if (num_data > 1) {
+      for (let index = 0; index < num_data - 1; index++) {
+        //let r = this.empExForm.get('exp_data') as FormArray;
+        let item = r.at(index);
+        /* if (
+          moment().isBefore(r.at(a).get('to_date').value) ||
+          moment().isBefore(r.at(a).get('from_date').value)
+        ) {
+          return 3;
+        } */
+        if (
+          moment(r.at(a).get('to_date').value).isBetween(
+            item.get('from_date').value,
+            item.get('to_date').value
+          )
+        ) {
+          return 3;
+        }
+        if (
+          moment(r.at(a).get('to_date').value).isBefore(
+            item.get('from_date').value
+          )
+        ) {
+          return 4;
+        }
+        /* if (
+          moment(r.at(a).get('from_date').value).isSameOrAfter(
+            r.at(a).get('to_date').value
+          )
+        ) {
+          return 1;
+        }
+        if (
+          moment(r.at(a).get('to_date').value).isSameOrBefore(
+            r.at(a).get('from_date').value
+          )
+        ) {
+          return 1;
+        } */
+      }
+    }
+    if (dp) {
+      //alert('No Duplicates.');
+    }
+
+    return 0;
   }
   createExp(): FormGroup {
     return this.formBuilder.group({
