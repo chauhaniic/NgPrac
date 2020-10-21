@@ -16,9 +16,9 @@ import * as moment from 'moment';
   styleUrls: ['./emp-form.component.css'],
 })
 export class EmpFormComponent implements OnInit {
-  bflag: boolean = false;
+  bflag: boolean = true;
   aflag: boolean = false;
-  eflag: boolean = true;
+  eflag: boolean = false;
   pflag: boolean = false;
   age: number = 0;
   today: number = Date.now();
