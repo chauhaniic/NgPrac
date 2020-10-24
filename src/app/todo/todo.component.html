@@ -52,13 +52,13 @@
       </thead>
       <tbody>
         <tr *ngFor="let item of arrTodos" class="tr">
-          <td scope="col">{{ item.id }}</td>
-          <td scope="col">{{ item.title }}</td>
+          <td scope="col">{{ item.Id }}</td>
+          <td scope="col">{{ item.Title }}</td>
           <td scope="col">
             <span [ngClass]="{
-              done: item.status == 'done',
-              pending: item.status == 'pending'
-            }">{{ item.status }}
+              done: item.Status == 'done',
+              pending: item.Status == 'pending'
+            }">{{ item.Status }}
             </span>
           </td>
           <td scope="col">

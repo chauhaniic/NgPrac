@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Todo } from './todo';
 import { Employee } from './employee';
 import { Product } from './product';
+import { TaskDataService } from './task-data.service';
 
 @Component({
   selector: 'app-todo',
@@ -19,11 +20,9 @@ export class TodoComponent implements OnInit {
 
   //arrName: string[] = ['baba', 'yaga'];
   //arrNum: number[] = [1, 2, 3, 4, 5, 8, 6];
-
-  arrTodos: Todo[] = [
-    new Todo(1, 'Hello', 'done'),
-    new Todo(2, 'email to your manager', 'pending'),
-  ];
+  //new Todo(1, 'Hello', 'done'),
+  //new Todo(2, 'email to your manager', 'pending'),
+  arrTodos: Todo[] = [];
   arrEmployees: Employee[] = [
     new Employee(1, 'Ramu', 28),
     new Employee(2, 'Mahesh Babu', 32),
@@ -35,21 +34,31 @@ export class TodoComponent implements OnInit {
     new Product(2, 'Micromax Dongle', 'unused', 1000),
     new Product(3, 'Dell Laptop', '1 year old', 18000),
   ];
-  constructor() {}
+  constructor(private _data: TaskDataService) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this._data.getAllTasks().subscribe((data: Todo[]) => {
+      this.arrTodos = data;
+    });
+  }
   onDeleteTask(item: Todo) {
     this.arrTodos.splice(this.arrTodos.indexOf(item), 1);
+    this._data.deleteTask(item.Id).subscribe();
+    //this._data.addTask().
   }
   onUpdateTask(item: Todo) {
-    if (item.status == 'done') {
-      item.status = 'pending';
+    if (item.Status == 'done') {
+      item.Status = 'pending';
+      this._data.updateTask(item.Id, item).subscribe();
     } else {
-      item.status = 'done';
+      item.Status = 'done';
+      this._data.updateTask(item.Id, item).subscribe();
     }
   }
+  //tof=new Todo();
   onAddTask() {
     this.arrTodos.push(new Todo(this.id, this.title, this.status));
+    this._data.addTask(new Todo(this.id, this.title, this.status)).subscribe();
     this.flag = false;
   }
   onCancelTask() {
