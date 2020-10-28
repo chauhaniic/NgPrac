@@ -15,30 +15,39 @@ export class TodoComponent implements OnInit {
   status;
   name;
   age;
+  password;
+  mobile;
+  email;
+  pid;
+  pname;
+  pdesc;
+  price;
   flag: boolean = false;
   eflag: boolean = false;
+  pflag: boolean = false;
 
   //arrName: string[] = ['baba', 'yaga'];
   //arrNum: number[] = [1, 2, 3, 4, 5, 8, 6];
   //new Todo(1, 'Hello', 'done'),
   //new Todo(2, 'email to your manager', 'pending'),
   arrTodos: Todo[] = [];
-  arrEmployees: Employee[] = [
-    new Employee(1, 'Ramu', 28),
-    new Employee(2, 'Mahesh Babu', 32),
-    new Employee(3, 'Ajit Kumar', 48),
-    new Employee(4, 'Ravi Teja', 42),
-  ];
+  arrEmployees: Employee[] = [];
   arrProduct: Product[] = [
-    new Product(1, 'Camera', 'new', 23000),
+    /*     new Product(1, 'Camera', 'new', 23000),
     new Product(2, 'Micromax Dongle', 'unused', 1000),
-    new Product(3, 'Dell Laptop', '1 year old', 18000),
+    new Product(3, 'Dell Laptop', '1 year old', 18000), */
   ];
   constructor(private _data: TaskDataService) {}
 
   ngOnInit(): void {
     this._data.getAllTasks().subscribe((data: Todo[]) => {
       this.arrTodos = data;
+    });
+    this._data.getAllUsers().subscribe((data: Employee[]) => {
+      this.arrEmployees = data;
+    });
+    this._data.getAllProduct().subscribe((data: Product[]) => {
+      this.arrProduct = data;
     });
   }
   onDeleteTask(item: Todo) {
@@ -65,15 +74,17 @@ export class TodoComponent implements OnInit {
     this.flag = false;
   }
   onAddNewTask() {
-    if (this.flag == false) {
+    if (!this.flag) {
       this.flag = true;
+      this.pflag = this.eflag = false;
     } else {
       this.flag = false;
     }
   }
   onAddNewEmployee() {
-    if (this.eflag == false) {
+    if (!this.eflag) {
       this.eflag = true;
+      this.flag = this.pflag = false;
     } else {
       this.eflag = false;
     }
@@ -81,12 +92,44 @@ export class TodoComponent implements OnInit {
 
   onDeleteEmpoyee(item: Employee) {
     this.arrEmployees.splice(this.arrEmployees.indexOf(item), 1);
+    this._data.deleteUser(item.user_email).subscribe();
   }
   onAddEmployee() {
-    this.arrEmployees.push(new Employee(this.id, this.name, this.age));
-    this.eflag = false;
+    this.arrEmployees.push(
+      new Employee(this.email, this.name, this.password, this.mobile)
+    );
+    this._data
+      .addUser(new Employee(this.email, this.name, this.password, this.mobile))
+      .subscribe();
+    //this.eflag = false;
   }
   onCancelEmployee() {
     this.eflag = false;
+  }
+
+  onShowProduct() {
+    if (this.pflag) {
+      this.pflag = false;
+    } else {
+      this.pflag = true;
+      this.flag = this.eflag = false;
+    }
+  }
+  onCancleProduct() {
+    this.pflag = false;
+  }
+  onDeleteProduct(item: Product) {
+    this.arrProduct.splice(this.arrProduct.indexOf(item), 1);
+    this._data.deleteProduct(item.id).subscribe();
+  }
+  onAddProduct() {
+    this.arrProduct.push(
+      new Product(this.pid, this.pname, this.pdesc, this.price)
+    );
+    this._data
+      .addProduct(new Product(this.pid, this.pname, this.pdesc, this.price))
+      .subscribe();
+    //this.eflag = false;
+    this.pid = this.pname = this.pdesc = this.price = '';
   }
 }

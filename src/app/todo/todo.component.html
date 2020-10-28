@@ -32,14 +32,17 @@
 <div class="container mt-4" max-width="90%">
   <div class="row">
     <div class="col">
-      <button class="btn btn-primary" (click)="onAddNewTask()">Add Todo Task</button>
+      <button class="btn btn-primary" (click)="onAddNewTask()">Todo Task</button>
     </div>
     <div class="col">
-      <button class="btn btn-primary" (click)="onAddNewEmployee()">Add New Employee</button>
+      <button class="btn btn-primary" (click)="onAddNewEmployee()">Employee List</button>
+    </div>
+    <div class="col">
+      <button class="btn btn-primary" (click)="onShowProduct()">Product List</button>
     </div>
   </div>
 
-  <div *ngIf="flag;else elseblock">
+  <div class="todo" *ngIf="flag">
     <h1>Todo Component</h1>
     <table class="table table-light">
       <thead>
@@ -72,6 +75,7 @@
         </tr>
       </tbody>
       <tfoot>
+
         <tr class="tr">
           <td scope="col">
             <input class="form-control" type="number" [(ngModel)]="id" placeholder="Enter Id" required />
@@ -93,15 +97,7 @@
         </tr>
       </tfoot>
     </table>
-
   </div>
-  <ng-template #elseblock>
-
-
-
-  </ng-template>
-
-
 
 
   <div class="container" *ngIf="eflag;">
@@ -109,17 +105,21 @@
     <table class="table table-dark">
       <thead>
         <tr>
-          <th scope="col">#</th>
+          <!-- <th scope="col">#</th> -->
           <th scope="col">Name</th>
-          <th scope="col">Age</th>
-          <th scope="col">Update</th>
+          <th scope="col">Email</th>
+          <th scope="col">Password</th>
+          <th scope="col">Mobile</th>
+          <th scope="col">Edit</th>
         </tr>
       </thead>
       <tbody>
         <tr *ngFor="let item of arrEmployees">
-          <th scope="row">{{ item.id }}</th>
-          <td>{{ item.name }}</td>
-          <td>{{ item.age }}</td>
+          <!-- <th scope="row">{{ item.email }}</th> -->
+          <td>{{ item.user_name }}</td>
+          <td>{{ item.user_email }}</td>
+          <td>{{ item.user_password }}</td>
+          <td>{{ item.user_mb }}</td>
           <td>
             <button class="btn btn-danger" (click)="onDeleteEmpoyee(item)">Delete</button>
           </td>
@@ -128,20 +128,23 @@
       <tfoot>
         <tr class="tr">
           <td scope="col">
-            <input class="form-control" type="number" [(ngModel)]="id" placeholder="Enter Id" required />
+            <input class="form-control" type="text" [(ngModel)]="name" placeholder="Name" required />
           </td>
           <td scope="col">
-            <input class="form-control" type="text" [(ngModel)]="name" placeholder="Title" required />
+            <input class="form-control" type="email" [(ngModel)]="email" placeholder="Enter Email" required />
           </td>
           <td scope=" col">
-            <input class="form-control" type="text" [(ngModel)]="age" placeholder="Status" required />
+            <input class="form-control" type="password" [(ngModel)]="password" placeholder="Password" required />
+          </td>
+          <td scope=" col">
+            <input class="form-control" type="text" [(ngModel)]="mobile" placeholder="Mobile" required />
           </td>
           <td scope="col">
             <button class="btn btn-primary" (click)="onCancelEmployee()">
               Cancel
             </button>
             <button class="btn btn-success" (click)="onAddEmployee()">
-              Add Employee
+              Add User
             </button>
           </td>
         </tr>
@@ -149,24 +152,54 @@
     </table>
   </div>
 
-  <!-- <h3 class="h1">Product Table</h3>
+  <div class="product" *ngIf="pflag;">
+    <h3 class="h1">Product Table</h3>
 
-  <table class="table table-dark">
-    <thead>
-      <tr>
-        <th scope="col">#</th>
-        <th scope="col">Product Name</th>
-        <th scope="col">Status</th>
-        <th scope="col">Price</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let item of arrProduct">
-        <th scope="row">{{ item.id }}</th>
-        <td>{{ item.pname }}</td>
-        <td>{{ item.status }}</td>
-        <td>{{ item.price }}</td>
-      </tr>
-    </tbody>
-  </table> -->
+    <table class="table table-light">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Product Name</th>
+          <th scope="col">Description</th>
+          <th scope="col">Price</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of arrProduct">
+          <th scope="row">{{ item.id }}</th>
+          <td>{{ item.product_name }}</td>
+          <td>{{ item.product_desc }}</td>
+          <td>{{ item.product_price }}</td>
+          <td>
+            <button class="btn btn-danger" (click)="onDeleteProduct(item)">Delete</button>
+          </td>
+        </tr>
+      </tbody>
+      <tfoot>
+        <tr class="tr">
+          <td scope="col">
+            <input class="form-control" type="text" [(ngModel)]="pid" placeholder="ID" required />
+          </td>
+          <td scope="col">
+            <input class="form-control" type="text" [(ngModel)]="pname" placeholder="Product Name" required />
+          </td>
+          <td scope=" col">
+            <input class="form-control" type="text" [(ngModel)]="pdesc" placeholder="Description" required />
+          </td>
+          <td scope=" col">
+            <input class="form-control" type="number" [(ngModel)]="price" placeholder="price" required />
+          </td>
+          <td scope="col">
+            <button class="btn btn-primary" (click)="onCancleProduct()">
+              Cancle
+            </button>
+            <button class="btn btn-success" (click)="onAddProduct()">
+              Add Product
+            </button>
+          </td>
+        </tr>
+      </tfoot>
+    </table>
+  </div>
+
 </div>

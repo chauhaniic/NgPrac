@@ -1,9 +1,9 @@
 export class Product {
   constructor(
     public id: number,
-    public pname: string,
-    public status: string,
-    public price: number
+    public product_name: string,
+    public product_desc: string,
+    public product_price: number
   ) {}
   temp: number;
 }

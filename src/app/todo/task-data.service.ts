@@ -2,11 +2,15 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Todo } from './todo';
 import { Observable } from 'rxjs';
+import { Employee } from './employee';
+import { Product } from './product';
 @Injectable({
   providedIn: 'root',
 })
 export class TaskDataService {
   url: string = 'http://localhost:3000/tasks';
+  url_users: string = 'http://localhost:3000/users';
+  url_products: string = 'http://localhost:3000/products';
   constructor(private _http: HttpClient) {}
 
   getAllTasks() {
@@ -28,5 +32,39 @@ export class TaskDataService {
     return this._http.put(this.url + '/' + id, todo, {
       headers: headers,
     });
+  }
+
+  //User Part
+
+  getAllUsers() {
+    return this._http.get(this.url_users);
+  }
+  addUser(todo: Employee): Observable<Employee> {
+    const headers = { 'content-type': 'application/json' };
+    const body = JSON.stringify(todo);
+    console.log(body);
+    return this._http.post<Employee>(this.url_users, todo, {
+      headers: headers,
+    });
+  }
+  deleteUser(id) {
+    return this._http.delete(this.url_users + '/' + id);
+  }
+
+  //Product Part
+
+  getAllProduct() {
+    return this._http.get(this.url_products);
+  }
+  addProduct(product: Product): Observable<Product> {
+    const headers = { 'content-type': 'application/json' };
+    const body = JSON.stringify(product);
+    console.log(body);
+    return this._http.post<Product>(this.url_products, product, {
+      headers: headers,
+    });
+  }
+  deleteProduct(id) {
+    return this._http.delete(this.url_products + '/' + id);
   }
 }

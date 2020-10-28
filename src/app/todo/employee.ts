@@ -1,3 +1,8 @@
 export class Employee {
-  constructor(public id: number, public name: string, public age: number) {}
+  constructor(
+    public user_email: string,
+    public user_name: string,
+    public user_password: string,
+    public user_mb: string
+  ) {}
 }
