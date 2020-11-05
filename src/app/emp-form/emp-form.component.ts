@@ -120,7 +120,7 @@ export class EmpFormComponent implements OnInit {
         Validators.pattern('[0-9a-zA-Z ]*'),
       ]),
       maritual_status: new FormControl('married'),
-      children: new FormControl('', [Validators.pattern('[0-9]')]),
+      children: new FormControl('', [Validators.pattern('[0-9]* ')]),
       marriage_date: new FormControl(''),
       spouse_name: new FormControl('', [Validators.pattern('[0-9a-zA-Z ]*')]),
       bank_name: new FormControl(null, [Validators.required]),
