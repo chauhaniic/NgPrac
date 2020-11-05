@@ -1,0 +1,59 @@
+<div class="container">
+  <form class="form-group" [formGroup]="userForm" (ngSubmit)="userFilled()">
+    <h2 class="h2">Add User Details</h2>
+    <code class="code">Adding Data to db using FormGroup</code>
+    <div class="user_details">
+      <div class="form-group row">
+        <label class="col-sm-3 col-form-label" for="user_email">User Email: <span class="lblError">*</span></label>
+        <div class="col-sm-6">
+          <input class="form-control" type="email" formControlName="user_email" />
+          <small class="lblError" *ngIf="
+              userForm.get('user_email').hasError('required') &&
+              !userForm.get('user_email').pristine
+            ">User Email Required</small>
+          <small class="lblError" *ngIf="
+              userForm.get('user_email').hasError('email') &&
+              !userForm.get('user_email').pristine
+            ">Invalid Email</small>
+        </div>
+      </div>
+      <div class="form-group row">
+        <label class="col-sm-3 col-form-label" for="user_email">User Name: <span class="lblError">*</span></label>
+        <div class="col-sm-6">
+          <input class="form-control" type="text" formControlName="user_name" />
+          <small class="lblError" *ngIf="
+              userForm.get('user_name').hasError('required') &&
+              !userForm.get('user_name').pristine
+            ">User Name Required</small>
+        </div>
+      </div>
+      <div class="form-group row">
+        <label class="col-sm-3 col-form-label" for="user_email">User Password: <span class="lblError">*</span></label>
+        <div class="col-sm-6">
+          <input class="form-control" type="password" formControlName="user_password" />
+          <small class="lblError" *ngIf="
+              userForm.get('user_password').hasError('required') &&
+              !userForm.get('user_password').pristine
+            ">User Password Required</small>
+        </div>
+      </div>
+      <div class="form-group row">
+        <label class="col-sm-3 col-form-label" for="user_email">User Mobile: <span class="lblError">*</span></label>
+        <div class="col-sm-6">
+          <input class="form-control" type="text" formControlName="user_mb" />
+          <small class="lblError" *ngIf="
+              userForm.get('user_mb').hasError('required') &&
+              !userForm.get('user_mb').pristine
+            ">User Mobile Required</small>
+          <small class="lblError" *ngIf="
+              userForm.get('user_mb').hasError('pattern') &&
+              !userForm.get('user_mb').pristine
+            ">Invalid Mobile</small>
+        </div>
+      </div>
+      <button type="submit" class="btn btn-primary btn-large">
+        Submit
+      </button>
+    </div>
+  </form>
+</div>
