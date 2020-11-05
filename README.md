@@ -9,7 +9,7 @@ Thanks,
 
 #
 
-For more about this. >> view the code or ? >>> #ping me. via commenting | Following https://linkedin.com/in/sanjeeviic <<<
+For more about this. >> view the code or ? >>> #ping me. via commenting | Following [LinkedIN](https://linkedin.com/in/sanjeeviic) <<<
 
 Demos Image
 \ || /
