@@ -39,11 +39,22 @@ export class TaskDataService {
   getAllUsers() {
     return this._http.get(this.url_users);
   }
+  getUsersByEmail(user_email) {
+    return this._http.get(this.url_users+'/'+user_email);
+  }
   addUser(todo: Employee): Observable<Employee> {
     const headers = { 'content-type': 'application/json' };
     const body = JSON.stringify(todo);
     console.log(body);
     return this._http.post<Employee>(this.url_users, todo, {
+      headers: headers,
+    });
+  }
+  editUser(todo: Employee): Observable<Employee> {
+    const headers = { 'content-type': 'application/json' };
+    const body = JSON.stringify(todo);
+    console.log(body);
+    return this._http.put<Employee>(this.url_users+'/'+todo.user_email, todo, {
       headers: headers,
     });
   }
@@ -55,6 +66,17 @@ export class TaskDataService {
 
   getAllProduct() {
     return this._http.get(this.url_products);
+  }
+  getProductById(id) {
+    return this._http.get(this.url_products+'/'+id);
+  }
+  editProduct(todo: Product): Observable<Product> {
+    const headers = { 'content-type': 'application/json' };
+    const body = JSON.stringify(todo);
+    console.log(body);
+    return this._http.put<Product>(this.url_products+'/'+todo.id, todo, {
+      headers: headers,
+    });
   }
   addProduct(product: Product): Observable<Product> {
     const headers = { 'content-type': 'application/json' };

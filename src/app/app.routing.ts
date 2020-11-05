@@ -1,6 +1,7 @@
 import { RouterModule, Routes } from '@angular/router';
 import { ArraytestComponent } from './arraytest/arraytest.component';
 import { Cartt6Component } from './cartt6/cartt6.component';
+import { ConnectingUserComponent } from './connecting-user/connecting-user.component';
 import { DemoappComponent } from './demoapp/demoapp.component';
 import { DemonewComponent } from './demonew/demonew.component';
 import { EmpFormComponent } from './emp-form/emp-form.component';
@@ -14,6 +15,8 @@ import { ParentComponent } from './parent/parent.component';
 import { Productt6Component } from './productt6/productt6.component';
 import { Registert6Component } from './registert6/registert6.component';
 import { SignupComponent } from './signup/signup.component';
+import { EmpeditComponent } from './todo/empedit/empedit.component';
+import { ProducteditComponent } from './todo/productedit/productedit.component';
 import { TodoComponent } from './todo/todo.component';
 import { UserComponent } from './user/user.component';
 
@@ -40,6 +43,10 @@ const task26: Routes = [
   { path: 'eparent', component: EparentComponent },
   { path: 'signup', component: SignupComponent },
   { path: 'empform', component: EmpFormComponent },
+  { path: 'users', component: UserComponent },
+  { path: 'cuser', component: ConnectingUserComponent },
+  { path: 'editemp/:id', component:EmpeditComponent  },
+  { path: 'editproduct/:id', component:ProducteditComponent },
   {
     path: 'atest',
     component: ArraytestComponent,

@@ -3,6 +3,7 @@ import { Todo } from './todo';
 import { Employee } from './employee';
 import { Product } from './product';
 import { TaskDataService } from './task-data.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-todo',
@@ -37,7 +38,7 @@ export class TodoComponent implements OnInit {
     new Product(2, 'Micromax Dongle', 'unused', 1000),
     new Product(3, 'Dell Laptop', '1 year old', 18000), */
   ];
-  constructor(private _data: TaskDataService) {}
+  constructor(private _data: TaskDataService,private _router:Router) {}
 
   ngOnInit(): void {
     this._data.getAllTasks().subscribe((data: Todo[]) => {
@@ -50,7 +51,11 @@ export class TodoComponent implements OnInit {
       this.arrProduct = data;
     });
   }
+  item_Recieved;
   onDeleteTask(item: Todo) {
+    this.notify_me();
+    this.item_Recieved=item;
+    return item;
     this.arrTodos.splice(this.arrTodos.indexOf(item), 1);
     this._data.deleteTask(item.Id).subscribe();
     //this._data.addTask().
@@ -91,8 +96,14 @@ export class TodoComponent implements OnInit {
   }
 
   onDeleteEmpoyee(item: Employee) {
+    this.notify_me();
+    this.item_Recieved=item;
+    return item;
     this.arrEmployees.splice(this.arrEmployees.indexOf(item), 1);
     this._data.deleteUser(item.user_email).subscribe();
+  }
+  onEditEmpoyee(item: Employee) {
+    this._router.navigate(['/editemp', item.user_email]);
   }
   onAddEmployee() {
     this.arrEmployees.push(
@@ -118,7 +129,16 @@ export class TodoComponent implements OnInit {
   onCancleProduct() {
     this.pflag = false;
   }
+  pdframe:boolean=false;
+  onEditProduct(item: Product) {
+    this._router.navigate(['/editproduct', item.id]);
+    //this.
+
+  }
   onDeleteProduct(item: Product) {
+    this.notify_me();
+    this.item_Recieved=item;
+    return item;
     this.arrProduct.splice(this.arrProduct.indexOf(item), 1);
     this._data.deleteProduct(item.id).subscribe();
   }
@@ -132,4 +152,40 @@ export class TodoComponent implements OnInit {
     //this.eflag = false;
     this.pid = this.pname = this.pdesc = this.price = '';
   }
+
+
+
+  // Notification Part
+  close_notify:boolean=false;
+  onDelete(){
+    //this.arrTodos.splice(this.arrTodos.indexOf(this.item_Recieved), 1);
+    /* console.log(this.item_Recieved.Id);
+    console.log(this.item_Recieved.id);
+    console.log(this.item_Recieved.user_email);
+ */
+    if(this.item_Recieved.Id!=null){
+      this.arrTodos.splice(this.arrTodos.indexOf(this.item_Recieved), 1);
+      alert('Task Deleted Successfully ! ');
+      this._data.deleteTask(this.item_Recieved.Id).subscribe();
+    }
+    if(this.item_Recieved.id!=null){
+      this.arrProduct.splice(this.arrProduct.indexOf(this.item_Recieved), 1);
+      alert('Product Deleted Successfully ! ');
+      this._data.deleteProduct(this.item_Recieved.id).subscribe();
+    }
+    if(this.item_Recieved.user_email!=null){
+      this.arrEmployees.splice(this.arrEmployees.indexOf(this.item_Recieved), 1);
+      alert('User Deleted Successfully ! ');
+      this._data.deleteUser(this.item_Recieved.user_email).subscribe();
+    }
+
+    this.close_me();
+  }
+  notify_me(){
+    this.close_notify=true;
+  }
+  close_me(){
+    this.close_notify=false;
+  }
+
 }

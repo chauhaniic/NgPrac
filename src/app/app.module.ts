@@ -30,6 +30,9 @@ import { EchildComponent } from './echild/echild.component';
 import { SignupComponent } from './signup/signup.component';
 import { EmpFormComponent } from './emp-form/emp-form.component';
 import { ArraytestComponent } from './arraytest/arraytest.component';
+import { ConnectingUserComponent } from './connecting-user/connecting-user.component';
+import { EmpeditComponent } from './todo/empedit/empedit.component';
+import { ProducteditComponent } from './todo/productedit/productedit.component';
 
 @NgModule({
   declarations: [
@@ -58,6 +61,9 @@ import { ArraytestComponent } from './arraytest/arraytest.component';
     SignupComponent,
     EmpFormComponent,
     ArraytestComponent,
+    ConnectingUserComponent,
+    EmpeditComponent,
+    ProducteditComponent,
   ],
   imports: [
     BrowserModule,
