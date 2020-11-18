@@ -17,8 +17,8 @@ import * as moment from 'moment';
 })
 export class EmpFormComponent implements OnInit {
   bflag: boolean = false;
-  aflag: boolean = true;
-  eflag: boolean = false;
+  aflag: boolean = false;
+  eflag: boolean = true;
   pflag: boolean = false;
   age: number = 0;
   today: number = Date.now();
@@ -380,7 +380,7 @@ export class EmpFormComponent implements OnInit {
     ) {
       return 2;
     }
-    console.log(num_data);
+    //console.log(num_data);
     if (num_data > 0) {
       for (let index = 0; index < num_data - 1; index++) {
         //let r = this.empExForm.get('exp_data') as FormArray;
@@ -632,11 +632,15 @@ export class EmpFormComponent implements OnInit {
   }
   onEduCheck(i) {
     let dp = true;
+    let r = this.empExForm.get('edu_data') as FormArray;
+    console.log(r.at(i).status);
+    console.log(r.errors);
     let num_data = this.empExForm.get('edu_data').value.length;
     if (num_data > 0) {
       for (let index = 0; index < num_data - 1; index++) {
         let r = this.empExForm.get('edu_data') as FormArray;
         let item = r.at(index);
+        console.log(r.at(i).status);
         if (
           item.get('qualification').value == r.at(i).get('qualification').value
         ) {

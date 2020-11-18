@@ -85,6 +85,12 @@ export class EmpRecordService {
   deleteEmp(id,add_url) {
     return this._http.delete(this.url + '/' +add_url +'/' + id);
   }
+  deleteEmpEdu(id) {
+    return this._http.delete(this.url + '/edu/' + id);
+  }
+  deleteEmpExp(id) {
+    return this._http.delete(this.url + '/exp/' + id);
+  }
   deleteEmpSkill(id) {
     return this._http.delete(this.url + '/skill/' + id);
   }

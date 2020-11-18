@@ -1,5 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import {
+  AbstractControl,
+  FormArray,
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import * as moment from 'moment';
 import { Emp_Basic } from '../emp-basic/emp_basic';
@@ -100,16 +106,16 @@ export class EmpExpComponent implements OnInit {
             //let num_data = this.empExpForm.get('exp_data').value.length;
             let r = this.empSkillForm.get('skill_data') as FormArray;
             let item=r.at(i);
-            console.log(item);
+            //console.log(item);
             this.temp=data[i].skill;
             item.patchValue({
               emp_id:data[i].emp_id,
-              from_date:data[i].skill_cat,
-              to_date:data[i].skill,
-              company:data[i].skill_level,
-              designation:data[i].is_current,
-              r_date:data[i].exper,
-              nr_date:data[i].remarks
+              skill_cat:data[i].skill_cat,
+              skill:data[i].skill,
+              skill_level:data[i].skill_level,
+              is_current:data[i].is_current,
+              exper:data[i].exper,
+              remarks:data[i].remarks
             });
           }
         }else{
@@ -167,7 +173,7 @@ export class EmpExpComponent implements OnInit {
     }
     //console.log(num_data);
     if (num_data > 0) {
-      for (let index = 0; index < num_data - 1; index++) {
+      for (let index = a+1; index < num_data - 1; index++) {
         //let r = this.empExpForm.get('exp_data') as FormArray;
         let item = r.at(index);
         if (
@@ -309,6 +315,7 @@ export class EmpExpComponent implements OnInit {
   }
   createExp(): FormGroup {
     return this.formBuilder.group({
+      emp_id:new FormControl(this.emp_id_param),
       from_date: new FormControl(null, [Validators.required]),
       to_date: new FormControl(null, [Validators.required]),
       company: new FormControl(null, [Validators.required]),
@@ -321,7 +328,25 @@ export class EmpExpComponent implements OnInit {
     (this.empExpForm.get('exp_data') as FormArray).push(this.createExp());
   }
   onExpCheck(i) {
-    let num_data = this.empExpForm.get('exp_data').value.length;
+    let r = this.empExpForm.get('exp_data') as FormArray;
+    let item = r.at(i);
+    console.log(item.status);
+    if(item.status){
+        item.get('emp_id').setValue(this.emp_id_param);
+        console.log(item.get('emp_id').value);
+      this._data.addEmp_Exp(item.value).subscribe((x:any)=>{
+        if (x.affectedRows==1) {
+          alert('Added Successfully');
+          //this._router.navigate(['/home/addressadd']);
+        } else {
+           console.log(x);
+
+        }
+      });
+    }else{
+      alert('Fill The Form Completely!')
+    }
+    /* let num_data = this.empExpForm.get('exp_data').value.length;
     let r = this.empExpForm.get('exp_data') as FormArray;
     let item=r.at(i);
     if(item.status == 'VALID'){
@@ -340,7 +365,7 @@ export class EmpExpComponent implements OnInit {
     }else{
         this._data.updateExp(this.emp_id_param,item.value).subscribe((x:any)=>{
           if (x.affectedRows==1) {
-            alert('Added Successfully');
+            alert('Updated Successfully');
             //this._router.navigate(['/home/addressadd']);
           } else {
             console.log(x);
@@ -362,10 +387,22 @@ export class EmpExpComponent implements OnInit {
         }
 
       }
-    }
+    } */
   }
   onRemoveExpClick(i) {
-    (this.empExpForm.get('exp_data') as FormArray).removeAt(i);
+    if(confirm("Are You Want to delete ?")){
+    let r=this.empExpForm.get('exp_data') as FormArray;
+    let temp =r.at(i);
+
+    this._data.deleteEmpExp(this.emp_id_param+"&"+temp.get('from_date').value).subscribe((x:any)=>{
+      if(x.affectedRows==1){
+        console.log('Deleted Successfully !');
+        (this.empExpForm.get('exp_data') as FormArray).removeAt(i);
+      }else{
+        console.log(x);
+      }
+    });
+    }
   }
 
   //Experince Part Ends
@@ -375,6 +412,7 @@ export class EmpExpComponent implements OnInit {
   }
   createSkill(): FormGroup {
     return this.formBuilder.group({
+      emp_id:new FormControl(this.emp_id_param),
       skill_cat: new FormControl(null, [Validators.required]),
       skill: new FormControl(null, [Validators.required]),
       skill_level: new FormControl(null, [Validators.required]),
@@ -400,48 +438,40 @@ export class EmpExpComponent implements OnInit {
     (this.empSkillForm.get('skill_data') as FormArray).push(this.createSkill());
   }
   onSkillCheck(i) {
-    let num_data = this.empSkillForm.get('skill_data').value.length;
-    if (num_data > 0) {
-      /* for (let index = 0; index < num_data - 1; index++) { */
-        let r = this.empSkillForm.get('skill_data') as FormArray;
-        let item = r.at(i);
+    let r = this.empSkillForm.get('skill_data') as FormArray;
+    let item = r.at(i);
+    console.log(item.status);
+    if(item.status){
+        item.get('emp_id').setValue(this.emp_id_param);
+        console.log(item.get('emp_id').value);
+      this._data.addEmp_Skill(item.value).subscribe((x:any)=>{
+        if (x.affectedRows==1) {
+          alert('Added Successfully');
+          //this._router.navigate(['/home/addressadd']);
+        } else {
+           console.log(x);
 
-          if(item.status == 'VALID'){
-            if(this.temp==null){
-              item.get('emp_id').setValue(this.emp_id_param);
-              console.log(item.get('emp_id').value);
-            this._data.addEmp_Edu(item.value).subscribe((x:any)=>{
-              if (x.affectedRows==1) {
-                alert('Added Successfully');
-                //this._router.navigate(['/home/addressadd']);
-              } else {
-                 console.log(x);
-
-              }
-            });
-          }else{
-              this._data.updateEdu(this.emp_id_param,item.value).subscribe((x:any)=>{
-                if (x.affectedRows==1) {
-                  alert('Added Successfully');
-                  //this._router.navigate(['/home/addressadd']);
-                } else {
-                  console.log(x);
-
-                }
-              });
-            }
-          }else{
-            alert('Fill The Form Completely!')
-          }
-
-      }
-    /* } */
+        }
+      });
+    }else{
+      alert('Fill The Form Completely!')
+    }
   }
 
   onRemoveSkillClick(i) {
-    (this.empSkillForm.get('skill_data') as FormArray).removeAt(i);
-
+    let r = this.empSkillForm.get('skill_data') as FormArray;
+    let item = r.at(i);
     if (confirm('Are you sure you want to delete?')) {
+      this._data.deleteEmpSkill(this.emp_id_param+'&'+item.get('skill')).subscribe((x:any)=>{
+        if(x.affectedRows==1){
+          console.log('Deleted Successfully !');
+          (this.empSkillForm.get('skill_data') as FormArray).removeAt(i);
+        }
+      });
+    }
+
+
+    //if (confirm('Are you sure you want to delete?')) {
       //let tArray:Array<string>=['skill','exp','edu','address','bank','personal',''];
       //for(var index in tArray){
         /* this._data.deleteEmpSkill().subscribe((x:any)=>{
@@ -456,8 +486,8 @@ export class EmpExpComponent implements OnInit {
         alert('Deleted Successfully !');
         this.arrEmpBasic.splice(this.arrEmpBasic.indexOf(item), 1);
       }
-    }); */
-  }
+    }); * /
+  }*/
   }
   //Skills Part Ends
   // Education Part Start
@@ -471,6 +501,7 @@ export class EmpExpComponent implements OnInit {
   qua_area;
   createEdu(): FormGroup {
     return this.formBuilder.group({
+      emp_id:new FormControl(this.emp_id_param),
       qualification: new FormControl(null, [
         Validators.required,
         Validators.pattern('[a-zA-Z] *'),
@@ -501,66 +532,38 @@ export class EmpExpComponent implements OnInit {
     (this.empEduForm.get('edu_data') as FormArray).push(this.createEdu());
   }
   onEduCheck(i) {
-    console.log(i);
-    let dp = true;
-    let num_data = this.empEduForm.get('edu_data').value.length;
-    if (num_data > 0) {
-      /* for (let index = 0; index < num_data - 1; index++) { */
-        let r = this.empEduForm.get('edu_data') as FormArray;
-        let item = r.at(i);
-        /* if (
-          item.get('qualification').value == r.at(i).get('qualification').value
-        ) {
-          window.alert('Qualification match to ' + (index + 1) + 'Row');
-          //this.column = i;
-          dp = false;
-          break;
-        }else{ */
+    let r = this.empEduForm.get('edu_data') as FormArray;
+    let item = r.at(i);
+    console.log(item.status);
+    if(item.status){
+        item.get('emp_id').setValue(this.emp_id_param);
+        console.log(item.get('emp_id').value);
+      this._data.addEmp_Edu(item.value).subscribe((x:any)=>{
+        if (x.affectedRows==1) {
+          alert('Added Successfully');
+          //this._router.navigate(['/home/addressadd']);
+        } else {
+           console.log(x);
 
-
-            //console.log(this.empPersonalForm.value);
-            if(item.status == 'VALID'){
-              if(this.temp==null){
-                item.get('emp_id').setValue(this.emp_id_param);
-                console.log(item.get('emp_id').value);
-              this._data.addEmp_Personal(item.value).subscribe((x:any)=>{
-                if (x.affectedRows==1) {
-                  alert('Added Successfully');
-                  //this._router.navigate(['/home/addressadd']);
-                } else {
-                   console.log(x);
-
-                }
-              });
-            }else{
-                this._data.updateEdu(this.emp_id_param,item.value).subscribe((x:any)=>{
-                  if (x.affectedRows==1) {
-                    alert('Added Successfully');
-                    //this._router.navigate(['/home/addressadd']);
-                  } else {
-                    console.log(x);
-
-                  }
-                });
-              }
-            }else{
-              alert('Fill The Form Completely!')
-            }
-
-          //item
-
-
-        /* }} */
-
-    }/*
-    if (dp) {
-      alert('No Duplicates.');
-    } */
+        }
+      });
+    }else{
+      alert('Fill The Form Completely!')
+    }
   }
 
 
   onRemoveEduClick(i) {
-    (this.empEduForm.get('edu_data') as FormArray).removeAt(i);
+    let r = this.empEduForm.get('edu_data') as FormArray;
+    let item = r.at(i);
+    if (confirm('Are you sure you want to delete?')) {
+      this._data.deleteEmpEdu(this.emp_id_param+'&'+item.get('qualification')).subscribe((x:any)=>{
+        if(x.affectedRows==1){
+          console.log('Deleted Successfully !');
+          (this.empEduForm.get('edu_data') as FormArray).removeAt(i);
+        }
+      });
+    }
   }
   //Ends
 
