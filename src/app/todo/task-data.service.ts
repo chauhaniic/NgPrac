@@ -19,7 +19,7 @@ export class TaskDataService {
   addTask(todo: Todo): Observable<Todo> {
     const headers = { 'content-type': 'application/json' };
     const body = JSON.stringify(todo);
-    console.log(body);
+    //console.log(body);
     return this._http.post<Todo>(this.url, todo, { headers: headers });
   }
   deleteTask(id) {
@@ -28,7 +28,7 @@ export class TaskDataService {
   updateTask(id, todo: Todo) {
     const headers = { 'content-type': 'application/json' };
     const body = JSON.stringify(todo);
-    console.log(body);
+    //console.log(body);
     return this._http.put(this.url + '/' + id, todo, {
       headers: headers,
     });
@@ -45,7 +45,7 @@ export class TaskDataService {
   addUser(todo: Employee): Observable<Employee> {
     const headers = { 'content-type': 'application/json' };
     const body = JSON.stringify(todo);
-    console.log(body);
+    //console.log(body);
     return this._http.post<Employee>(this.url_users, todo, {
       headers: headers,
     });
@@ -53,7 +53,7 @@ export class TaskDataService {
   editUser(todo: Employee): Observable<Employee> {
     const headers = { 'content-type': 'application/json' };
     const body = JSON.stringify(todo);
-    console.log(body);
+    //console.log(body);
     return this._http.put<Employee>(this.url_users+'/'+todo.user_email, todo, {
       headers: headers,
     });
@@ -73,7 +73,7 @@ export class TaskDataService {
   editProduct(todo: Product): Observable<Product> {
     const headers = { 'content-type': 'application/json' };
     const body = JSON.stringify(todo);
-    console.log(body);
+    //console.log(body);
     return this._http.put<Product>(this.url_products+'/'+todo.id, todo, {
       headers: headers,
     });
@@ -81,7 +81,7 @@ export class TaskDataService {
   addProduct(product: Product): Observable<Product> {
     const headers = { 'content-type': 'application/json' };
     const body = JSON.stringify(product);
-    console.log(body);
+    //console.log(body);
     return this._http.post<Product>(this.url_products, product, {
       headers: headers,
     });

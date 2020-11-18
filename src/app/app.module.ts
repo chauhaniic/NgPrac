@@ -33,6 +33,13 @@ import { ArraytestComponent } from './arraytest/arraytest.component';
 import { ConnectingUserComponent } from './connecting-user/connecting-user.component';
 import { EmpeditComponent } from './todo/empedit/empedit.component';
 import { ProducteditComponent } from './todo/productedit/productedit.component';
+import { EmpRecordComponent } from './emp-record/emp-record.component';
+import { EmpBasicComponent } from './emp-record/emp-basic/emp-basic.component';
+import { EmpPersonalComponent } from './emp-record/emp-personal/emp-personal.component';
+import { EmpExpComponent } from './emp-record/emp-exp/emp-exp.component';
+import { EmpBasicEditComponent } from './emp-record/emp-basic/emp-basic-edit/emp-basic-edit.component';
+import { EmpBankComponent } from './emp-record/emp-personal/emp-bank/emp-bank.component';
+import { EmpAddressComponent } from './emp-record/emp-personal/emp-address/emp-address.component';
 
 @NgModule({
   declarations: [
@@ -64,6 +71,13 @@ import { ProducteditComponent } from './todo/productedit/productedit.component';
     ConnectingUserComponent,
     EmpeditComponent,
     ProducteditComponent,
+    EmpRecordComponent,
+    EmpBasicComponent,
+    EmpPersonalComponent,
+    EmpExpComponent,
+    EmpBasicEditComponent,
+    EmpBankComponent,
+    EmpAddressComponent,
   ],
   imports: [
     BrowserModule,

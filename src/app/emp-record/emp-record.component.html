@@ -1,0 +1,78 @@
+<div class="container-lg">
+  <div class="row form-group">
+    <div class="col-sm-3"><label class="label">Session Id:</label></div>
+    <div class="col-sm-5"><input type="text" class="form-control" value="{{res}}" disabled></div>
+    <div class="col-sm-4"><button type="button" class="btn btn-secondary" (click)="genSession()">Click on Me ! </button></div>
+
+
+
+  </div>
+  <h3 class="h3 text-center">Employee Report</h3>
+  <div class="row form group">
+
+    <p class="p"></p>
+    <hr class="hr">
+    <div class="col">
+      <button type="button" class="btn btn-primary" (click)="empShow()">Employee Details</button>
+    </div>
+    <div class="col">
+      <button type="button" class="btn btn-primary">Manage Employee</button>
+    </div>
+    <div class="col">
+      <button type="button" class="btn btn-primary">Search Employee</button>
+    </div>
+    <div class="col">
+      <button type="button" class="btn btn-primary">Basic Details</button>
+    </div>
+
+  </div>
+
+
+  <div class="todo" *ngIf="flag">
+    <hr class="hr">
+    <h4>Employee Details</h4>
+    <table class="table table-light table-responsive mx-0 px-0">
+      <thead>
+        <tr>
+          <th scope="col">Emp id</th>
+          <th scope="col">Name</th>
+          <th scope="col">Gender</th>
+          <th scope="col">DOB</th>
+          <th scope="col">Phone</th>
+          <th scope="col">EMail</th>
+          <th scope="col">Fax</th>
+          <th scope="col">Edit/Delete</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of arrEmpBasic" class="tr">
+          <td scope="col">{{ item.emp_id }}</td>
+          <td scope="col">{{ item.f_name }}</td>
+          <td scope="col">{{item.gender}}</td>
+          <td scope="col">{{item.dob}}</td>
+          <td scope="col">{{item.ophone}}</td>
+          <td scope="col">{{item.oemail}}</td>
+          <td scope="col">{{item.fax}}</td>
+          <td scope="col">
+            <button class="btn btn-danger px-2" (click)="onDeleteBasic(item)">
+              Delete
+            </button>
+            <button class="btn btn-primary" (click)="onUpdateBasic(item)">
+              Update
+            </button>
+          </td>
+        </tr>
+      </tbody>
+      <tfoot>
+        <tr class="tr">
+          <td scope="col" colspan="3">
+            <button type="button" class="btn btn-primary" (click)="addEmpButton()">Add More Employee</button>
+          </td>
+        </tr>
+      </tfoot>
+    </table>
+  </div>
+  <pre *ngIf="false" class="pre">
+    {{arrEmpBasic|json}}
+  </pre>
+</div>

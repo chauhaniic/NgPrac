@@ -71,9 +71,27 @@ export class TodoComponent implements OnInit {
   }
   //tof=new Todo();
   onAddTask() {
-    this.arrTodos.push(new Todo(this.id, this.title, this.status));
-    this._data.addTask(new Todo(this.id, this.title, this.status)).subscribe();
-    this.flag = false;
+    this._data
+    .addTask(new Todo(this.id, this.title, this.status))
+    .subscribe((x:any) => {
+      //console.log(x);
+      if (x.affectedRows == 1){
+      this.arrTodos.push(new Todo(this.id, this.title, this.status));
+      //this.flag = false;
+    }
+      else if(x.code=='ER_DUP_ENTRY'){
+        alert('Duplicate Entry');
+      }else{
+        alert('Try Again Later');
+      }
+    });
+
+    /* this.arrTodos.push(new Todo(this.id, this.title, this.status));
+    this._data.addTask(new Todo(this.id, this.title, this.status)).subscribe((x:any)=>{
+      if(x.code=='ER_DUP_ENTRY'){
+        alert('Duplicate Entry');
+      }
+    }); */
   }
   onCancelTask() {
     this.flag = false;
@@ -106,12 +124,20 @@ export class TodoComponent implements OnInit {
     this._router.navigate(['/editemp', item.user_email]);
   }
   onAddEmployee() {
-    this.arrEmployees.push(
-      new Employee(this.email, this.name, this.password, this.mobile)
-    );
+
     this._data
       .addUser(new Employee(this.email, this.name, this.password, this.mobile))
-      .subscribe();
+      .subscribe((x:any)=>{
+        if(x.affectedRows==1){
+          this.arrEmployees.push(
+      new Employee(this.email, this.name, this.password, this.mobile)
+    );
+        }else if(x.code=='ER_DUP_ENTRY'){
+          alert('Duplicate Entry');
+        }else{
+          alert('Try Again Later');
+        }
+      });
     //this.eflag = false;
   }
   onCancelEmployee() {
@@ -143,12 +169,20 @@ export class TodoComponent implements OnInit {
     this._data.deleteProduct(item.id).subscribe();
   }
   onAddProduct() {
-    this.arrProduct.push(
-      new Product(this.pid, this.pname, this.pdesc, this.price)
-    );
+
     this._data
       .addProduct(new Product(this.pid, this.pname, this.pdesc, this.price))
-      .subscribe();
+      .subscribe((x:any)=>{
+        if(x.affectedRows==1){
+         this.arrProduct.push(
+      new Product(this.pid, this.pname, this.pdesc, this.price)
+    );
+        }else if(x.code=='ER_DUP_ENTRY'){
+          alert('Duplicate Entry');
+        }else{
+          alert('Try Again Later');
+        }
+      });
     //this.eflag = false;
     this.pid = this.pname = this.pdesc = this.price = '';
   }
@@ -164,19 +198,36 @@ export class TodoComponent implements OnInit {
     console.log(this.item_Recieved.user_email);
  */
     if(this.item_Recieved.Id!=null){
-      this.arrTodos.splice(this.arrTodos.indexOf(this.item_Recieved), 1);
+      this._data.deleteTask(this.item_Recieved.Id).subscribe((x:any)=>{
+        if(x.affectedRows==1){
+          this.arrTodos.splice(this.arrTodos.indexOf(this.item_Recieved), 1);
       alert('Task Deleted Successfully ! ');
-      this._data.deleteTask(this.item_Recieved.Id).subscribe();
+        }else{
+          alert('Please Try Again Later!');
+        }
+      });
     }
     if(this.item_Recieved.id!=null){
-      this.arrProduct.splice(this.arrProduct.indexOf(this.item_Recieved), 1);
+
+      this._data.deleteProduct(this.item_Recieved.id).subscribe((x:any)=>{
+        if(x.affectedRows==1){
+          this.arrProduct.splice(this.arrProduct.indexOf(this.item_Recieved), 1);
       alert('Product Deleted Successfully ! ');
-      this._data.deleteProduct(this.item_Recieved.id).subscribe();
+        }else{
+          alert('Please Try Again Later!');
+        }
+      });
     }
     if(this.item_Recieved.user_email!=null){
-      this.arrEmployees.splice(this.arrEmployees.indexOf(this.item_Recieved), 1);
+
+      this._data.deleteUser(this.item_Recieved.user_email).subscribe((x:any)=>{
+        if(x.affectedRows==1){
+          this.arrEmployees.splice(this.arrEmployees.indexOf(this.item_Recieved), 1);
       alert('User Deleted Successfully ! ');
-      this._data.deleteUser(this.item_Recieved.user_email).subscribe();
+        }else{
+          alert('Please Try Again Later!');
+        }
+      });
     }
 
     this.close_me();

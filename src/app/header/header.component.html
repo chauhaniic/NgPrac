@@ -23,21 +23,38 @@
           <a class="dropdown-item" href="#">Something else here</a>
         </div>
       </li>
-      <li class="nav-item" routerLinkActive="active">
+      <li class="nav-item dropdown" routerLinkActive="active">
+        <a class="nav-link dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true"
+          aria-expanded="false">Employee Detials</a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" [routerLink]="[ '/empform' ]">EmpForm</a>
+          <a class="dropdown-item" [routerLink]="[ '/parent' ]">Parent</a>
+          <a class="dropdown-item" [routerLink]="[ '/cuser' ]">Connecting User</a>
+          <a class="dropdown-item" [routerLink]="[ '/signup' ]">Signup</a>
+
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" [routerLink]="[ '/employee' ]">Employee</a>
+          <!-- <a class="dropdown-item" href="#">Something else here</a> -->
+        </div>
+      </li>
+      <!-- <li class="nav-item" routerLinkActive="active">
         <a class="nav-link" [routerLink]="[ '/employee' ]">Employee</a>
-      </li>
-      <li class="nav-item" routerLinkActive="active">
+      </li> -->
+      <!-- <li class="nav-item" routerLinkActive="active">
         <a class="nav-link" [routerLink]="[ '/parent' ]">Parent</a>
-      </li>
+      </li> -->
       <li class="nav-item" routerLinkActive="active">
+        <a class="nav-link" [routerLink]="[ '/home' ]">UserHome</a>
+      </li>
+      <!-- <li class="nav-item" routerLinkActive="active">
         <a class="nav-link" [routerLink]="[ '/signup' ]">Signup</a>
-      </li>
-      <li class="nav-item" routerLinkActive="active">
-        <a class="nav-link" [routerLink]="[ '/empform' ]">EmpForm</a>
+      </li> -->
+      <!-- <li class="nav-item" routerLinkActive="active">
+
       </li>
       <li class="nav-item" routerLinkActive="active">
         <a class="nav-link" [routerLink]="[ '/cuser' ]">Connecting User</a>
-      </li>
+      </li> -->
     </ul>
   </div>
 </nav>

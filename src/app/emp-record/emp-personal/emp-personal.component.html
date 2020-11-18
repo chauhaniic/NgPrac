@@ -1,0 +1,147 @@
+
+<div class="container-lg">
+  <form  id="add_info" class="form-group" [formGroup]="empPersonalForm" (ngSubmit)="addPersonal()">
+    <div class="basic_info">
+      <h3 class="h3">Personal Info</h3>
+      <div class="form-group row">
+        <label class="col-sm-3 col-form-label" for="EmpId">Employee ID: <span class="lblError">*</span></label>
+
+        <div class="col-sm-6">
+          <input class="form-control" type="number" formControlName="emp_id" readonly/>
+          <small class="lblError" *ngIf="
+              empPersonalForm.get('emp_id').hasError('required') &&
+              !empPersonalForm.get('emp_id').pristine
+            ">Employee ID Required</small>
+        </div>
+      </div>
+      <div class="form-group row">
+        <label class="col-sm-3 col-form-label" for="birth_place">Birth Place: <span class="lblError">*</span></label>
+        <div class="col-sm-9">
+          <input class="form-control" type="text" formControlName="birth_place" />
+          <small class="lblError" *ngIf="
+              empPersonalForm.get('birth_place').hasError('required') &&
+              !empPersonalForm.get('birth_place').pristine
+            ">Birth Place Required</small>
+        </div>
+      </div>
+      <div class="form-group row">
+        <label class="col-sm-3 col-form-label" for="religion">Religion: <span class="lblError">*</span></label>
+        <div class="col-sm-9">
+          <select formControlName="religion" id="" class="form-control">
+            <option class="form-option" value="">Select</option>
+            <option class="form-option" value="hindu">Hindu</option>
+            <option class="form-option" value="muslim">Muslim</option>
+            <option class="form-option" value="sikh">Sikh</option>
+            <option class="form-option" value="christan">Christan</option>
+            <option class="form-option" value="other">Others</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-group row">
+        <label class="col-sm-3 col-form-label" for="Caste">Category: <span class="lblError">*</span></label>
+        <div class="col-md-9">
+          <select formControlName="caste" id="" class="form-control">
+            <option class="form-option" value="">Select</option>
+            <option class="form-option" value="general">General</option>
+            <option class="form-option" value="obc">OBC</option>
+            <option class="form-option" value="scst">SC/ST</option>
+            <option class="form-option" value="others">Others</option>
+          </select>
+        </div>
+      </div>
+      <div class="domicile form-group row">
+        <label class="col-sm-3 col-form-label" for="domicile">Domicile</label>
+        <div class="ml-2 pl-2 col-md-6">
+          <input class="form-control" type="text" formControlName="domicile" />
+        </div>
+      </div>
+      <div class="form-group row">
+        <label class="col-sm-3 col-form-label" for="">Nationality<span class="lblError">*</span></label>
+        <div class="col-sm-9">
+          <select formControlName="nationality" id="" class="form-control">
+            <option class="form-option" value="">Select</option>
+            <option class="form-option" value="indian">Indian</option>
+            <option class="form-option" value="other">Other</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-group row">
+        <label class="col-sm-3 col-form-label" for="">Voter ID</label>
+        <div class="col-sm-9">
+          <input type="text" formControlName="voter_id" class="form-control" />
+        </div>
+      </div>
+      <div class="form-group row">
+        <label class="col-sm-3 col-form-label" for="">PAN Card <span class="lblError">*</span></label>
+        <div class="col-sm-9">
+          <input class="form-control" type="text" formControlName="pan_card" />
+          <small class="lblError" *ngIf="
+              empPersonalForm.get('pan_card').hasError('required') &&
+              !empPersonalForm.get('pan_card').pristine
+            ">PAN No. Required</small>
+          <small class="lblError" *ngIf="
+              empPersonalForm.get('pan_card').hasError('required') &&
+              !empPersonalForm.get('pan_card').pristine
+            ">PAN No. Invalid</small>
+        </div>
+      </div>
+      <div class="form-group row">
+        <label class="col-sm-3 col-form-label" for="">Adhar Card No.<span class="lblError">*</span></label>
+        <div class="col-sm-9">
+          <input class="form-control" type="text" formControlName="adhar_card" appCreditCard />
+          <small class="lblError" *ngIf="
+              empPersonalForm.get('adhar_card').hasError('required') &&
+              !empPersonalForm.get('adhar_card').pristine
+            ">Adhar Card No. Required</small>
+          <small class="lblError" *ngIf="
+              empPersonalForm.get('adhar_card').hasError('pattern') &&
+              !empPersonalForm.get('adhar_card').pristine
+            ">Adhar No. Invalid</small>
+        </div>
+      </div>
+      <div class="form-group row">
+        <label class="col-sm-3 col-form-label" for="">Marital Status</label>
+        <div class="col-sm-9">
+          <select formControlName="maritual_status" class="form-control" (click)="mchange()">
+            <option class="form-option" value="">Select</option>
+            <option class="form-option" value="married">Married</option>
+            <option class="form-option" value="divorced">Devorced</option>
+            <option class="form-option" value="separated">Separated</option>
+            <option class="form-option" value="single">Single</option>
+            <option class="form-option" value="widow">Widow</option>
+          </select>
+        </div>
+      </div>
+      <div *ngIf="mart_status != 'single'">
+        <div class="form-group row">
+          <label class="col-sm-3 col-form-label" for="">No. of Children </label>
+          <div class="col-sm-9">
+            <input class="form-control" type="number" formControlName="children" />
+            <small class="lblError" *ngIf="
+                empPersonalForm.get('children').hasError('pattern') &&
+                !empPersonalForm.get('children').pristine
+              ">Invalid</small>
+          </div>
+        </div>
+        <div class="form-group row">
+          <label class="col-sm-3 col-form-label" for="">Marraige Date</label>
+          <div class="col-sm-9">
+            <input class="form-control" type="date" formControlName="marriage_date" />
+          </div>
+        </div>
+        <div class="form-group row">
+          <label class="col-sm-3 col-form-label" for="">Spouse Name</label>
+          <div class="col-sm-9">
+            <input class="form-control" type="text" formControlName="spouse_name" />
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="" class="lblError col-sm-6 col-form-label">*indicates the fields are mandatory.</label>
+    </div>
+    <button type="button" class="btn btn-secondary mx-2" (click)="goBack()">&lt; Back</button>
+    <button type="submit" class="btn btn-success mx-2" >Save</button>
+    <button type="button" class="btn btn-primary mx-2" (click)="goNext()">Next &gt;</button>
+  </form>
+</div>

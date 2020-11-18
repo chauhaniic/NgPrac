@@ -1,0 +1,102 @@
+<div class="container">
+  <form  id="add_info" class="form-group" [formGroup]="empBankForm" (ngSubmit)="empBankInfo()">
+  <div id="bank_info">
+    <div class="form-group row">
+      <label class="col-sm-3 col-form-label" for="EmpId">Employee ID: <span class="lblError">*</span></label>
+
+      <div class="col-sm-6">
+        <input class="form-control" type="number" formControlName="emp_id" readonly/>
+        <small class="lblError" *ngIf="
+            empBankForm.get('emp_id').hasError('required') &&
+            !empBankForm.get('emp_id').pristine
+          ">Employee ID Required</small>
+      </div>
+    </div>
+    <h3 class="h3">Bank Info</h3>
+    <div class="form-group row">
+      <label class="col-sm-3 col-form-label" for="">Bank Name</label>
+      <div class="col-sm-9">
+        <input class="form-control" type="text" formControlName="bank_name" />
+        <small class="lblError" *ngIf="
+            empBankForm.get('bank_name').hasError('required') &&
+            !empBankForm.get('bank_name').pristine
+          ">Bank Name Required</small>
+      </div>
+    </div>
+    <div class="form-group row">
+      <label class="col-sm-3 col-form-label" for="">Account Type</label>
+      <div class="col-sm-9">
+        <input class="form-control" type="text" formControlName="acc_type" />
+        <small class="lblError" *ngIf="
+            empBankForm.get('acc_type').hasError('required') &&
+            !empBankForm.get('acc_type').pristine
+          ">Account Type Required</small>
+      </div>
+    </div>
+    <div class="form-group row">
+      <label class="col-sm-3 col-form-label" for="">Payment Type</label>
+      <div class="col-sm-9">
+        <input class="form-control" type="text" formControlName="pay_type" />
+        <small class="lblError" *ngIf="
+            empBankForm.get('pay_type').hasError('required') &&
+            !empBankForm.get('pay_type').pristine
+          ">Payment Required</small>
+      </div>
+    </div>
+    <div class="form-group row">
+      <label class="col-sm-3 col-form-label" for="">Account No.</label>
+      <div class="col-sm-9">
+        <input class="form-control" type="text" formControlName="acc_no" />
+        <small class="lblError" *ngIf="
+            empBankForm.get('acc_no').hasError('required') &&
+            !empBankForm.get('acc_no').pristine
+          ">Account No. Required</small>
+        <small class="lblError" *ngIf="
+            empBankForm.get('acc_no').hasError('pattern') &&
+            !empBankForm.get('acc_no').pristine
+          ">Account No. Invalid
+        </small>
+      </div>
+    </div>
+    <div class="form-group row">
+      <label class="col-sm-3 col-form-label" for="">Branch Details</label>
+      <div class="col-sm-9">
+        <input class="form-control" type="text" formControlName="branch_det" />
+        <small class="lblError" *ngIf="
+            empBankForm.get('branch_det').hasError('required') &&
+            !empBankForm.get('branch_det').pristine
+          ">Branch Required</small>
+      </div>
+    </div>
+    <div class="form-group row">
+      <label class="col-sm-3 col-form-label" for="">IFSC Code</label>
+      <div class="col-sm-9">
+        <input class="form-control" type="text" formControlName="ifsc" />
+        <small class="lblError" *ngIf="
+            empBankForm.get('ifsc').hasError('required') &&
+            !empBankForm.get('ifsc').pristine
+          ">IFSC Code Required</small>
+      </div>
+    </div>
+    <div class="form-group row">
+      <label class="col-sm-3 col-form-label" for="">Reimbursement Bank Name</label>
+      <div class="col-sm-9">
+        <input class="form-control" type="text" formControlName="rbank_name" />
+      </div>
+    </div>
+    <div class="form-group row">
+      <label class="col-sm-3 col-form-label" for="">Reimbursement Account No</label>
+      <div class="col-sm-9">
+        <input class="form-control" type="text" formControlName="racc_no" />
+      </div>
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="" class="lblError col-sm-6 col-form-label">*indicates the fields are mandatory.</label>
+  </div>
+
+  <button type="button" class="btn btn-secondary mx-2" (click)="goBack()">&lt; Back</button>
+  <button type="submit" class="btn btn-success mx-2" >Save</button>
+  <button type="button" class="btn btn-primary mx-2" (click)="goNext()">Next &gt;</button>
+  </form>
+</div>

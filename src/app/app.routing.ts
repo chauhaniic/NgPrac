@@ -5,6 +5,13 @@ import { ConnectingUserComponent } from './connecting-user/connecting-user.compo
 import { DemoappComponent } from './demoapp/demoapp.component';
 import { DemonewComponent } from './demonew/demonew.component';
 import { EmpFormComponent } from './emp-form/emp-form.component';
+import { EmpBasicEditComponent } from './emp-record/emp-basic/emp-basic-edit/emp-basic-edit.component';
+import { EmpBasicComponent } from './emp-record/emp-basic/emp-basic.component';
+import { EmpExpComponent } from './emp-record/emp-exp/emp-exp.component';
+import { EmpAddressComponent } from './emp-record/emp-personal/emp-address/emp-address.component';
+import { EmpBankComponent } from './emp-record/emp-personal/emp-bank/emp-bank.component';
+import { EmpPersonalComponent } from './emp-record/emp-personal/emp-personal.component';
+import { EmpRecordComponent } from './emp-record/emp-record.component';
 import { EmpComponent } from './emp/emp.component';
 /* import { EmpinfoComponent } from './empinfo/empinfo.component'; */
 import { EparentComponent } from './eparent/eparent.component';
@@ -47,11 +54,17 @@ const task26: Routes = [
   { path: 'cuser', component: ConnectingUserComponent },
   { path: 'editemp/:id', component:EmpeditComponent  },
   { path: 'editproduct/:id', component:ProducteditComponent },
-  {
-    path: 'atest',
-    component: ArraytestComponent,
-  } /*
-  { path: 'fissue', component: FormissueComponent }, */,
+  { path: 'home',component:EmpRecordComponent},
+  { path: 'home/addbasic',component:EmpBasicComponent},
+  { path: 'home/editbasic/:id',component:EmpBasicEditComponent},
+  { path: 'home/addpersonal/:id',component:EmpPersonalComponent},
+  { path: 'home/addpersonal/',redirectTo: 'home/addbasic',pathMatch: 'full'},
+  { path: 'home/address/:id',component:EmpAddressComponent},/*
+  { path: 'home/address/',redirectTo: 'home/addbasic',pathMatch: 'full'}, */
+  { path: 'home/bank/:id',component:EmpBankComponent},
+  { path: 'home/exp/:id',component:EmpExpComponent},
+  { path: 'atest',component: ArraytestComponent}, /*
+  { path: 'fissue', component: FormissueComponent }, */
   /* { path: 'empinfo', component: EmpinfoComponent },
    */ { path: 'error404', component: PagenotfoundComponent },
   { path: '**', redirectTo: 'error404' },

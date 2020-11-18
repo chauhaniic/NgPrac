@@ -1,0 +1,226 @@
+<div class="container-lg">
+  <form  id="exp_info" class="form-group" [formGroup]="empEduForm" (ngSubmit)="empEduInfo()">
+  <div class="edu_info table-responsive">
+    <h3 class="h3">Education Details</h3>
+    <table class="table">
+      <thead class="thead">
+        <td class="td">Qualification<span class="lblError">*</span></td>
+        <td class="td">Institute<span class="lblError">*</span></td>
+        <td class="td">Passing Year<span class="lblError">*</span></td>
+        <td class="td">Score<span class="lblError">*</span></td>
+        <td class="td">Qualification Area<span class="lblError">*</span></td>
+        <td class="td">Edit/Remove</td>
+      </thead>
+      <tbody class="tbody" formArrayName="edu_data" *ngFor="let item of getEduControl(); let i = index">
+        <tr class="tr" [formGroupName]="i">
+          <td class="td">
+            <input formControlName="qualification" type="text" class="form-control" />
+            <small class="lblError" *ngIf="
+                duplicateEdu(item.get('qualification').value, i) && i > 0
+              " class="text-danger">*Duplicates not Allowed</small>
+            <small class="lblError" *ngIf="
+                item.get('qualification').hasError('required') &&
+                !item.get('qualification').pristine
+              " class="text-danger">*Qualification is required</small>
+          </td>
+          <td class="td">
+            <input formControlName="institution" type="text" class="form-control" />
+          </td>
+          <td class="td">
+            <input formControlName="passing_year" type="text" class="form-control" />
+          </td>
+          <td class="td">
+            <input formControlName="score" type="number" class="form-control" />
+          </td>
+          <td class="td">
+            <input formControlName="qua_area" type="text" class="form-control" />
+          </td>
+          <td class="td">
+            <button type="button" class="btn btn-secondary" (click)="onEduCheck(i)">
+              Add
+            </button>
+            <button type="button" class="btn btn-danger" (click)="onRemoveEduClick(i)">
+              Remove
+            </button>
+          </td>
+        </tr>
+      </tbody>
+      <tfoot class="tfoot">
+        <tr class="tr">
+          <td class="td" colspan="2">
+            <small class="lblError">* indicates required elements</small>
+            <br class="br" />
+            <button type="button" class="btn btn-primary" (click)="onAddEducationClick()">
+              Add More
+            </button>
+          </td>
+        </tr>
+      </tfoot>
+    </table>
+  </div>
+  </form>
+  <form  id="exp_info" class="form-group" [formGroup]="empExpForm" (ngSubmit)="empExpInfo()">
+  <div class="exp_info table-responsive">
+    <h3 class="h3">Experience Details</h3>
+    <table class="table">
+      <thead class="thead">
+        <td class="td">From Date<span class="lblError">*</span></td>
+        <td class="td">To Date<span class="lblError">*</span></td>
+        <td class="td">Company<span class="lblError">*</span></td>
+        <td class="td">Designation<span class="lblError">*</span></td>
+        <td class="td">Relevant Date<span class="lblError">*</span></td>
+        <td class="td">Non Relevant Date<span class="lblError">*</span></td>
+        <td class="td">Edit/Remove</td>
+      </thead>
+      <tbody class="tbody" formArrayName="exp_data" *ngFor="let item of getExpControl(); let i = index">
+        <tr class="tr" [formGroupName]="i">
+          <td class="td">
+            <input formControlName="from_date" type="date" class="form-control"
+              (click)="duplicateExp_from_date(item.get('from_date').value, i)" />
+            <small class="lblError" *ngIf="duplicateExp_from_date(item.get('from_date').value, i) == 1 &&
+                i >= 0
+              " class="text-danger">*Date Not Allowed/ Beyond Today </small>
+            <small class="lblError" *ngIf="duplicateExp_from_date(item.get('from_date').value, i) == 2 &&
+                i >= 0
+              " class="text-danger">*Date Not Allowed/ Beyond To Date </small>
+            <small class="lblError" *ngIf="duplicateExp_from_date(item.get('from_date').value, i) == 3 &&
+                i >= 0
+              " class="text-danger">*Date Not Allowed/ Between Previous Exeperience </small>
+            <small class="lblError" *ngIf="duplicateExp_from_date(item.get('from_date').value, i) == 4 &&
+                i >= 0
+              " class="text-danger">*Date Not Allowed/ Before Previous Exeperience </small>
+          </td>
+          <td class="td">
+            <input formControlName="to_date" type="date" class="form-control" />
+            <small class="lblError" *ngIf="duplicateExp_to_date(item.get('to_date').value, i) == 1 &&
+                i >= 0
+              " class="text-danger">*Date Not Allowed/ Beyond Today </small>
+            <small class="lblError" *ngIf="duplicateExp_to_date(item.get('to_date').value, i) == 2 &&
+                i >= 0
+              " class="text-danger">*Date Not Allowed/ Earlier from From_Date </small>
+            <small class="lblError" *ngIf="duplicateExp_to_date(item.get('to_date').value, i) == 3 &&
+                i >= 0
+              " class="text-danger">*Date Not Allowed/ Between Previous Exeperience </small>
+            <small class="lblError" *ngIf="duplicateExp_to_date(item.get('to_date').value, i) == 4 &&
+                i >= 0
+              " class="text-danger">*Date Not Allowed/ Before Previous Exeperience </small>
+            <!-- <small class="lblError" *ngIf="
+                duplicateExp_to_date(item.get('to_date').value, i) == 3 && i >= 0
+              " class="text-danger">*Date Not Allowed/ Date OverLap</small> -->
+          </td>
+          <td class="td">
+            <input formControlName="company" type="text" class="form-control" />
+          </td>
+          <td class="td">
+            <input formControlName="designation" type="text" class="form-control" />
+          </td>
+          <td class="td">
+            <input formControlName="r_date" type="date" class="form-control" />
+          </td>
+          <td class="td">
+            <input formControlName="nr_date" type="date" class="form-control" />
+          </td>
+          <td class="td">
+            <button type="button" class="btn btn-danger" (click)="onExpCheck(i)">
+              Add
+            </button>
+            <button type="button" class="btn btn-danger" (click)="onRemoveExpClick(i)">
+              Remove
+            </button>
+          </td>
+        </tr>
+      </tbody>
+      <tfoot class="tfoot">
+        <td class="td" colspan="2">
+          <small class="lblError">* indicates required elements</small>
+          <br class="br" />
+          <button type="button" class="btn btn-primary" (click)="onAddExpClick()">
+            Add More
+          </button>
+        </td>
+      </tfoot>
+    </table>
+  </div>
+</form>
+<form  id="exp_info" class="form-group" [formGroup]="empSkillForm" (ngSubmit)="empSkillInfo()">
+  <div class="skill_info table-responsive">
+    <h3 class="h3">Skill Details</h3>
+    <table class="table">
+      <thead class="thead">
+        <td class="td">Skill Category<span class="lblError">*</span></td>
+        <td class="td">Skill<span class="lblError">*</span></td>
+        <td class="td">Skill Level<span class="lblError">*</span></td>
+        <td class="td">Is_Current<span class="lblError">*</span></td>
+        <td class="td">Experience<span class="lblError">*</span></td>
+        <td class="td">Remarks<span class="lblError">*</span></td>
+        <td class="td">Edit/Remove</td>
+      </thead>
+      <tbody class="tbody" formGroupName="skill_data" *ngFor="let item of getSkillControl(); let i = index">
+        <tr class="tr" [formGroupName]="i">
+          <td class="td">
+            <input formControlName="skill_cat" type="text" class="form-control" />
+            <small class="lblError" *ngIf="
+                item.get('skill_cat').hasError('required') &&
+                !item.get('skill_cat').pristine
+              " class="text-danger">*Skill Cat is required</small>
+          </td>
+          <td class="td">
+            <input formControlName="skill" type="text" class="form-control" />
+            <small class="lblError" *ngIf="duplicateSkill(item.get('skill').value, i) && i > 0"
+              class="text-danger">*Duplicates not Allowed</small>
+            <small class="lblError" *ngIf="
+                item.get('skill').hasError('required') &&
+                !item.get('skill').pristine
+              " class="text-danger">*Skill is required</small>
+          </td>
+          <td class="td">
+            <input formControlName="skill_level" type="text" class="form-control" />
+            <small class="lblError" *ngIf="
+                item.get('skill_level').hasError('required') &&
+                !item.get('skill_level').pristine
+              " class="text-danger">*Skill Level is required</small>
+          </td>
+          <td class="td" colspan="1">
+            <select formControlName="is_current" class="form-control">
+              <option value="yes" class="form-option">Yes</option>
+              <option value="no" class="form-option">No</option>
+            </select>
+          </td>
+          <td class="td">
+            <input formControlName="exper" type="text" class="form-control" />
+            <small class="lblError" *ngIf="
+                item.get('skill_cat').hasError('required') &&
+                !item.get('skill_cat').pristine
+              " class="text-danger">*Skill Cat is required</small>
+          </td>
+          <td class="td">
+            <input formControlName="remarks" type="text" class="form-control" />
+          </td>
+          <td class="td">
+            <button type="button" class="btn btn-secondary" (click)="onSkillCheck(i)">
+              Add
+            </button>
+            <button type="button" class="btn btn-danger" (click)="onRemoveSkillClick(i)">
+              Remove
+            </button>
+          </td>
+        </tr>
+      </tbody>
+      <tfoot class="tfoot">
+        <tr class="tr">
+          <td class="td" colspan="2">
+            <small class="lblError">* indicates required elements</small>
+            <br class="br" />
+            <button type="button" class="btn btn-primary" (click)="onAddSkillClick()">
+              Add More
+            </button>
+          </td>
+        </tr>
+      </tfoot>
+    </table>
+  </div>
+  <button type="button" class="btn btn-secondary mx-2" (click)="goBack()">&lt; Back</button>
+  <button type="button" class="btn btn-success mx-2" >Save</button>
+  <button type="button" class="btn btn-primary mx-2" (click)="goNext()">Next &gt;</button>
+  </form>
+</div>

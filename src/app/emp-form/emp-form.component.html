@@ -501,7 +501,7 @@
         <div class="form-group row">
           <label class="col-sm-3 col-form-label" for="">No. of Children </label>
           <div class="col-sm-9">
-            <input class="form-control" type="text" formControlName="children" />
+            <input class="form-control" type="number" formControlName="children" />
             <small class="lblError" *ngIf="
                 empAddForm.get('children').hasError('pattern') &&
                 !empAddForm.get('children').pristine

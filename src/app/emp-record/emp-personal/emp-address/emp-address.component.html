@@ -1,0 +1,260 @@
+<div class="container">
+  <form id="add_info" class="form-group" [formGroup]="empAddForm" (ngSubmit)="addAddress()">
+    <div class="form-group row">
+      <label class="col-sm-3 col-form-label" for="EmpId">Employee ID: <span class="lblError">*</span></label>
+
+      <div class="col-sm-6">
+        <input class="form-control" type="number" formControlName="emp_id" readonly/>
+        <small class="lblError" *ngIf="
+            empAddForm.get('emp_id').hasError('required') &&
+            !empAddForm.get('emp_id').pristine
+          ">Employee ID Required</small>
+      </div>
+    </div>
+    <div class="address_info">
+      <h3 class="h3">Address Info</h3>
+      <hr class="hr" />
+      <h4 class="h4">Postal Address</h4>
+      <div>
+        <div class="form-group row">
+          <label class="col-sm-3 col-form-label" for="">Address Line 1</label>
+          <div class="col-sm-9">
+            <input class="form-control" type="text" formControlName="add_line1" />
+            <small class="lblError" *ngIf="
+                empAddForm.get('add_line1').hasError('required') &&
+                !empAddForm.get('add_line1').pristine
+              ">Required</small>
+          </div>
+        </div>
+        <div class="form-group row">
+          <label class="col-sm-3 col-form-label" for="">Address Line 2</label>
+          <div class="col-sm-9">
+            <input class="form-control" type="text" formControlName="add_line2" />
+          </div>
+        </div>
+        <div class="form-group row">
+          <label class="col-sm-3 col-form-label" for="">Country</label>
+          <div class="col-sm-9">
+            <select formControlName="add_country" id="" class="form-control">
+              <option value="">Selected</option>
+              <option value="india">India</option>
+              <option value="uae">UAE</option>
+              <option value="sri lanka">Sri Lanka</option>
+              <option value="uk">UK</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group row">
+          <label class="col-sm-3 col-form-label" for="">State</label>
+          <div class="col-sm-9">
+            <select name="state" formControlName="add_state" class="form-control">
+              <option value="Andhra Pradesh">Andhra Pradesh</option>
+              <option value="Andaman and Nicobar Islands">
+                Andaman and Nicobar Islands
+              </option>
+              <option value="Arunachal Pradesh">Arunachal Pradesh</option>
+              <option value="Assam">Assam</option>
+              <option value="Bihar">Bihar</option>
+              <option value="Chandigarh">Chandigarh</option>
+              <option value="Chhattisgarh">Chhattisgarh</option>
+              <option value="Dadar and Nagar Haveli">
+                Dadar and Nagar Haveli
+              </option>
+              <option value="Daman and Diu">Daman and Diu</option>
+              <option value="Delhi">Delhi</option>
+              <option value="Lakshadweep">Lakshadweep</option>
+              <option value="Puducherry">Puducherry</option>
+              <option value="Goa">Goa</option>
+              <option value="Gujarat">Gujarat</option>
+              <option value="Haryana">Haryana</option>
+              <option value="Himachal Pradesh">Himachal Pradesh</option>
+              <option value="Jammu and Kashmir">Jammu and Kashmir</option>
+              <option value="Jharkhand">Jharkhand</option>
+              <option value="Karnataka">Karnataka</option>
+              <option value="Kerala">Kerala</option>
+              <option value="Madhya Pradesh">Madhya Pradesh</option>
+              <option value="Maharashtra">Maharashtra</option>
+              <option value="Manipur">Manipur</option>
+              <option value="Meghalaya">Meghalaya</option>
+              <option value="Mizoram">Mizoram</option>
+              <option value="Nagaland">Nagaland</option>
+              <option value="Odisha">Odisha</option>
+              <option value="Punjab">Punjab</option>
+              <option value="Rajasthan">Rajasthan</option>
+              <option value="Sikkim">Sikkim</option>
+              <option value="Tamil Nadu">Tamil Nadu</option>
+              <option value="Telangana">Telangana</option>
+              <option value="Tripura">Tripura</option>
+              <option value="Uttar Pradesh">Uttar Pradesh</option>
+              <option value="Uttarakhand">Uttarakhand</option>
+              <option value="West Bengal">West Bengal</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group row">
+          <label class="col-sm-3 col-form-label" for="">City</label>
+          <div class="col-sm-9">
+            <input class="form-control" type="text" formControlName="add_city" />
+          </div>
+        </div>
+        <div class="form-group row">
+          <label class="col-sm-3 col-form-label" for="">District</label>
+          <div class="col-sm-9">
+            <input class="form-control" type="text" formControlName="add_district" />
+          </div>
+        </div>
+        <div class="form-group row">
+          <label class="col-sm-3 col-form-label" for="">Pincode</label>
+          <div class="col-sm-9">
+            <input class="form-control" type="number" formControlName="add_pincode" />
+            <small class="lblError" *ngIf="
+                empAddForm.get('add_pincode').hasError('required') &&
+                !empAddForm.get('add_pincode').pristine
+              ">Pin Code Required</small>
+            <small class="lblError" *ngIf="
+                empAddForm.get('add_pincode').hasError('minlength') ||
+                (empAddForm.get('add_pincode').hasError('maxlength') &&
+                  !empAddForm.get('add_pincode').pristine)
+              ">Pin Code Invalid
+            </small>
+          </div>
+        </div>
+      </div>
+      <div class="form-group row">
+        <label class="col-sm-3 col-form-label" for="">Check this If >></label>
+        <label class="col-sm-9 col-form-label" for="">
+          <input type="checkbox" class="form-check-input" formControlName="check_Add_Value"  />
+          Permanent Address is Same as Postal Address.
+        </label>
+      </div>
+      <div>
+        <div>
+          <h4 class="h4">Permanent Address</h4>
+          <div class="form-group row">
+            <label class="col-sm-3 col-form-label" for="">Address Line 1</label>
+            <div class="col-sm-9">
+              <input class="form-control" type="text" formControlName="padd_line1"  />
+              <small class="lblError" *ngIf="
+                  empAddForm.get('padd_line1').hasError('required') &&
+                  !empAddForm.get('padd_line1').pristine
+                ">
+                Required</small>
+            </div>
+          </div>
+          <div class="form-group row">
+            <label class="col-sm-3 col-form-label" for="">Address Line 2</label>
+            <div class="col-sm-9">
+              <input class="form-control" type="text" formControlName="padd_line2"  />
+            </div>
+          </div>
+          <div class="form-group row">
+            <label class="col-sm-3 col-form-label" for="">Country</label>
+            <div class="col-sm-9">
+              <select formControlName="padd_country" id="" class="form-control" >
+                <option value="">Selected</option>
+                <option value="india">India</option>
+                <option value="uae">UAE</option>
+                <option value="sri lanka">Sri Lanka</option>
+                <option value="uk">UK</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group row">
+            <label class="col-sm-3 col-form-label" for="">State</label>
+            <div class="col-sm-9">
+              <select name="state" formControlName="padd_state" class="form-control" >
+                <option value="Andhra Pradesh">Andhra Pradesh</option>
+                <option value="Andaman and Nicobar Islands">
+                  Andaman and Nicobar Islands
+                </option>
+                <option value="Arunachal Pradesh">Arunachal Pradesh</option>
+                <option value="Assam">Assam</option>
+                <option value="Bihar">Bihar</option>
+                <option value="Chandigarh">Chandigarh</option>
+                <option value="Chhattisgarh">Chhattisgarh</option>
+                <option value="Dadar and Nagar Haveli">
+                  Dadar and Nagar Haveli
+                </option>
+                <option value="Daman and Diu">Daman and Diu</option>
+                <option value="Delhi">Delhi</option>
+                <option value="Lakshadweep">Lakshadweep</option>
+                <option value="Puducherry">Puducherry</option>
+                <option value="Goa">Goa</option>
+                <option value="Gujarat">Gujarat</option>
+                <option value="Haryana">Haryana</option>
+                <option value="Himachal Pradesh">Himachal Pradesh</option>
+                <option value="Jammu and Kashmir">Jammu and Kashmir</option>
+                <option value="Jharkhand">Jharkhand</option>
+                <option value="Karnataka">Karnataka</option>
+                <option value="Kerala">Kerala</option>
+                <option value="Madhya Pradesh">Madhya Pradesh</option>
+                <option value="Maharashtra">Maharashtra</option>
+                <option value="Manipur">Manipur</option>
+                <option value="Meghalaya">Meghalaya</option>
+                <option value="Mizoram">Mizoram</option>
+                <option value="Nagaland">Nagaland</option>
+                <option value="Odisha">Odisha</option>
+                <option value="Punjab">Punjab</option>
+                <option value="Rajasthan">Rajasthan</option>
+                <option value="Sikkim">Sikkim</option>
+                <option value="Tamil Nadu">Tamil Nadu</option>
+                <option value="Telangana">Telangana</option>
+                <option value="Tripura">Tripura</option>
+                <option value="Uttar Pradesh">Uttar Pradesh</option>
+                <option value="Uttarakhand">Uttarakhand</option>
+                <option value="West Bengal">West Bengal</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group row">
+            <label class="col-sm-3 col-form-label" for="">City</label>
+            <div class="col-sm-9">
+              <input class="form-control" type="text" formControlName="padd_city"  />
+            </div>
+          </div>
+          <div class="form-group row">
+            <label class="col-sm-3 col-form-label" for="">District</label>
+            <div class="col-sm-9">
+              <input class="form-control" type="text" formControlName="padd_district"  />
+            </div>
+          </div>
+          <div class="form-group row">
+            <label class="col-sm-3 col-form-label" for="">Pincode</label>
+            <div class="col-sm-9">
+              <input class="form-control" type="number" formControlName="padd_pincode"  />
+              <small class="lblError" *ngIf="
+                  empAddForm.get('padd_pincode').hasError('required') &&
+                  !empAddForm.get('padd_pincode').pristine
+                ">Pin Code Required</small>
+              <small class="lblError" *ngIf="
+                  empAddForm.get('padd_pincode').hasError('minlength') ||
+                  (empAddForm.get('padd_pincode').hasError('maxlength') &&
+                    !empAddForm.get('padd_pincode').pristine)
+                ">Pin Code Invalid
+              </small>
+            </div>
+          </div>
+          <!-- <div class="form-group row">
+          <label class="col-sm-3 col-form-label" for="">Phone 1</label>
+          <div class="col-sm-9">
+            <input class="form-control" type="text" formControlName="emp_ophone">
+            <small class="lblError"
+              *ngIf="empAddForm.get('emp_ophone').hasError('required') && !empAddForm.get('emp_ophone').pristine ">Phone
+              No.
+              Required</small>
+            <small class="lblError"
+              *ngIf="empAddForm.get('emp_ophone').hasError('minlength') || empAddForm.get('emp_ophone').hasError('maxlength')  && !empAddForm.get('emp_ophone').pristine">Phone
+              No. Invalid</small>
+          </div>
+        </div> -->
+        </div>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="" class="lblError col-sm-6 col-form-label">*indicates the fields are mandatory.</label>
+    </div>
+    <button type="button" class="btn btn-secondary mx-2" (click)="goBack()">&lt; Back</button>
+    <button type="submit" class="btn btn-success mx-2" >Save</button>
+    <button type="button" class="btn btn-primary mx-2" (click)="goNext()">Next &gt;</button>
+    </form>
+</div>

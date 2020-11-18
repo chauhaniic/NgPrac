@@ -1,0 +1,161 @@
+<div class="container-lg">
+  <form id="basic_info" class="form-group" [formGroup]="empBasicForm" (ngSubmit)="empBasicDetails()">
+    <div class="basic_info">
+      <h3 class="h3">Basic Info</h3>
+      <div class="form-group row">
+        <label class="col-sm-3 col-form-label" for="EmpId">Employee ID: <span class="lblError">*</span></label>
+        <div class="col-sm-6">
+          <input class="form-control" type="number" formControlName="emp_id" />
+          <small class="lblError" *ngIf="
+              empBasicForm.get('emp_id').hasError('required') &&
+              !empBasicForm.get('emp_id').pristine
+            ">Employee ID Required</small>
+        </div>
+      </div>
+      <!-- <div class="form-group row">
+        <label class="col-sm-3 col-form-label" for="EmpId">Employee Title: <span class="lblError">*</span></label>
+        <div class="col-sm-9">
+
+        </div>
+      </div> -->
+      <div class="form-group row">
+        <label class="col-sm-3 col-form-label" for="FullName">Full Name: <span class="lblError">*</span></label>
+        <div class="col-sm-2">
+          <select class="form-group form-control">
+            <option value="mr">Mr.</option>
+            <option value="mrs">Mrs./Miss</option>
+          </select>
+        </div>
+        <div class="col-sm-3">
+          <input class="form-control" type="text" placeholder="First Name *" formControlName="f_name" />
+        </div>
+        <div class="col-sm-2">
+          <input class="form-control" type="text" placeholder="Middle Name" formControlName="m_name" />
+        </div>
+        <div class="col-sm-2">
+          <input class="form-control" type="text" placeholder="Last Name" formControlName="l_name" />
+        </div>
+
+        <small class="lblError" *ngIf="
+            empBasicForm.get('f_name').hasError('required') &&
+            !empBasicForm.get('f_name').pristine
+          ">First Name is Required</small>
+        <small class="lblError" *ngIf="
+            empBasicForm.get('f_name').hasError('minlength') &&
+            !empBasicForm.get('f_name').pristine
+          ">Min Length is 3</small>
+        <small class="lblError" *ngIf="
+            empBasicForm.get('f_name').hasError('pattern') &&
+            !empBasicForm.get('f_name').pristine
+          ">Invalid Name</small>
+      </div>
+      <div class="gender form-group row">
+        <label class="col-sm-3 col-form-label" for="Gender">Gender <span class="lblError">*</span></label>
+        <div class="ml-2 pl-2">
+          <div class="col-sm-10">
+            <input class="form-check-input" type="radio" value="male" formControlName="gender" />
+            <label class="col-sm-3 form-check-label" selected>Male</label>
+            <div>
+              <input class="form-check-input" type="radio" value="female" formControlName="gender" />
+              <label class="col-sm-3 form-check-label" for="">Female</label>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="form-group row">
+        <label class="col-sm-3 col-form-label" for="">DOB <span class="lblError">*</span></label>
+        <div class="col-sm-3">
+          <input type="date" formControlName="dob" class="form-control" />
+        </div>
+        <!-- </div>
+      <div class="form-group row"> -->
+        <label class="col-sm-3 col-form-label" for="">Age</label>
+        <div class="col-sm-3">
+          <label type="text" class="disabled"> {{ age }} </label>
+        </div>
+      </div>
+      <div class="form-group row">
+        <label class="col-sm-3 col-form-label" for="">Official Phone No. <span class="lblError">*</span></label>
+        <div class="col-sm-4">
+          <input class="form-control" type="text" formControlName="ophone" />
+          <small class="lblError" *ngIf="
+              empBasicForm.get('ophone').hasError('required') &&
+              !empBasicForm.get('ophone').pristine
+            ">Phone No. Required</small>
+          <small class="lblError" *ngIf="
+              empBasicForm.get('ophone').hasError('minlength') ||
+              (empBasicForm.get('ophone').hasError('maxlength') &&
+                !empBasicForm.get('ophone').pristine)
+            ">Phone No. Invalid</small>
+        </div>
+        <!-- </div>
+      <div class="form-group row"> -->
+        <label class="col-sm-2 col-form-label" for="">Phone 1</label>
+        <div class="col-sm-3">
+          <input class="form-control" type="text" formControlName="phone1" />
+        </div>
+      </div>
+      <div class="form-group row">
+        <label class="col-sm-3 col-form-label" for="">Fax</label>
+        <div class="col-sm-6">
+          <input class="form-control" type="text" formControlName="fax" />
+        </div>
+      </div>
+      <div class="form-group row">
+        <label class="col-sm-3 col-form-label" for="">Official Email <span class="lblError">*</span></label>
+        <div class="col-sm-6">
+          <input class="form-control" type="text" formControlName="oemail" />
+          <small class="lblError" *ngIf="
+              empBasicForm.get('oemail').hasError('required') &&
+              !empBasicForm.get('oemail').pristine
+            ">Email Required</small>
+          <small class="lblError" *ngIf="
+              empBasicForm.get('oemail').hasError('email') &&
+              !empBasicForm.get('oemail').pristine
+            ">Invalid Email
+          </small>
+        </div>
+      </div>
+      <div class="form-group row">
+        <label class="col-sm-3 col-form-label" for="">Personal EMail 1</label>
+        <div class="col-sm-4">
+          <input class="form-control" type="text" formControlName="pemail" />
+          <small class="lblError" *ngIf="
+              empBasicForm.get('pemail').hasError('email') &&
+              !empBasicForm.get('pemail').pristine
+            ">Invalid Email
+          </small>
+        </div>
+        <!-- </div>
+      <div class="form-group row"> -->
+        <label class="col-sm-2 col-form-label" for="">Personal Email 2</label>
+        <div class="col-sm-3">
+          <input class="form-control" type="text" formControlName="pemail2" />
+          <small class="lblError" *ngIf="
+              empBasicForm.get('pemail2').hasError('email') &&
+              !empBasicForm.get('pemail2').pristine
+            ">Invalid Email
+          </small>
+        </div>
+      </div>
+      <div class="form-group row">
+        <label class="col-sm-3 col-form-label" for="">Attach Photo <span class="lblError">*</span></label>
+        <div class="col-sm-9">
+          <input type="file" formControlName="photo" required />
+          <small class="lblError invalid-feedback" *ngIf="
+              empBasicForm.get('photo').hasError('required') &&
+              !empBasicForm.get('photo').pristine
+            ">Photo Required</small>
+        </div>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="" class="lblError col-sm-6 col-form-label">*indicates the fields are mandatory.</label>
+    </div>
+
+    <button type="submit" class="btn btn-primary btn-large">
+      Continue for Further Steps
+    </button>
+  </form>
+
+</div>
