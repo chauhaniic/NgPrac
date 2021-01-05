@@ -1,0 +1,41 @@
+<div class="container-lg">
+    <h3 class="h3">File Info</h3>
+        <form id="file_info" class="form-group" (ngSubmit)="fileUp()" #addform="ngForm">
+          <div class="file_info">
+
+            <div class="form-group row">
+              <label class="col-sm-3 col-form-label" for="File">
+                File : <span class="lblError">*</span>
+                <ng-template #Disabled><p class="lblError xy-2" #Disabled>Please choose a file</p></ng-template>
+              </label>
+
+              <div class="col-sm-6"><!--
+                <input class="form-control" type="file" (change)="fileChange(input)" #input  /> -->
+                <input class="form-control" name="upload" type="file" (change)="onFileChange($event)"  >
+              </div>
+
+              <div class="col-sm-3">
+                <button type="submit" class="btn btn-primary btn-large" *ngIf="flag;else Disabled">
+                  Upload Files
+                </button>
+              </div>
+
+            </div>
+
+            <ng-template #Disabled><p class="lblError xy-2" #Disabled>Please choose a file</p></ng-template>
+
+
+          </div>
+        </form>
+</div>
+
+<div class="container">
+  <tr *ngFor="let item of arry" class="tr xy-2 py-2">
+    <td class="td"></td>
+    <td class="td"><label for="Name" class="label">{{ item.fileName.substr('-') }}</label> </td>
+    <td class="td"><a href="{{ apiUrl+item.filePath }}" class="button btn btn-large btn-primary" target="_blank">Download</a></td>
+    <td class="td mx-2 px-2 xy-2 py-2"><button class="btn btn-danger" (click)="onDeleteFile(item)">Delete</button></td>
+  </tr>
+</div>
+
+
